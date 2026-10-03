@@ -1,145 +1,115 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Paws</title>
-<style>
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
-font-family:Arial,sans-serif;
-}
 
+<style>
 body{
-min-height:100vh;
+font-family:Arial;
 background:#eaf5ff;
 display:flex;
 justify-content:center;
 align-items:center;
+min-height:100vh;
 }
 
-.container{
-width:365px;
+.box{
+width:370px;
 background:white;
 border:2px solid #087cff;
 border-radius:12px;
 overflow:hidden;
-box-shadow:0 7px 15px rgba(0,0,0,.25);
 }
 
 .header{
-height:135px;
 background:#dff3f5;
 text-align:center;
-padding-top:10px;
+padding:15px;
 }
 
 .logo{
-font-size:38px;
+font-size:35px;
 }
 
 .title{
 color:#064de8;
-font-size:11px;
+font-size:12px;
 font-weight:bold;
 }
 
 .subtitle{
-color:#8ca0ad;
-font-size:7px;
-margin-top:4px;
+font-size:8px;
+color:#888;
 }
 
 .steps{
-width:240px;
-margin:15px auto;
 display:flex;
-justify-content:space-between;
-position:relative;
-}
-
-.steps:before{
-content:"";
-position:absolute;
-top:9px;
-left:10px;
-right:10px;
-height:5px;
-background:#79cad5;
+justify-content:space-around;
+margin-top:15px;
 }
 
 .step{
-z-index:1;
-width:21px;
-height:21px;
+width:22px;
+height:22px;
 border-radius:50%;
-background:#eee;
+background:#ddd;
 border:1px solid #777;
-font-size:8px;
 display:flex;
-justify-content:center;
 align-items:center;
+justify-content:center;
+font-size:9px;
 }
 
-.step.active{
-background:#b6e4e8;
+.active{
+background:#9ddfe5;
 }
 
-.form-area{
-padding:20px 16px;
+.form{
+padding:20px;
 }
 
-.form-title{
+h3{
+font-size:13px;
 border-bottom:1px solid #777;
 padding-bottom:8px;
-margin-bottom:12px;
-font-size:12px;
 }
 
-.form-grid{
+.grid{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:10px 14px;
+gap:12px;
+margin-top:15px;
 }
 
 label{
-display:block;
-font-size:7px;
+font-size:8px;
 color:#777;
+display:block;
 margin-bottom:4px;
 }
 
 input,select{
 width:100%;
-height:18px;
-border:none;
-outline:none;
+height:25px;
+border:0;
 background:#d8eafb;
 border-radius:5px;
-padding:3px 7px;
-font-size:8px;
+box-sizing:border-box;
 }
 
-.button-area{
+.buttons{
 display:flex;
-justify-content:flex-end;
-gap:10px;
-margin-top:22px;
+justify-content:space-between;
+margin-top:20px;
 }
 
 button{
-border:none;
+border:0;
 background:#6caee5;
 color:white;
-padding:7px 13px;
+padding:8px 14px;
 border-radius:15px;
-font-size:9px;
 cursor:pointer;
-}
-
-button:hover{
-background:#428fd0;
 }
 
 .page{
@@ -149,24 +119,14 @@ display:none;
 .page.active{
 display:block;
 }
-
-@media(max-width:500px){
-.container{
-width:92%;
-}
-
-.form-grid{
-grid-template-columns:1fr;
-}
-}
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="box">
 
-<div class="page active" id="page1">
+<div id="account" class="page active">
 
 <div class="header">
 <div class="logo">🐾</div>
@@ -180,11 +140,11 @@ grid-template-columns:1fr;
 </div>
 </div>
 
-<div class="form-area">
+<div class="form">
 
-<div class="form-title">♙ &nbsp; Account Information</div>
+<h3>♙ Account Information</h3>
 
-<div class="form-grid">
+<div class="grid">
 
 <div>
 <label>First Name</label>
@@ -203,7 +163,7 @@ grid-template-columns:1fr;
 
 <div>
 <label>Phone Number</label>
-<input type="tel">
+<input type="text">
 </div>
 
 <div>
@@ -218,14 +178,18 @@ grid-template-columns:1fr;
 
 </div>
 
-<div class="button-area">
-<button onclick="nextPage(2)">Next Step →</button>
+<div class="buttons">
+<span></span>
+<button onclick="showPage('owner')">
+Next Step →
+</button>
 </div>
 
 </div>
 </div>
 
-<div class="page" id="page2">
+
+<div id="owner" class="page">
 
 <div class="header">
 <div class="logo">🐾</div>
@@ -239,11 +203,11 @@ grid-template-columns:1fr;
 </div>
 </div>
 
-<div class="form-area">
+<div class="form">
 
-<div class="form-title">♙ &nbsp; Owner Information</div>
+<h3>♙ Owner Information</h3>
 
-<div class="form-grid">
+<div class="grid">
 
 <div>
 <label>Address</label>
@@ -258,7 +222,7 @@ grid-template-columns:1fr;
 <div>
 <label>Gender</label>
 <select>
-<option></option>
+<option>Select</option>
 <option>Male</option>
 <option>Female</option>
 </select>
@@ -267,10 +231,10 @@ grid-template-columns:1fr;
 <div>
 <label>ID Type</label>
 <select>
-<option></option>
+<option>Select</option>
+<option>National ID</option>
 <option>Driver's License</option>
 <option>Passport</option>
-<option>National ID</option>
 </select>
 </div>
 
@@ -286,15 +250,23 @@ grid-template-columns:1fr;
 
 </div>
 
-<div class="button-area">
-<button onclick="nextPage(1)">← Back</button>
-<button onclick="nextPage(3)">Next Step →</button>
+<div class="buttons">
+
+<button onclick="showPage('account')">
+← Back
+</button>
+
+<button onclick="showPage('pet')">
+Next Step →
+</button>
+
 </div>
 
 </div>
 </div>
 
-<div class="page" id="page3">
+
+<div id="pet" class="page">
 
 <div class="header">
 <div class="logo">🐾</div>
@@ -308,11 +280,11 @@ grid-template-columns:1fr;
 </div>
 </div>
 
-<div class="form-area">
+<div class="form">
 
-<div class="form-title">♙ &nbsp; Pet Information</div>
+<h3>🐾 Pet Information</h3>
 
-<div class="form-grid">
+<div class="grid">
 
 <div>
 <label>Pet Name</label>
@@ -322,11 +294,11 @@ grid-template-columns:1fr;
 <div>
 <label>Pet Type</label>
 <select>
-<option></option>
+<option>Select</option>
 <option>Dog</option>
 <option>Cat</option>
 <option>Bird</option>
-<option>Other</option>
+<option>Rabbit</option>
 </select>
 </div>
 
@@ -338,7 +310,7 @@ grid-template-columns:1fr;
 <div>
 <label>Gender</label>
 <select>
-<option></option>
+<option>Select</option>
 <option>Male</option>
 <option>Female</option>
 </select>
@@ -356,9 +328,16 @@ grid-template-columns:1fr;
 
 </div>
 
-<div class="button-area">
-<button onclick="nextPage(2)">← Back</button>
-<button onclick="finish()">Finish ✓</button>
+<div class="buttons">
+
+<button onclick="showPage('owner')">
+← Back
+</button>
+
+<button onclick="finish()">
+Finish ✓
+</button>
+
 </div>
 
 </div>
@@ -367,16 +346,25 @@ grid-template-columns:1fr;
 </div>
 
 <script>
-function nextPage(page){
-document.querySelectorAll(".page").forEach(function(p){
-p.classList.remove("active");
-});
-document.getElementById("page"+page).classList.add("active");
+
+function showPage(page){
+
+document.getElementById("account").classList.remove("active");
+
+document.getElementById("owner").classList.remove("active");
+
+document.getElementById("pet").classList.remove("active");
+
+document.getElementById(page).classList.add("active");
+
 }
 
 function finish(){
+
 alert("Registration completed!");
+
 }
+
 </script>
 
 </body>
