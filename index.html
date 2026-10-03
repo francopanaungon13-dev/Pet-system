@@ -7,6 +7,7 @@
 body{
 font-family:Arial;
 background:#eaf5ff;
+margin:0;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -94,7 +95,7 @@ height:25px;
 border:0;
 background:#d8eafb;
 border-radius:5px;
-box-sizing:border-box;
+padding:4px;
 }
 
 .buttons{
@@ -179,10 +180,8 @@ display:block;
 </div>
 
 <div class="buttons">
-<span></span>
-<button onclick="showPage('owner')">
-Next Step →
-</button>
+<div></div>
+<button type="button" id="next1">Next Step →</button>
 </div>
 
 </div>
@@ -251,15 +250,8 @@ Next Step →
 </div>
 
 <div class="buttons">
-
-<button onclick="showPage('account')">
-← Back
-</button>
-
-<button onclick="showPage('pet')">
-Next Step →
-</button>
-
+<button type="button" id="back2">← Back</button>
+<button type="button" id="next2">Next Step →</button>
 </div>
 
 </div>
@@ -329,15 +321,8 @@ Next Step →
 </div>
 
 <div class="buttons">
-
-<button onclick="showPage('owner')">
-← Back
-</button>
-
-<button onclick="finish()">
-Finish ✓
-</button>
-
+<button type="button" id="back3">← Back</button>
+<button type="button" id="finish">Finish ✓</button>
 </div>
 
 </div>
@@ -347,23 +332,33 @@ Finish ✓
 
 <script>
 
-function showPage(page){
+var account = document.getElementById("account");
+var owner = document.getElementById("owner");
+var pet = document.getElementById("pet");
 
-document.getElementById("account").classList.remove("active");
+document.getElementById("next1").onclick = function(){
+account.classList.remove("active");
+owner.classList.add("active");
+};
 
-document.getElementById("owner").classList.remove("active");
+document.getElementById("back2").onclick = function(){
+owner.classList.remove("active");
+account.classList.add("active");
+};
 
-document.getElementById("pet").classList.remove("active");
+document.getElementById("next2").onclick = function(){
+owner.classList.remove("active");
+pet.classList.add("active");
+};
 
-document.getElementById(page).classList.add("active");
+document.getElementById("back3").onclick = function(){
+pet.classList.remove("active");
+owner.classList.add("active");
+};
 
-}
-
-function finish(){
-
+document.getElementById("finish").onclick = function(){
 alert("Registration completed!");
-
-}
+};
 
 </script>
 
