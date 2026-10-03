@@ -2,48 +2,163 @@
 <html>
 <head>
 <title>Happy Paws - Account</title>
+
 <style>
-body{font-family:Arial;background:#eaf5ff;margin:0;display:flex;justify-content:center;align-items:center;min-height:100vh}
-.box{width:370px;background:white;border:2px solid #087cff;border-radius:12px;overflow:hidden}
-.header{background:#dff3f5;text-align:center;padding:15px}
-.logo{font-size:35px}.title{color:#064de8;font-size:12px;font-weight:bold}.subtitle{font-size:8px;color:#888}
-.form{padding:20px}
-h3{font-size:13px;border-bottom:1px solid #777;padding-bottom:8px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
-label{font-size:8px;color:#777;display:block;margin-bottom:4px}
-input{width:100%;height:25px;border:0;background:#d8eafb;border-radius:5px;padding:4px;box-sizing:border-box}
-.buttons{display:flex;justify-content:flex-end;margin-top:20px}
-button{border:0;background:#6caee5;color:white;padding:8px 14px;border-radius:15px;cursor:pointer}
+body {
+    font-family: Arial;
+    background: #eaf5ff;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    width: 370px;
+    background: white;
+    border: 2px solid #087cff;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.header {
+    background: #dff3f5;
+    text-align: center;
+    padding: 15px;
+}
+
+.logo {
+    font-size: 35px;
+}
+
+.title {
+    color: #064de8;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 8px;
+    color: #888;
+}
+
+.form {
+    padding: 20px;
+}
+
+h3 {
+    font-size: 13px;
+    border-bottom: 1px solid #777;
+    padding-bottom: 8px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+label {
+    font-size: 8px;
+    color: #777;
+    display: block;
+    margin-bottom: 4px;
+}
+
+input {
+    width: 100%;
+    height: 25px;
+    border: none;
+    background: #d8eafb;
+    border-radius: 5px;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+button {
+    border: none;
+    background: #6caee5;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #4d99d5;
+}
 </style>
 </head>
+
 <body>
 
 <div class="box">
 
-<div class="header">
-<div class="logo">🐾</div>
-<div class="title">Create Your Happy Paws Account!</div>
-<div class="subtitle">Complete your registration for expert pet care services</div>
+    <div class="header">
+        <div class="logo">🐾</div>
+        <div class="title">Create Your Happy Paws Account!</div>
+        <div class="subtitle">Complete your registration for expert pet care services</div>
+    </div>
+
+    <div class="form">
+
+        <h3>Account Information</h3>
+
+        <div class="grid">
+
+            <div>
+                <label>First Name</label>
+                <input type="text">
+            </div>
+
+            <div>
+                <label>Last Name</label>
+                <input type="text">
+            </div>
+
+            <div>
+                <label>Email Address</label>
+                <input type="email">
+            </div>
+
+            <div>
+                <label>Phone Number</label>
+                <input type="text">
+            </div>
+
+            <div>
+                <label>Password</label>
+                <input type="password">
+            </div>
+
+            <div>
+                <label>Confirm Password</label>
+                <input type="password">
+            </div>
+
+        </div>
+
+        <div class="buttons">
+            <button type="button" onclick="goToOwner()">Next Step →</button>
+        </div>
+
+    </div>
+
 </div>
 
-<div class="form">
-<h3>Account Information</h3>
-
-<div class="grid">
-<div><label>First Name</label><input type="text"></div>
-<div><label>Last Name</label><input type="text"></div>
-<div><label>Email Address</label><input type="email"></div>
-<div><label>Phone Number</label><input type="text"></div>
-<div><label>Password</label><input type="password"></div>
-<div><label>Confirm Password</label><input type="password"></div>
-</div>
-
-<div class="buttons">
-<button onclick="window.location.href='owner.html'">Next Step →</button>
-</div>
-
-</div>
-</div>
+<script>
+function goToOwner() {
+    window.location.href = "owner.html";
+}
+</script>
 
 </body>
 </html>
