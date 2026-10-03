@@ -1,366 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Happy Paws</title>
-
+<title>Happy Paws - Account</title>
 <style>
-body{
-font-family:Arial;
-background:#eaf5ff;
-margin:0;
-display:flex;
-justify-content:center;
-align-items:center;
-min-height:100vh;
-}
-
-.box{
-width:370px;
-background:white;
-border:2px solid #087cff;
-border-radius:12px;
-overflow:hidden;
-}
-
-.header{
-background:#dff3f5;
-text-align:center;
-padding:15px;
-}
-
-.logo{
-font-size:35px;
-}
-
-.title{
-color:#064de8;
-font-size:12px;
-font-weight:bold;
-}
-
-.subtitle{
-font-size:8px;
-color:#888;
-}
-
-.steps{
-display:flex;
-justify-content:space-around;
-margin-top:15px;
-}
-
-.step{
-width:22px;
-height:22px;
-border-radius:50%;
-background:#ddd;
-border:1px solid #777;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:9px;
-}
-
-.active{
-background:#9ddfe5;
-}
-
-.form{
-padding:20px;
-}
-
-h3{
-font-size:13px;
-border-bottom:1px solid #777;
-padding-bottom:8px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
-margin-top:15px;
-}
-
-label{
-font-size:8px;
-color:#777;
-display:block;
-margin-bottom:4px;
-}
-
-input,select{
-width:100%;
-height:25px;
-border:0;
-background:#d8eafb;
-border-radius:5px;
-padding:4px;
-}
-
-.buttons{
-display:flex;
-justify-content:space-between;
-margin-top:20px;
-}
-
-button{
-border:0;
-background:#6caee5;
-color:white;
-padding:8px 14px;
-border-radius:15px;
-cursor:pointer;
-}
-
-.page{
-display:none;
-}
-
-.page.active{
-display:block;
-}
+body{font-family:Arial;background:#eaf5ff;margin:0;display:flex;justify-content:center;align-items:center;min-height:100vh}
+.box{width:370px;background:white;border:2px solid #087cff;border-radius:12px;overflow:hidden}
+.header{background:#dff3f5;text-align:center;padding:15px}
+.logo{font-size:35px}.title{color:#064de8;font-size:12px;font-weight:bold}.subtitle{font-size:8px;color:#888}
+.form{padding:20px}
+h3{font-size:13px;border-bottom:1px solid #777;padding-bottom:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
+label{font-size:8px;color:#777;display:block;margin-bottom:4px}
+input{width:100%;height:25px;border:0;background:#d8eafb;border-radius:5px;padding:4px;box-sizing:border-box}
+.buttons{display:flex;justify-content:flex-end;margin-top:20px}
+button{border:0;background:#6caee5;color:white;padding:8px 14px;border-radius:15px;cursor:pointer}
 </style>
 </head>
-
 <body>
 
 <div class="box">
 
-<div id="account" class="page active">
-
 <div class="header">
 <div class="logo">🐾</div>
 <div class="title">Create Your Happy Paws Account!</div>
 <div class="subtitle">Complete your registration for expert pet care services</div>
-
-<div class="steps">
-<div class="step active">1</div>
-<div class="step">2</div>
-<div class="step">3</div>
-</div>
 </div>
 
 <div class="form">
-
-<h3>♙ Account Information</h3>
+<h3>Account Information</h3>
 
 <div class="grid">
-
-<div>
-<label>First Name</label>
-<input type="text">
-</div>
-
-<div>
-<label>Last Name</label>
-<input type="text">
-</div>
-
-<div>
-<label>Email Address</label>
-<input type="email">
-</div>
-
-<div>
-<label>Phone Number</label>
-<input type="text">
-</div>
-
-<div>
-<label>Password</label>
-<input type="password">
-</div>
-
-<div>
-<label>Confirm Password</label>
-<input type="password">
-</div>
-
+<div><label>First Name</label><input type="text"></div>
+<div><label>Last Name</label><input type="text"></div>
+<div><label>Email Address</label><input type="email"></div>
+<div><label>Phone Number</label><input type="text"></div>
+<div><label>Password</label><input type="password"></div>
+<div><label>Confirm Password</label><input type="password"></div>
 </div>
 
 <div class="buttons">
-<div></div>
-<button type="button" id="next1">Next Step →</button>
+<button onclick="window.location.href='owner.html'">Next Step →</button>
 </div>
 
 </div>
 </div>
-
-
-<div id="owner" class="page">
-
-<div class="header">
-<div class="logo">🐾</div>
-<div class="title">Create Your Happy Paws Account!</div>
-<div class="subtitle">Complete your registration for expert pet care services</div>
-
-<div class="steps">
-<div class="step active">✓</div>
-<div class="step active">2</div>
-<div class="step">3</div>
-</div>
-</div>
-
-<div class="form">
-
-<h3>♙ Owner Information</h3>
-
-<div class="grid">
-
-<div>
-<label>Address</label>
-<input type="text">
-</div>
-
-<div>
-<label>Date of Birth</label>
-<input type="date">
-</div>
-
-<div>
-<label>Gender</label>
-<select>
-<option>Select</option>
-<option>Male</option>
-<option>Female</option>
-</select>
-</div>
-
-<div>
-<label>ID Type</label>
-<select>
-<option>Select</option>
-<option>National ID</option>
-<option>Driver's License</option>
-<option>Passport</option>
-</select>
-</div>
-
-<div>
-<label>ID Number</label>
-<input type="text">
-</div>
-
-<div>
-<label>Relationship to Pet</label>
-<input type="text">
-</div>
-
-</div>
-
-<div class="buttons">
-<button type="button" id="back2">← Back</button>
-<button type="button" id="next2">Next Step →</button>
-</div>
-
-</div>
-</div>
-
-
-<div id="pet" class="page">
-
-<div class="header">
-<div class="logo">🐾</div>
-<div class="title">Create Your Happy Paws Account!</div>
-<div class="subtitle">Complete your registration for expert pet care services</div>
-
-<div class="steps">
-<div class="step active">✓</div>
-<div class="step active">✓</div>
-<div class="step active">3</div>
-</div>
-</div>
-
-<div class="form">
-
-<h3>🐾 Pet Information</h3>
-
-<div class="grid">
-
-<div>
-<label>Pet Name</label>
-<input type="text">
-</div>
-
-<div>
-<label>Pet Type</label>
-<select>
-<option>Select</option>
-<option>Dog</option>
-<option>Cat</option>
-<option>Bird</option>
-<option>Rabbit</option>
-</select>
-</div>
-
-<div>
-<label>Breed</label>
-<input type="text">
-</div>
-
-<div>
-<label>Gender</label>
-<select>
-<option>Select</option>
-<option>Male</option>
-<option>Female</option>
-</select>
-</div>
-
-<div>
-<label>Date of Birth</label>
-<input type="date">
-</div>
-
-<div>
-<label>Color / Markings</label>
-<input type="text">
-</div>
-
-</div>
-
-<div class="buttons">
-<button type="button" id="back3">← Back</button>
-<button type="button" id="finish">Finish ✓</button>
-</div>
-
-</div>
-</div>
-
-</div>
-
-<script>
-
-var account = document.getElementById("account");
-var owner = document.getElementById("owner");
-var pet = document.getElementById("pet");
-
-document.getElementById("next1").onclick = function(){
-account.classList.remove("active");
-owner.classList.add("active");
-};
-
-document.getElementById("back2").onclick = function(){
-owner.classList.remove("active");
-account.classList.add("active");
-};
-
-document.getElementById("next2").onclick = function(){
-owner.classList.remove("active");
-pet.classList.add("active");
-};
-
-document.getElementById("back3").onclick = function(){
-pet.classList.remove("active");
-owner.classList.add("active");
-};
-
-document.getElementById("finish").onclick = function(){
-alert("Registration completed!");
-};
-
-</script>
 
 </body>
 </html>
