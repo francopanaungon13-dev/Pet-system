@@ -1,480 +1,383 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Paws - Create Account</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Paws</title>
+<style>
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:Arial,sans-serif;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+body{
+min-height:100vh;
+background:#eaf5ff;
+display:flex;
+justify-content:center;
+align-items:center;
+}
 
-    body {
-      min-height: 100vh;
-      background: #eaf5ff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
+.container{
+width:365px;
+background:white;
+border:2px solid #087cff;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 7px 15px rgba(0,0,0,.25);
+}
 
-    /* Background */
-    .background {
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(135deg, #e9f5ff, #ffffff);
-      z-index: -1;
-    }
+.header{
+height:135px;
+background:#dff3f5;
+text-align:center;
+padding-top:10px;
+}
 
-    .paw {
-      position: absolute;
-      color: #b5d8f5;
-      font-size: 35px;
-      opacity: 0.75;
-    }
+.logo{
+font-size:38px;
+}
 
-    .paw1 {
-      top: 70px;
-      left: 55px;
-    }
+.title{
+color:#064de8;
+font-size:11px;
+font-weight:bold;
+}
 
-    .paw2 {
-      top: 250px;
-      left: 25px;
-    }
+.subtitle{
+color:#8ca0ad;
+font-size:7px;
+margin-top:4px;
+}
 
-    .paw3 {
-      right: 40px;
-      top: 70px;
-    }
+.steps{
+width:240px;
+margin:15px auto;
+display:flex;
+justify-content:space-between;
+position:relative;
+}
 
-    .paw4 {
-      right: 25px;
-      bottom: 70px;
-    }
+.steps:before{
+content:"";
+position:absolute;
+top:9px;
+left:10px;
+right:10px;
+height:5px;
+background:#79cad5;
+}
 
-    /* Main Card */
-    .container {
-      width: 365px;
-      min-height: 360px;
-      background: white;
-      border: 2px solid #087cff;
-      border-radius: 12px;
-      box-shadow: 0 7px 15px rgba(0, 0, 0, 0.25);
-      overflow: hidden;
-    }
+.step{
+z-index:1;
+width:21px;
+height:21px;
+border-radius:50%;
+background:#eee;
+border:1px solid #777;
+font-size:8px;
+display:flex;
+justify-content:center;
+align-items:center;
+}
 
-    /* Header */
-    .header {
-      height: 135px;
-      background: #dff3f5;
-      text-align: center;
-      padding-top: 10px;
-    }
+.step.active{
+background:#b6e4e8;
+}
 
-    .logo {
-      width: 45px;
-      height: 45px;
-      margin: 0 auto 5px;
-      border: 3px solid #2563eb;
-      border-radius: 50%;
-      position: relative;
-    }
+.form-area{
+padding:20px 16px;
+}
 
-    .logo::before {
-      content: "🐾";
-      font-size: 32px;
-      position: absolute;
-      left: 2px;
-      top: 0px;
-    }
+.form-title{
+border-bottom:1px solid #777;
+padding-bottom:8px;
+margin-bottom:12px;
+font-size:12px;
+}
 
-    .title {
-      color: #064de8;
-      font-size: 11px;
-      font-weight: bold;
-      margin-top: 5px;
-    }
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px 14px;
+}
 
-    .subtitle {
-      color: #8ca0ad;
-      font-size: 7px;
-      margin-top: 4px;
-    }
+label{
+display:block;
+font-size:7px;
+color:#777;
+margin-bottom:4px;
+}
 
-    /* Steps */
-    .steps {
-      width: 240px;
-      margin: 15px auto 0;
-      display: flex;
-      justify-content: space-between;
-      position: relative;
-    }
+input,select{
+width:100%;
+height:18px;
+border:none;
+outline:none;
+background:#d8eafb;
+border-radius:5px;
+padding:3px 7px;
+font-size:8px;
+}
 
-    .steps::before {
-      content: "";
-      position: absolute;
-      top: 9px;
-      left: 12px;
-      right: 12px;
-      height: 5px;
-      background: #79cad5;
-      border-radius: 10px;
-      z-index: 0;
-    }
+.button-area{
+display:flex;
+justify-content:flex-end;
+gap:10px;
+margin-top:22px;
+}
 
-    .step {
-      position: relative;
-      z-index: 1;
-      width: 21px;
-      height: 21px;
-      border-radius: 50%;
-      border: 1px solid #777;
-      background: #eee;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 8px;
-      color: #333;
-    }
+button{
+border:none;
+background:#6caee5;
+color:white;
+padding:7px 13px;
+border-radius:15px;
+font-size:9px;
+cursor:pointer;
+}
 
-    .step.active {
-      background: #b6e4e8;
-    }
+button:hover{
+background:#428fd0;
+}
 
-    .step-label {
-      position: absolute;
-      top: 23px;
-      width: 70px;
-      left: -25px;
-      font-size: 7px;
-      font-weight: bold;
-    }
+.page{
+display:none;
+}
 
-    /* Form */
-    .form-area {
-      padding: 20px 16px 15px;
-    }
+.page.active{
+display:block;
+}
 
-    .form-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding-bottom: 7px;
-      border-bottom: 1px solid #777;
-      margin-bottom: 10px;
-    }
+@media(max-width:500px){
+.container{
+width:92%;
+}
 
-    .person-icon {
-      font-size: 23px;
-    }
-
-    .form-title h2 {
-      font-size: 12px;
-      color: #111;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px 14px;
-    }
-
-    .field label {
-      display: block;
-      font-size: 7px;
-      color: #777;
-      margin-bottom: 4px;
-    }
-
-    .input-box {
-      width: 100%;
-      height: 17px;
-      border: none;
-      outline: none;
-      background: #d8eafb;
-      border-radius: 5px;
-      padding: 3px 7px;
-      font-size: 8px;
-      color: #333;
-    }
-
-    .input-box:focus {
-      box-shadow: 0 0 0 1px #1683ff;
-    }
-
-    .password-wrapper {
-      position: relative;
-    }
-
-    .password-wrapper .input-box {
-      padding-right: 25px;
-    }
-
-    .eye {
-      position: absolute;
-      right: 6px;
-      top: 3px;
-      font-size: 9px;
-      cursor: pointer;
-      color: #777;
-    }
-
-    /* Button */
-    .button-area {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 22px;
-    }
-
-    .next-btn {
-      border: none;
-      background: #6caee5;
-      color: white;
-      padding: 7px 13px;
-      border-radius: 15px;
-      font-size: 9px;
-      cursor: pointer;
-      box-shadow: 0 2px 4px rgba(0,0,0,.2);
-    }
-
-    .next-btn:hover {
-      background: #428fd0;
-    }
-
-    /* Responsive */
-    @media (max-width: 500px) {
-      .container {
-        width: 92%;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .header {
-        height: 145px;
-      }
-    }
-  </style>
+.form-grid{
+grid-template-columns:1fr;
+}
+}
+</style>
 </head>
 
 <body>
 
-  <div class="background">
-    <div class="paw paw1">🐾</div>
-    <div class="paw paw2">🐾</div>
-    <div class="paw paw3">🐾</div>
-    <div class="paw paw4">🐾</div>
-  </div>
+<div class="container">
 
-  <div class="container">
+<div class="page active" id="page1">
 
-    <!-- HEADER -->
-    <div class="header">
+<div class="header">
+<div class="logo">🐾</div>
+<div class="title">Create Your Happy Paws Account!</div>
+<div class="subtitle">Complete your registration for expert pet care services</div>
 
-      <div class="logo"></div>
+<div class="steps">
+<div class="step active">1</div>
+<div class="step">2</div>
+<div class="step">3</div>
+</div>
+</div>
 
-      <div class="title">
-        Create Your Happy Paws Account!
-      </div>
+<div class="form-area">
 
-      <div class="subtitle">
-        Complete your registration for expert pet care services
-      </div>
+<div class="form-title">♙ &nbsp; Account Information</div>
 
-      <!-- STEPS -->
-      <div class="steps">
+<div class="form-grid">
 
-        <div class="step active">
-          1
-          <span class="step-label">Account</span>
-        </div>
+<div>
+<label>First Name</label>
+<input type="text">
+</div>
 
-        <div class="step">
-          2
-          <span class="step-label">Owner Info</span>
-        </div>
+<div>
+<label>Last Name</label>
+<input type="text">
+</div>
 
-        <div class="step">
-          3
-          <span class="step-label">Pet Info</span>
-        </div>
+<div>
+<label>Email Address</label>
+<input type="email">
+</div>
 
-      </div>
-    </div>
+<div>
+<label>Phone Number</label>
+<input type="tel">
+</div>
 
-    <!-- FORM -->
-    <div class="form-area">
+<div>
+<label>Password</label>
+<input type="password">
+</div>
 
-      <div class="form-title">
-        <span class="person-icon">♙</span>
-        <h2>Account Information</h2>
-      </div>
+<div>
+<label>Confirm Password</label>
+<input type="password">
+</div>
 
-      <div class="form-grid">
+</div>
 
-        <!-- First Name -->
-        <div class="field">
-          <label>First Name</label>
-          <input
-            type="text"
-            class="input-box"
-            id="firstName"
-          >
-        </div>
+<div class="button-area">
+<button onclick="nextPage(2)">Next Step →</button>
+</div>
 
-        <!-- Last Name -->
-        <div class="field">
-          <label>Last Name</label>
-          <input
-            type="text"
-            class="input-box"
-            id="lastName"
-          >
-        </div>
+</div>
+</div>
 
-        <!-- Email -->
-        <div class="field">
-          <label>Email Address</label>
-          <input
-            type="email"
-            class="input-box"
-            id="email"
-          >
-        </div>
+<div class="page" id="page2">
 
-        <!-- Phone -->
-        <div class="field">
-          <label>Phone Number</label>
-          <input
-            type="tel"
-            class="input-box"
-            id="phone"
-          >
-        </div>
+<div class="header">
+<div class="logo">🐾</div>
+<div class="title">Create Your Happy Paws Account!</div>
+<div class="subtitle">Complete your registration for expert pet care services</div>
 
-        <!-- Password -->
-        <div class="field">
-          <label>Password</label>
+<div class="steps">
+<div class="step active">✓</div>
+<div class="step active">2</div>
+<div class="step">3</div>
+</div>
+</div>
 
-          <div class="password-wrapper">
-            <input
-              type="password"
-              class="input-box"
-              id="password"
-            >
+<div class="form-area">
 
-            <span
-              class="eye"
-              onclick="togglePassword('password', this)"
-            >◉</span>
-          </div>
-        </div>
+<div class="form-title">♙ &nbsp; Owner Information</div>
 
-        <!-- Confirm Password -->
-        <div class="field">
-          <label>Confirm Password</label>
+<div class="form-grid">
 
-          <div class="password-wrapper">
-            <input
-              type="password"
-              class="input-box"
-              id="confirmPassword"
-            >
+<div>
+<label>Address</label>
+<input type="text">
+</div>
 
-            <span
-              class="eye"
-              onclick="togglePassword('confirmPassword', this)"
-            >◉</span>
-          </div>
-        </div>
+<div>
+<label>Date of Birth</label>
+<input type="date">
+</div>
 
-      </div>
+<div>
+<label>Gender</label>
+<select>
+<option></option>
+<option>Male</option>
+<option>Female</option>
+</select>
+</div>
 
-      <!-- BUTTON -->
-      <div class="button-area">
-        <button
-          class="next-btn"
-          onclick="nextStep()"
-        >
-          Next Step →
-        </button>
-      </div>
+<div>
+<label>ID Type</label>
+<select>
+<option></option>
+<option>Driver's License</option>
+<option>Passport</option>
+<option>National ID</option>
+</select>
+</div>
 
-    </div>
+<div>
+<label>ID Number</label>
+<input type="text">
+</div>
 
-  </div>
+<div>
+<label>Relationship to Pet</label>
+<input type="text">
+</div>
 
+</div>
 
-  <script>
+<div class="button-area">
+<button onclick="nextPage(1)">← Back</button>
+<button onclick="nextPage(3)">Next Step →</button>
+</div>
 
-    function togglePassword(id, icon) {
+</div>
+</div>
 
-      const input = document.getElementById(id);
+<div class="page" id="page3">
 
-      if (input.type === "password") {
-        input.type = "text";
-        icon.textContent = "◉";
-      } else {
-        input.type = "password";
-        icon.textContent = "◉";
-      }
+<div class="header">
+<div class="logo">🐾</div>
+<div class="title">Create Your Happy Paws Account!</div>
+<div class="subtitle">Complete your registration for expert pet care services</div>
 
-    }
+<div class="steps">
+<div class="step active">✓</div>
+<div class="step active">✓</div>
+<div class="step active">3</div>
+</div>
+</div>
 
+<div class="form-area">
 
-    function nextStep() {
+<div class="form-title">♙ &nbsp; Pet Information</div>
 
-      const firstName =
-        document.getElementById("firstName").value.trim();
+<div class="form-grid">
 
-      const lastName =
-        document.getElementById("lastName").value.trim();
+<div>
+<label>Pet Name</label>
+<input type="text">
+</div>
 
-      const email =
-        document.getElementById("email").value.trim();
+<div>
+<label>Pet Type</label>
+<select>
+<option></option>
+<option>Dog</option>
+<option>Cat</option>
+<option>Bird</option>
+<option>Other</option>
+</select>
+</div>
 
-      const phone =
-        document.getElementById("phone").value.trim();
+<div>
+<label>Breed</label>
+<input type="text">
+</div>
 
-      const password =
-        document.getElementById("password").value;
+<div>
+<label>Gender</label>
+<select>
+<option></option>
+<option>Male</option>
+<option>Female</option>
+</select>
+</div>
 
-      const confirmPassword =
-        document.getElementById("confirmPassword").value;
+<div>
+<label>Date of Birth</label>
+<input type="date">
+</div>
 
+<div>
+<label>Color / Markings</label>
+<input type="text">
+</div>
 
-      if (
-        !firstName ||
-        !lastName ||
-        !email ||
-        !phone ||
-        !password ||
-        !confirmPassword
-      ) {
-        alert("Please complete all fields.");
-        return;
-      }
+</div>
 
+<div class="button-area">
+<button onclick="nextPage(2)">← Back</button>
+<button onclick="finish()">Finish ✓</button>
+</div>
 
-      if (password !== confirmPassword) {
-        alert("Passwords do not match.");
-        return;
-      }
+</div>
+</div>
 
+</div>
 
-      alert("Account information completed!");
+<script>
+function nextPage(page){
+document.querySelectorAll(".page").forEach(function(p){
+p.classList.remove("active");
+});
+document.getElementById("page"+page).classList.add("active");
+}
 
-      // Next page can be added here
-      // window.location.href = "owner-info.html";
-    }
-
-  </script>
+function finish(){
+alert("Registration completed!");
+}
+</script>
 
 </body>
 </html>
