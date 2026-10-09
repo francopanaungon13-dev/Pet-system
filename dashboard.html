@@ -1,150 +1,437 @@
 <html>
 <head>
-  <title>Happy Paws - Pet</title>
+  <meta charset="UTF-8">
+  <title>Happy Paws Dashboard</title>
   <style>
-    body {
-      font-family: Arial;
-      background: #eaf5ff;
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f2f7fb;
+      color: #333;
       display: flex;
-      justify-content: center;
-      align-items: center;
       min-height: 100vh;
     }
-    .box {
-      width: 370px;
-      background: white;
-      border: 2px solid #087cff;
-      border-radius: 12px;
-      overflow: hidden;
+
+    .sidebar {
+      width: 200px;
+      background-color: #ffffff;
+      padding: 20px;
+      border-right: 1px solid #dcdcdc;
     }
-    .header {
-      background: #dff3f5;
-      text-align: center;
-      padding: 15px;
-    }
-    .logo {
-      font-size: 35px;
-    }
-    .title {
-      color: #064de8;
-      font-size: 12px;
+
+    .brand-title {
+      color: #2b6cb0;
+      font-size: 18px;
       font-weight: bold;
     }
-    .subtitle {
-      font-size: 8px;
-      color: #888;
+
+    .brand-subtitle {
+      font-size: 11px;
+      color: #718096;
+      margin: 4px 0 20px 0;
     }
-    .form {
-      padding: 20px;
+
+    .nav-list {
+      list-style: none;
     }
-    h3 {
-      font-size: 13px;
-      border-bottom: 1px solid #777;
-      padding-bottom: 8px;
+
+    .nav-list li {
+      margin-bottom: 8px;
     }
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 15px;
-    }
-    label {
-      font-size: 8px;
-      color: #777;
+
+    .nav-list a {
       display: block;
-      margin-bottom: 4px;
+      padding: 8px 12px;
+      color: #4a5568;
+      text-decoration: none;
+      font-size: 13px;
+      border-radius: 6px;
     }
-    input, select {
-      width: 100%;
-      height: 25px;
-      border: 0;
-      background: #d8eafb;
-      border-radius: 5px;
-      padding: 4px;
-      box-sizing: border-box;
+
+    .nav-list li.active a,
+    .nav-list a:hover {
+      background-color: #ebf8ff;
+      color: #2b6cb0;
+      font-weight: bold;
     }
-    .buttons {
+
+    .main-content {
+      flex: 1;
+      padding: 20px 30px;
+    }
+
+    .top-header {
       display: flex;
       justify-content: space-between;
-      margin-top: 20px;
+      align-items: center;
+      margin-bottom: 20px;
     }
-    button {
-      border: 0;
-      background: #6caee5;
-      color: white;
+
+    .search-input {
+      width: 280px;
       padding: 8px 14px;
-      border-radius: 15px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      font-size: 12px;
+    }
+
+    .user-profile {
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .welcome-text h1 {
+      color: #2b6cb0;
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+
+    .welcome-text p {
+      color: #718096;
+      font-size: 12px;
+      margin-bottom: 20px;
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      flex: 1;
+      background-color: #ffffff;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #4a5568;
+    }
+
+    .stat-number {
+      font-size: 24px;
+      font-weight: bold;
+      color: #2b6cb0;
+      margin: 6px 0;
+    }
+
+    .stat-sub {
+      font-size: 11px;
+    }
+
+    .content-grid {
+      display: flex;
+      gap: 20px;
+    }
+
+    .left-panel {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .right-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .card-box {
+      background-color: #ffffff;
+      border-radius: 8px;
+      padding: 15px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .card-title {
+      display: flex;
+      justify-content: space-between;
+      color: #2b6cb0;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .view-link {
+      font-size: 11px;
+      color: #3182ce;
+      text-decoration: none;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .data-table th {
+      background-color: #edf2f7;
+      text-align: left;
+      padding: 8px;
+      color: #4a5568;
+    }
+
+    .data-table td {
+      padding: 10px 8px;
+      border-bottom: 1px solid #edf2f7;
+    }
+
+    .records-list {
+      display: flex;
+      gap: 10px;
+    }
+
+    .record-item {
+      flex: 1;
+      background-color: #f7fafc;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 11px;
+    }
+
+    .record-item h4 {
+      color: #2b6cb0;
+      margin-bottom: 4px;
+    }
+
+    .med-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 12px;
+    }
+
+    .med-name {
+      font-weight: bold;
+      color: #2b6cb0;
+    }
+
+    .med-count {
+      font-size: 11px;
+      color: #718096;
+    }
+
+    .actions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .btn-action {
+      padding: 10px;
+      background-color: #ebf8ff;
+      border: none;
+      border-radius: 6px;
+      color: #2b6cb0;
+      font-weight: bold;
+      font-size: 11px;
       cursor: pointer;
     }
+
+    .btn-action:hover {
+      background-color: #bee3f8;
+    }
+
+    .text-green { color: #38a169; }
+    .text-orange { color: #dd6b20; }
+    .text-red { color: #e53e3e; }
   </style>
 </head>
 <body>
 
-  <div class="box">
-    <div class="header">
-      <div class="logo">🐾</div>
-      <div class="title">Happy Paws</div>
-      <div class="subtitle">Pet Information</div>
-    </div>
+  <aside class="sidebar">
+    <div class="brand-title">🐾 Happy Paws</div>
+    <div class="brand-subtitle">Better Care, Happier Pets.</div>
+    <ul class="nav-list">
+      <li class="active"><a href="#">Dashboard</a></li>
+      <li><a href="#">Pet Records</a></li>
+      <li><a href="#">Owners</a></li>
+      <li><a href="#">Appointments</a></li>
+      <li><a href="#">Consultations</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Medicines</a></li>
+      <li><a href="#">Billing</a></li>
+      <li><a href="#">Reports</a></li>
+    </ul>
+  </aside>
 
-    <div class="form">
-      <h3>Pet Information</h3>
+  <main class="main-content">
+    
+    <header class="top-header">
+      <input type="text" class="search-input" placeholder="Search pets, owners, or appointments...">
+      <div class="user-profile">🔔 Happy Paws Clinic</div>
+    </header>
 
-      <div class="grid">
-        <div>
-          <label>Pet Name</label>
-          <input type="text">
+    <section class="welcome-text">
+      <h1>Good Morning, Clinic Team!</h1>
+      <p>Manage your pets, owners, appointments, and clinic services.</p>
+    </section>
+
+    <section class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">📅 Today's Appointments</div>
+        <div class="stat-number">5</div>
+        <div class="stat-sub text-green">↑ 2 more than yesterday</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-label">🐾 Total Pets</div>
+        <div class="stat-number">48</div>
+        <div class="stat-sub text-green">↑ 6 new this month</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-label">🩺 Pending Consultations</div>
+        <div class="stat-number">3</div>
+        <div class="stat-sub text-orange">Requires attention</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-label">💊 Low Stock</div>
+        <div class="stat-number">2</div>
+        <div class="stat-sub text-red">Refill needed</div>
+      </div>
+    </section>
+
+    <div class="content-grid">
+      
+      <div class="left-panel">
+        
+        <div class="card-box">
+          <div class="card-title">
+            <span>Today's Appointments</span>
+            <a href="#" class="view-link">View All →</a>
+          </div>
+          
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Pet</th>
+                <th>Owner</th>
+                <th>Service</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>09:00 AM</td>
+                <td><b>🐾 Buddy</b></td>
+                <td>Maria Santos</td>
+                <td>Check-up</td>
+                <td class="text-green">● Confirmed</td>
+              </tr>
+              <tr>
+                <td>10:30 AM</td>
+                <td><b>🐱 Luna</b></td>
+                <td>John Cruz</td>
+                <td>Vaccination</td>
+                <td class="text-orange">● Waiting</td>
+              </tr>
+              <tr>
+                <td>01:00 PM</td>
+                <td><b>🐾 Max</b></td>
+                <td>Ana Reyes</td>
+                <td>Deworming</td>
+                <td class="text-green">● Confirmed</td>
+              </tr>
+              <tr>
+                <td>03:30 PM</td>
+                <td><b>🐱 Mittens</b></td>
+                <td>Carlos Tan</td>
+                <td>Check-up</td>
+                <td class="text-green">● Confirmed</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
-        <div>
-          <label>Pet Type</label>
-          <select>
-            <option>Select</option>
-            <option>Dog</option>
-            <option>Cat</option>
-            <option>Bird</option>
-            <option>Rabbit</option>
-          </select>
+        <div class="card-box">
+          <div class="card-title">
+            <span>Recent Pet Records</span>
+            <a href="#" class="view-link">View All →</a>
+          </div>
+          
+          <div class="records-list">
+            <div class="record-item">
+              <h4>🐾 Buddy</h4>
+              <p>Golden Retriever</p>
+              <p>Owner: Maria Santos</p>
+            </div>
+            <div class="record-item">
+              <h4>🐱 Luna</h4>
+              <p>Domestic Shorthair</p>
+              <p>Owner: John Cruz</p>
+            </div>
+            <div class="record-item">
+              <h4>🐾 Max</h4>
+              <p>Labrador Retriever</p>
+              <p>Owner: Ana Reyes</p>
+            </div>
+          </div>
         </div>
 
-        <div>
-          <label>Breed</label>
-          <input type="text">
-        </div>
-
-        <div>
-          <label>Gender</label>
-          <select>
-            <option>Select</option>
-            <option>Male</option>
-            <option>Female</option>
-          </select>
-        </div>
-
-        <div>
-          <label>Date of Birth</label>
-          <input type="date">
-        </div>
-
-        <div>
-          <label>Color / Markings</label>
-          <input type="text">
-        </div>
       </div>
 
-      <div class="buttons">
-        <button onclick="window.location.href='owner.html'">← Back</button>
-        <button onclick="finishRegistration()">Finish ✓</button>
-      </div>
-    </div>
-  </div>
+      <div class="right-panel">
+        
+        <div class="card-box">
+          <div class="card-title">
+            <span>Low Stock Medicines</span>
+            <a href="#" class="view-link">View All →</a>
+          </div>
+          
+          <div class="med-item">
+            <div>
+              <div class="med-name">Amoxicillin 250mg</div>
+              <div class="med-count">3 pcs left</div>
+            </div>
+            <span class="text-red" style="font-size:10px; font-weight:bold;">Low Stock</span>
+          </div>
 
-  <script>
-    function finishRegistration() {
-      window.location.href = 'dashboard.html';
-    }
-  </script>
+          <div class="med-item">
+            <div>
+              <div class="med-name">Flea & Tick Treatment</div>
+              <div class="med-count">2 pcs left</div>
+            </div>
+          </div>
+
+          <div class="med-item">
+            <div>
+              <div class="med-name">Multitamins</div>
+              <div class="med-count">8 pcs left</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-box">
+          <div class="card-title">
+            <span>Quick Actions</span>
+          </div>
+          
+          <div class="actions-grid">
+            <button class="btn-action">🐾 Add Pet</button>
+            <button class="btn-action">📅 Appointment</button>
+            <button class="btn-action">🩺 Consultation</button>
+            <button class="btn-action">💊 Medicines</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
 
 </body>
 </html>
