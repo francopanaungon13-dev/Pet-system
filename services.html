@@ -85,12 +85,6 @@
       background-color: #ffffff;
     }
 
-    .user-profile {
-      font-size: 13px;
-      color: #2b6cb0;
-      font-weight: bold;
-    }
-
     .page-title-row {
       display: flex;
       justify-content: space-between;
@@ -105,11 +99,6 @@
       margin-bottom: 4px;
     }
 
-    .title-area p {
-      color: #a0aec0;
-      font-size: 13px;
-    }
-
     .btn-add-service {
       background-color: #3182ce;
       color: white;
@@ -121,63 +110,11 @@
       cursor: pointer;
     }
 
-    .btn-add-service:hover {
-      background-color: #2b6cb0;
-    }
-
-    .filter-box {
-      background-color: #ffffff;
-      padding: 18px 20px;
-      border-radius: 12px;
-      border: 1px solid #e2e8f0;
-      margin-bottom: 24px;
-    }
-
-    .filter-label {
-      font-size: 11px;
-      color: #a0aec0;
-      margin-bottom: 10px;
-      display: block;
-    }
-
-    .filter-inputs {
-      display: flex;
-      gap: 12px;
-    }
-
-    .filter-select, .filter-input {
-      padding: 9px 14px;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      font-size: 12px;
-      background-color: #f8fafc;
-      color: #4a5568;
-      outline: none;
-      flex: 1;
-    }
-
     .card-box {
       background-color: #ffffff;
       border-radius: 12px;
       padding: 24px;
       border: 1px solid #e2e8f0;
-    }
-
-    .table-header-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
-    }
-
-    .table-header-info h3 {
-      color: #2b6cb0;
-      font-size: 16px;
-    }
-
-    .service-count {
-      font-size: 12px;
-      color: #a0aec0;
     }
 
     .data-table {
@@ -192,119 +129,24 @@
       padding: 12px 14px;
       color: #2b6cb0;
       font-weight: bold;
-      font-size: 11px;
-      letter-spacing: 0.5px;
     }
 
     .data-table td {
       padding: 16px 14px;
       border-bottom: 1px solid #f0f4f8;
-      color: #4a5568;
-    }
-
-    .service-name {
-      font-weight: bold;
-      color: #2d3748;
     }
 
     .status-available { color: #38a169; font-weight: bold; }
-    .status-limited { color: #dd6b20; font-weight: bold; }
 
     .action-link {
       color: #3182ce;
       text-decoration: none;
       font-weight: bold;
     }
-
-    .action-link:hover {
-      text-decoration: underline;
-    }
-
-    .modal-backdrop {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.4);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    .modal-card {
-      background: #ffffff;
-      width: 440px;
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
-
-    .modal-card h2 {
-      font-size: 18px;
-      color: #2b6cb0;
-      margin-bottom: 16px;
-    }
-
-    .form-group {
-      margin-bottom: 14px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 12px;
-      font-weight: bold;
-      color: #4a5568;
-      margin-bottom: 6px;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 9px 12px;
-      border: 1px solid #cbd5e0;
-      border-radius: 6px;
-      font-size: 12px;
-      outline: none;
-    }
-
-    .form-row {
-      display: flex;
-      gap: 12px;
-    }
-
-    .modal-actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .btn-cancel {
-      background: #e2e8f0;
-      color: #4a5568;
-      border: none;
-      padding: 9px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 12px;
-    }
-
-    .btn-save {
-      background: #3182ce;
-      color: white;
-      border: none;
-      padding: 9px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: bold;
-    }
   </style>
 </head>
 <body>
 
-  <!-- Direct Navigation Sidebar -->
   <aside class="sidebar">
     <div class="brand-title">Happy Paws</div>
     <div class="brand-subtitle">Better Care, Happier Pets.</div>
@@ -321,58 +163,21 @@
     </ul>
   </aside>
 
-  <!-- Main Content -->
   <main class="main-content">
-    
     <header class="top-header">
-      <input type="text" id="topSearchInput" class="top-search-input" placeholder="Search service name, category...">
-      <div class="user-profile">Happy Paws Clinic</div>
+      <input type="text" class="top-search-input" placeholder="Search service name, category...">
+      <div style="font-size: 13px; font-weight: bold; color: #2b6cb0;">Happy Paws Clinic</div>
     </header>
 
     <div class="page-title-row">
       <div class="title-area">
         <h1>Services</h1>
-        <p>Manage veterinary services, prices, and availability.</p>
+        <p style="color: #a0aec0; font-size: 13px;">Manage veterinary services, prices, and availability.</p>
       </div>
-      <button class="btn-add-service" id="btnOpenAddModal">+ Add New Service</button>
+      <button class="btn-add-service">+ Add New Service</button>
     </div>
 
-    <!-- Filters Section -->
-    <div class="filter-box">
-      <span class="filter-label">Service Filters</span>
-      <div class="filter-inputs">
-        <select class="filter-select" id="categoryFilter">
-          <option value="">All Categories</option>
-          <option value="Consultation">Consultation</option>
-          <option value="Preventive Care">Preventive Care</option>
-          <option value="Dental">Dental</option>
-          <option value="Grooming">Grooming</option>
-        </select>
-
-        <select class="filter-select" id="statusFilter">
-          <option value="">All Status</option>
-          <option value="Available">Available</option>
-          <option value="Limited">Limited</option>
-        </select>
-
-        <select class="filter-select" id="priceFilter">
-          <option value="">Price Range</option>
-          <option value="low">Under ₱500</option>
-          <option value="mid">₱500 - ₱1,000</option>
-          <option value="high">Above ₱1,000</option>
-        </select>
-
-        <input type="text" id="tableSearchInput" class="filter-input" placeholder="Search services">
-      </div>
-    </div>
-
-    <!-- Table Section -->
     <div class="card-box">
-      <div class="table-header-info">
-        <h3>Available Services</h3>
-        <span class="service-count" id="serviceCountText">12 services</span>
-      </div>
-
       <table class="data-table">
         <thead>
           <tr>
@@ -384,201 +189,35 @@
             <th>ACTION</th>
           </tr>
         </thead>
-        <tbody id="servicesTableBody">
-          <tr data-category="Consultation" data-status="Available" data-price="500">
-            <td class="service-name">General Check-up</td>
+        <tbody>
+          <tr>
+            <td>General Check-up</td>
             <td>Consultation</td>
             <td>Routine health examination</td>
             <td>₱500</td>
             <td class="status-available">Available</td>
             <td><a href="#" class="action-link">View</a></td>
           </tr>
-          <tr data-category="Preventive Care" data-status="Available" data-price="800">
-            <td class="service-name">Vaccination</td>
+          <tr>
+            <td>Vaccination</td>
             <td>Preventive Care</td>
             <td>Core vaccine administration</td>
             <td>₱800</td>
             <td class="status-available">Available</td>
             <td><a href="#" class="action-link">View</a></td>
           </tr>
-          <tr data-category="Preventive Care" data-status="Available" data-price="350">
-            <td class="service-name">Deworming</td>
+          <tr>
+            <td>Deworming</td>
             <td>Preventive Care</td>
             <td>Internal parasite treatment</td>
             <td>₱350</td>
             <td class="status-available">Available</td>
             <td><a href="#" class="action-link">View</a></td>
           </tr>
-          <tr data-category="Dental" data-status="Limited" data-price="1200">
-            <td class="service-name">Dental Cleaning</td>
-            <td>Dental</td>
-            <td>Professional dental cleaning</td>
-            <td>₱1,200</td>
-            <td class="status-limited">Limited</td>
-            <td><a href="#" class="action-link">View</a></td>
-          </tr>
-          <tr data-category="Grooming" data-status="Available" data-price="700">
-            <td class="service-name">Grooming</td>
-            <td>Grooming</td>
-            <td>Bath, trim, and basic grooming</td>
-            <td>₱700</td>
-            <td class="status-available">Available</td>
-            <td><a href="#" class="action-link">View</a></td>
-          </tr>
         </tbody>
       </table>
     </div>
-
   </main>
-
-  <!-- Add New Service Modal -->
-  <div class="modal-backdrop" id="addModal">
-    <div class="modal-card">
-      <h2>Add New Service</h2>
-      <form id="addForm">
-        <div class="form-group">
-          <label for="newName">Service Name</label>
-          <input type="text" id="newName" class="form-control" placeholder="e.g. Nail Trimming" required>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group" style="flex: 1;">
-            <label for="newCategory">Category</label>
-            <select id="newCategory" class="form-control" required>
-              <option value="Consultation">Consultation</option>
-              <option value="Preventive Care">Preventive Care</option>
-              <option value="Dental">Dental</option>
-              <option value="Grooming">Grooming</option>
-            </select>
-          </div>
-          <div class="form-group" style="flex: 1;">
-            <label for="newPrice">Price (₱)</label>
-            <input type="number" id="newPrice" class="form-control" placeholder="e.g. 500" required>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="newDescription">Description</label>
-          <input type="text" id="newDescription" class="form-control" placeholder="Brief details about the service" required>
-        </div>
-
-        <div class="form-group">
-          <label for="newStatus">Status</label>
-          <select id="newStatus" class="form-control" required>
-            <option value="Available">Available</option>
-            <option value="Limited">Limited</option>
-          </select>
-        </div>
-
-        <div class="modal-actions">
-          <button type="button" class="btn-cancel" id="btnCloseModal">Cancel</button>
-          <button type="submit" class="btn-save">Save Service</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <script>
-    const topSearch = document.getElementById('topSearchInput');
-    const tableSearch = document.getElementById('tableSearchInput');
-    const categoryFilter = document.getElementById('categoryFilter');
-    const statusFilter = document.getElementById('statusFilter');
-    const priceFilter = document.getElementById('priceFilter');
-    const countText = document.getElementById('serviceCountText');
-
-    const addModal = document.getElementById('addModal');
-    const btnOpenAddModal = document.getElementById('btnOpenAddModal');
-    const btnCloseModal = document.getElementById('btnCloseModal');
-    const addForm = document.getElementById('addForm');
-    const tableBody = document.getElementById('servicesTableBody');
-
-    function filterTable() {
-      const topQuery = topSearch.value.toLowerCase().trim();
-      const tableQuery = tableSearch.value.toLowerCase().trim();
-      const selectedCategory = categoryFilter.value.toLowerCase();
-      const selectedStatus = statusFilter.value.toLowerCase();
-      const selectedPrice = priceFilter.value;
-
-      const rows = document.querySelectorAll('#servicesTableBody tr');
-      let visibleCount = 0;
-
-      rows.forEach(row => {
-        const text = row.textContent.toLowerCase();
-        const category = (row.getAttribute('data-category') || '').toLowerCase();
-        const status = (row.getAttribute('data-status') || '').toLowerCase();
-        const price = parseFloat(row.getAttribute('data-price') || '0');
-
-        const matchesTop = text.includes(topQuery);
-        const matchesTable = text.includes(tableQuery);
-        const matchesCategory = !selectedCategory || category === selectedCategory;
-        const matchesStatus = !selectedStatus || status === selectedStatus;
-
-        let matchesPrice = true;
-        if (selectedPrice === 'low') matchesPrice = price < 500;
-        else if (selectedPrice === 'mid') matchesPrice = price >= 500 && price <= 1000;
-        else if (selectedPrice === 'high') matchesPrice = price > 1000;
-
-        if (matchesTop && matchesTable && matchesCategory && matchesStatus && matchesPrice) {
-          row.style.display = '';
-          visibleCount++;
-        } else {
-          row.style.display = 'none';
-        }
-      });
-
-      countText.textContent = `${visibleCount} services`;
-    }
-
-    btnOpenAddModal.addEventListener('click', () => {
-      addModal.style.display = 'flex';
-    });
-
-    btnCloseModal.addEventListener('click', () => {
-      addModal.style.display = 'none';
-    });
-
-    addForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const name = document.getElementById('newName').value.trim();
-      const category = document.getElementById('newCategory').value;
-      const price = document.getElementById('newPrice').value;
-      const description = document.getElementById('newDescription').value.trim();
-      const status = document.getElementById('newStatus').value;
-
-      const statusClass = status === 'Available' ? 'status-available' : 'status-limited';
-      const formattedPrice = `₱${parseInt(price).toLocaleString()}`;
-
-      const tr = document.createElement('tr');
-      tr.setAttribute('data-category', category);
-      tr.setAttribute('data-status', status);
-      tr.setAttribute('data-price', price);
-
-      tr.innerHTML = `
-        <td class="service-name">${name}</td>
-        <td>${category}</td>
-        <td>${description}</td>
-        <td>${formattedPrice}</td>
-        <td class="${statusClass}">${status}</td>
-        <td><a href="#" class="action-link">View</a></td>
-      `;
-
-      tableBody.appendChild(tr);
-
-      addForm.reset();
-      addModal.style.display = 'none';
-
-      filterTable();
-    });
-
-    topSearch.addEventListener('input', filterTable);
-    tableSearch.addEventListener('input', filterTable);
-    categoryFilter.addEventListener('change', filterTable);
-    statusFilter.addEventListener('change', filterTable);
-    priceFilter.addEventListener('change', filterTable);
-
-    filterTable();
-  </script>
 
 </body>
 </html>
