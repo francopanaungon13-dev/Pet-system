@@ -78,12 +78,8 @@
       cursor: pointer;
       text-decoration: none;
       font-size: 13px;
+      font-family: Arial;
       display: inline-block;
-      text-align: center;
-      box-sizing: border-box;
-    }
-    .btn:hover {
-      background: #5a9bd2;
     }
   </style>
 </head>
@@ -96,7 +92,8 @@
       <div class="subtitle">Pet Information</div>
     </div>
 
-    <div class="form">
+    <!-- Ginawang FORM tag na may action papuntang dashboard.html -->
+    <form class="form" action="dashboard.html" method="GET">
       <h3>Pet Information</h3>
 
       <div class="grid">
@@ -143,9 +140,9 @@
 
       <div class="buttons">
         <a href="owner.html" class="btn">← Back</a>
-        <a href="dashboard.html" class="btn">Finish ✓</a>
+        <button type="submit" class="btn">Finish ✓</button>
       </div>
-    </div>
+    </form>
   </div>
 
 </body>
