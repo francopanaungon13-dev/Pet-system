@@ -85,12 +85,6 @@
       background-color: #ffffff;
     }
 
-    .user-profile {
-      font-size: 13px;
-      color: #2b6cb0;
-      font-weight: bold;
-    }
-
     .page-title-row {
       display: flex;
       justify-content: space-between;
@@ -105,11 +99,6 @@
       margin-bottom: 4px;
     }
 
-    .title-area p {
-      color: #a0aec0;
-      font-size: 13px;
-    }
-
     .btn-add-consultation {
       background-color: #3182ce;
       color: white;
@@ -121,63 +110,11 @@
       cursor: pointer;
     }
 
-    .btn-add-consultation:hover {
-      background-color: #2b6cb0;
-    }
-
-    .filter-box {
-      background-color: #ffffff;
-      padding: 18px 20px;
-      border-radius: 12px;
-      border: 1px solid #e2e8f0;
-      margin-bottom: 24px;
-    }
-
-    .filter-label {
-      font-size: 11px;
-      color: #a0aec0;
-      margin-bottom: 10px;
-      display: block;
-    }
-
-    .filter-inputs {
-      display: flex;
-      gap: 12px;
-    }
-
-    .filter-select, .filter-input {
-      padding: 9px 14px;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      font-size: 12px;
-      background-color: #f8fafc;
-      color: #4a5568;
-      outline: none;
-      flex: 1;
-    }
-
     .card-box {
       background-color: #ffffff;
       border-radius: 12px;
       padding: 24px;
       border: 1px solid #e2e8f0;
-    }
-
-    .table-header-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
-    }
-
-    .table-header-info h3 {
-      color: #2b6cb0;
-      font-size: 16px;
-    }
-
-    .record-count {
-      font-size: 12px;
-      color: #a0aec0;
     }
 
     .data-table {
@@ -192,121 +129,25 @@
       padding: 12px 14px;
       color: #2b6cb0;
       font-weight: bold;
-      font-size: 11px;
-      letter-spacing: 0.5px;
     }
 
     .data-table td {
       padding: 16px 14px;
       border-bottom: 1px solid #f0f4f8;
-      color: #4a5568;
-    }
-
-    .pet-name {
-      font-weight: bold;
-      color: #2d3748;
     }
 
     .status-completed { color: #38a169; font-weight: bold; }
     .status-in-progress { color: #dd6b20; font-weight: bold; }
-    .status-follow-up { color: #dd6b20; font-weight: bold; }
 
     .action-link {
       color: #3182ce;
       text-decoration: none;
       font-weight: bold;
     }
-
-    .action-link:hover {
-      text-decoration: underline;
-    }
-
-    /* Modal Styling */
-    .modal-backdrop {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.4);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    .modal-card {
-      background: #ffffff;
-      width: 460px;
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
-
-    .modal-card h2 {
-      font-size: 18px;
-      color: #2b6cb0;
-      margin-bottom: 16px;
-    }
-
-    .form-group {
-      margin-bottom: 14px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 12px;
-      font-weight: bold;
-      color: #4a5568;
-      margin-bottom: 6px;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 9px 12px;
-      border: 1px solid #cbd5e0;
-      border-radius: 6px;
-      font-size: 12px;
-      outline: none;
-    }
-
-    .form-row {
-      display: flex;
-      gap: 12px;
-    }
-
-    .modal-actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .btn-cancel {
-      background: #e2e8f0;
-      color: #4a5568;
-      border: none;
-      padding: 9px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 12px;
-    }
-
-    .btn-save {
-      background: #3182ce;
-      color: white;
-      border: none;
-      padding: 9px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: bold;
-    }
   </style>
 </head>
 <body>
 
-  <!-- Sidebar Navigation -->
   <aside class="sidebar">
     <div class="brand-title">Happy Paws</div>
     <div class="brand-subtitle">Better Care, Happier Pets.</div>
@@ -323,52 +164,21 @@
     </ul>
   </aside>
 
-  <!-- Main Content Area -->
   <main class="main-content">
-    
     <header class="top-header">
-      <input type="text" id="topSearchInput" class="top-search-input" placeholder="Search pet, owner, consultation...">
-      <div class="user-profile">Happy Paws Clinic</div>
+      <input type="text" class="top-search-input" placeholder="Search pet, owner, consultation...">
+      <div style="font-size: 13px; font-weight: bold; color: #2b6cb0;">Happy Paws Clinic</div>
     </header>
 
     <div class="page-title-row">
       <div class="title-area">
         <h1>Consultations</h1>
-        <p>Record and manage pet consultations and clinical notes.</p>
+        <p style="color: #a0aec0; font-size: 13px;">Record and manage pet consultations and clinical notes.</p>
       </div>
-      <button class="btn-add-consultation" id="btnOpenAddModal">+ New Consultation</button>
+      <button class="btn-add-consultation">+ New Consultation</button>
     </div>
 
-    <!-- Filter Section -->
-    <div class="filter-box">
-      <span class="filter-label">Consultation Filters</span>
-      <div class="filter-inputs">
-        <select class="filter-select" id="statusFilter">
-          <option value="">All Status</option>
-          <option value="Completed">Completed</option>
-          <option value="In Progress">In Progress</option>
-          <option value="Follow-up">Follow-up</option>
-        </select>
-
-        <input type="date" id="datePicker" class="filter-input">
-
-        <select class="filter-select" id="vetFilter">
-          <option value="">Veterinarian</option>
-          <option value="Dr. Reyes">Dr. Reyes</option>
-          <option value="Dr. Santos">Dr. Santos</option>
-        </select>
-
-        <input type="text" id="tableSearchInput" class="filter-input" placeholder="Search consultations">
-      </div>
-    </div>
-
-    <!-- Table Section -->
     <div class="card-box">
-      <div class="table-header-info">
-        <h3>Consultation Records</h3>
-        <span class="record-count" id="recordCountText">24 records</span>
-      </div>
-
       <table class="data-table">
         <thead>
           <tr>
@@ -381,211 +191,38 @@
             <th>ACTION</th>
           </tr>
         </thead>
-        <tbody id="consultationsTableBody">
-          <tr data-status="Completed" data-vet="Dr. Reyes">
+        <tbody>
+          <tr>
             <td>Sep 28, 2026</td>
-            <td class="pet-name">Buddy</td>
+            <td>Buddy</td>
             <td>Maria Santos</td>
             <td>Dr. Reyes</td>
             <td>Routine Check-up</td>
             <td class="status-completed">Completed</td>
             <td><a href="#" class="action-link">View</a></td>
           </tr>
-          <tr data-status="In Progress" data-vet="Dr. Santos">
+          <tr>
             <td>Sep 28, 2026</td>
-            <td class="pet-name">Luna</td>
+            <td>Luna</td>
             <td>John Cruz</td>
             <td>Dr. Santos</td>
             <td>Vaccination</td>
             <td class="status-in-progress">In Progress</td>
             <td><a href="#" class="action-link">View</a></td>
           </tr>
-          <tr data-status="Completed" data-vet="Dr. Reyes">
+          <tr>
             <td>Sep 27, 2026</td>
-            <td class="pet-name">Max</td>
+            <td>Max</td>
             <td>Ana Reyes</td>
             <td>Dr. Reyes</td>
             <td>Skin Allergy</td>
             <td class="status-completed">Completed</td>
             <td><a href="#" class="action-link">View</a></td>
           </tr>
-          <tr data-status="Completed" data-vet="Dr. Santos">
-            <td>Sep 27, 2026</td>
-            <td class="pet-name">Mittens</td>
-            <td>Carlos Tan</td>
-            <td>Dr. Santos</td>
-            <td>Dental Concern</td>
-            <td class="status-completed">Completed</td>
-            <td><a href="#" class="action-link">View</a></td>
-          </tr>
-          <tr data-status="Follow-up" data-vet="Dr. Reyes">
-            <td>Sep 26, 2026</td>
-            <td class="pet-name">Charlie</td>
-            <td>Sofia Lim</td>
-            <td>Dr. Reyes</td>
-            <td>Digestive Issue</td>
-            <td class="status-follow-up">Follow-up</td>
-            <td><a href="#" class="action-link">View</a></td>
-          </tr>
         </tbody>
       </table>
     </div>
-
   </main>
-
-  <!-- Add Consultation Modal -->
-  <div class="modal-backdrop" id="addModal">
-    <div class="modal-card">
-      <h2>New Consultation</h2>
-      <form id="addForm">
-        <div class="form-row">
-          <div class="form-group" style="flex: 1;">
-            <label for="newDate">Date</label>
-            <input type="date" id="newDate" class="form-control" required>
-          </div>
-          <div class="form-group" style="flex: 1;">
-            <label for="newPet">Pet Name</label>
-            <input type="text" id="newPet" class="form-control" placeholder="e.g. Buddy" required>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="newOwner">Owner Name</label>
-          <input type="text" id="newOwner" class="form-control" placeholder="e.g. Maria Santos" required>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group" style="flex: 1;">
-            <label for="newVet">Veterinarian</label>
-            <select id="newVet" class="form-control" required>
-              <option value="Dr. Reyes">Dr. Reyes</option>
-              <option value="Dr. Santos">Dr. Santos</option>
-            </select>
-          </div>
-          <div class="form-group" style="flex: 1;">
-            <label for="newStatus">Status</label>
-            <select id="newStatus" class="form-control" required>
-              <option value="Completed">Completed</option>
-              <option value="In Progress">In Progress</option>
-              <option value="Follow-up">Follow-up</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="newDiagnosis">Diagnosis / Clinical Notes</label>
-          <input type="text" id="newDiagnosis" class="form-control" placeholder="e.g. Routine Check-up" required>
-        </div>
-
-        <div class="modal-actions">
-          <button type="button" class="btn-cancel" id="btnCloseModal">Cancel</button>
-          <button type="submit" class="btn-save">Save Consultation</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <script>
-    const topSearch = document.getElementById('topSearchInput');
-    const tableSearch = document.getElementById('tableSearchInput');
-    const statusFilter = document.getElementById('statusFilter');
-    const vetFilter = document.getElementById('vetFilter');
-    const countText = document.getElementById('recordCountText');
-
-    const addModal = document.getElementById('addModal');
-    const btnOpenAddModal = document.getElementById('btnOpenAddModal');
-    const btnCloseModal = document.getElementById('btnCloseModal');
-    const addForm = document.getElementById('addForm');
-    const tableBody = document.getElementById('consultationsTableBody');
-
-    function filterTable() {
-      const topQuery = topSearch.value.toLowerCase().trim();
-      const tableQuery = tableSearch.value.toLowerCase().trim();
-      const selectedStatus = statusFilter.value.toLowerCase();
-      const selectedVet = vetFilter.value.toLowerCase();
-
-      const rows = document.querySelectorAll('#consultationsTableBody tr');
-      let visibleCount = 0;
-
-      rows.forEach(row => {
-        const text = row.textContent.toLowerCase();
-        const status = (row.getAttribute('data-status') || '').toLowerCase();
-        const vet = (row.getAttribute('data-vet') || '').toLowerCase();
-
-        const matchesTop = text.includes(topQuery);
-        const matchesTable = text.includes(tableQuery);
-        const matchesStatus = !selectedStatus || status === selectedStatus;
-        const matchesVet = !selectedVet || vet === selectedVet;
-
-        if (matchesTop && matchesTable && matchesStatus && matchesVet) {
-          row.style.display = '';
-          visibleCount++;
-        } else {
-          row.style.display = 'none';
-        }
-      });
-
-      countText.textContent = `${visibleCount} records`;
-    }
-
-    btnOpenAddModal.addEventListener('click', () => {
-      addModal.style.display = 'flex';
-    });
-
-    btnCloseModal.addEventListener('click', () => {
-      addModal.style.display = 'none';
-    });
-
-    addForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const rawDate = document.getElementById('newDate').value;
-      const pet = document.getElementById('newPet').value.trim();
-      const owner = document.getElementById('newOwner').value.trim();
-      const vet = document.getElementById('newVet').value;
-      const status = document.getElementById('newStatus').value;
-      const diagnosis = document.getElementById('newDiagnosis').value.trim();
-
-      let formattedDate = rawDate;
-      if (rawDate) {
-        const d = new Date(rawDate);
-        const options = { month: 'short', day: 'numeric', year: 'numeric' };
-        formattedDate = d.toLocaleDateString('en-US', options);
-      }
-
-      let statusClass = 'status-completed';
-      if (status === 'In Progress') statusClass = 'status-in-progress';
-      if (status === 'Follow-up') statusClass = 'status-follow-up';
-
-      const tr = document.createElement('tr');
-      tr.setAttribute('data-status', status);
-      tr.setAttribute('data-vet', vet);
-
-      tr.innerHTML = `
-        <td>${formattedDate}</td>
-        <td class="pet-name">${pet}</td>
-        <td>${owner}</td>
-        <td>${vet}</td>
-        <td>${diagnosis}</td>
-        <td class="${statusClass}">${status}</td>
-        <td><a href="#" class="action-link">View</a></td>
-      `;
-
-      tableBody.appendChild(tr);
-
-      addForm.reset();
-      addModal.style.display = 'none';
-
-      filterTable();
-    });
-
-    topSearch.addEventListener('input', filterTable);
-    tableSearch.addEventListener('input', filterTable);
-    statusFilter.addEventListener('change', filterTable);
-    vetFilter.addEventListener('change', filterTable);
-
-    filterTable();
-  </script>
 
 </body>
 </html>
