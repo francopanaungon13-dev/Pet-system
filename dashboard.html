@@ -1,270 +1,273 @@
+Eto ang mismong HTML/CSS code para sa **Dashboard lang** (walang mga registration forms o overlays):
+
+```html
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Paws Clinic Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Paws Clinic Dashboard</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #edf7ff;
-            color: #1766b5;
-            font-size: 13px;
-        }
+    body {
+      font-family: Arial, sans-serif;
+      background: #edf7ff;
+      color: #1766b5;
+      font-size: 13px;
+    }
 
-        .layout {
-            display: flex;
-            min-height: 100vh;
-        }
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
 
-        .sidebar {
-            width: 220px;
-            background: white;
-            border-right: 2px solid #39a5ff;
-            padding: 24px 14px;
-        }
+    .sidebar {
+      width: 220px;
+      background: white;
+      border-right: 2px solid #39a5ff;
+      padding: 24px 14px;
+    }
 
-        .logo {
-            font-size: 22px;
-            font-weight: bold;
-            margin: 8px 0;
-        }
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 8px 0;
+    }
 
-        .tagline {
-            font-size: 11px;
-            margin-bottom: 32px;
-            color: #5d9bd7;
-        }
+    .tagline {
+      font-size: 11px;
+      margin-bottom: 32px;
+      color: #5d9bd7;
+    }
 
-        nav a {
-            display: block;
-            padding: 13px 12px;
-            margin: 3px 0;
-            text-decoration: none;
-            color: #1766b5;
-            border-radius: 8px;
-        }
+    nav a {
+      display: block;
+      padding: 13px 12px;
+      margin: 3px 0;
+      text-decoration: none;
+      color: #1766b5;
+      border-radius: 8px;
+    }
 
-        nav a:hover,
-        nav a.active {
-            background: #dceeff;
-        }
+    nav a:hover,
+    nav a.active {
+      background: #dceeff;
+    }
 
-        main {
-            flex: 1;
-            padding: 24px;
-            min-width: 0;
-        }
+    main {
+      flex: 1;
+      padding: 24px;
+      min-width: 0;
+    }
 
-        .topbar {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 32px;
-        }
+    .topbar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 32px;
+    }
 
-        .search {
-            width: 290px;
-            max-width: 55%;
-            padding: 11px 15px;
-            border: 1px solid #cce5ff;
-            border-radius: 25px;
-            outline: none;
-        }
+    .search {
+      width: 290px;
+      max-width: 55%;
+      padding: 11px 15px;
+      border: 1px solid #cce5ff;
+      border-radius: 25px;
+      outline: none;
+    }
 
-        h1 {
-            font-size: 25px;
-            margin-bottom: 10px;
-        }
+    h1 {
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
 
-        .subtitle {
-            color: #6b9dce;
-            margin-bottom: 25px;
-        }
+    .subtitle {
+      color: #6b9dce;
+      margin-bottom: 25px;
+    }
 
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 14px;
-            margin-bottom: 20px;
-        }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
 
-        .card {
-            background: white;
-            border-radius: 14px;
-            padding: 20px;
-            box-shadow: 0 2px 8px #dcecf8;
-        }
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 2px 8px #dcecf8;
+    }
 
-        .stat-label {
-            font-size: 12px;
-        }
+    .stat-label {
+      font-size: 12px;
+    }
 
-        .number {
-            font-size: 27px;
-            font-weight: bold;
-            margin: 8px 0;
-        }
+    .number {
+      font-size: 27px;
+      font-weight: bold;
+      margin: 8px 0;
+    }
 
-        .note {
-            font-size: 11px;
-            color: #24a96a;
-        }
+    .note {
+      font-size: 11px;
+      color: #24a96a;
+    }
 
-        .warning {
-            color: #f0a02c;
-        }
+    .warning {
+      color: #f0a02c;
+    }
 
-        .danger {
-            color: #e25a65;
-        }
+    .danger {
+      color: #e25a65;
+    }
 
-        .content-grid,
-        .bottom-grid {
-            display: grid;
-            grid-template-columns: 2.2fr 1fr;
-            gap: 16px;
-            margin-bottom: 18px;
-        }
+    .content-grid,
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 2.2fr 1fr;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
 
-        .card h2 {
-            font-size: 16px;
-            margin-bottom: 18px;
-        }
+    .card h2 {
+      font-size: 16px;
+      margin-bottom: 18px;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-            font-size: 11px;
-        }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 11px;
+    }
 
-        th {
-            background: #e8f5ff;
-            font-weight: normal;
-        }
+    th {
+      background: #e8f5ff;
+      font-weight: normal;
+    }
 
-        th, td {
-            padding: 13px 8px;
-        }
+    th, td {
+      padding: 13px 8px;
+    }
 
-        tr:not(:last-child) td {
-            border-bottom: 1px solid #eef5fb;
-        }
+    tr:not(:last-child) td {
+      border-bottom: 1px solid #eef5fb;
+    }
 
-        .status {
-            font-weight: bold;
-            white-space: nowrap;
-        }
+    .status {
+      font-weight: bold;
+      white-space: nowrap;
+    }
 
-        .medicine {
-            margin: 18px 0;
-        }
+    .medicine {
+      margin: 18px 0;
+    }
 
-        .medicine strong {
-            display: block;
-            margin-bottom: 7px;
-        }
+    .medicine strong {
+      display: block;
+      margin-bottom: 7px;
+    }
 
-        .medicine small {
-            color: #e25a65;
-        }
+    .medicine small {
+      color: #e25a65;
+    }
 
-        .pets {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-        }
+    .pets {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
 
-        .pet {
-            line-height: 1.8;
-            font-size: 12px;
-        }
+    .pet {
+      line-height: 1.8;
+      font-size: 12px;
+    }
 
-        .pet small {
-            color: #6596c8;
-        }
+    .pet small {
+      color: #6596c8;
+    }
 
-        .actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
 
-        .actions button {
-            border: none;
-            border-radius: 8px;
-            padding: 13px 8px;
-            color: #1766b5;
-            background: #eaf5ff;
-            cursor: pointer;
-        }
+    .actions button {
+      border: none;
+      border-radius: 8px;
+      padding: 13px 8px;
+      color: #1766b5;
+      background: #eaf5ff;
+      cursor: pointer;
+    }
 
-        .actions button:hover {
-            background: #d5eaff;
-        }
+    .actions button:hover {
+      background: #d5eaff;
+    }
 
-        @media (max-width: 900px) {
-            .sidebar {
-                width: 180px;
-            }
+    @media (max-width: 900px) {
+      .sidebar {
+        width: 180px;
+      }
 
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
 
-            .content-grid,
-            .bottom-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+      .content-grid,
+      .bottom-grid {
+        grid-template-columns: 1fr;
+      }
+    }
 
-        @media (max-width: 600px) {
-            .layout {
-                display: block;
-            }
+    @media (max-width: 600px) {
+      .layout {
+        display: block;
+      }
 
-            .sidebar {
-                width: 100%;
-            }
+      .sidebar {
+        width: 100%;
+      }
 
-            nav {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-            }
+      nav {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
 
-            main {
-                padding: 16px;
-            }
+      main {
+        padding: 16px;
+      }
 
-            .stats {
-                gap: 10px;
-            }
+      .stats {
+        gap: 10px;
+      }
 
-            .card {
-                padding: 14px;
-            }
+      .card {
+        padding: 14px;
+      }
 
-            .table-wrap {
-                overflow-x: auto;
-            }
+      .table-wrap {
+        overflow-x: auto;
+      }
 
-            table {
-                min-width: 500px;
-            }
+      table {
+        min-width: 500px;
+      }
 
-            .pets {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+      .pets {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -291,8 +294,7 @@
     <main id="dashboard">
 
         <div class="topbar">
-            <input class="search" type="search"
-                   placeholder="Search pets, owners, or appointments...">
+            <input class="search" type="search" placeholder="Search pets, owners, or appointments...">
             <span>🔔 Happy Paws Clinic⌄</span>
         </div>
 
@@ -352,9 +354,7 @@
                                 <td>🐕 Buddy</td>
                                 <td>Maria Santos</td>
                                 <td>Check-up</td>
-                                <td class="status" style="color:#24a96a">
-                                    ● Confirmed
-                                </td>
+                                <td class="status" style="color:#24a96a">● Confirmed</td>
                             </tr>
 
                             <tr>
@@ -362,9 +362,7 @@
                                 <td>🐈 Luna</td>
                                 <td>John Cruz</td>
                                 <td>Vaccination</td>
-                                <td class="status" style="color:#f0a02c">
-                                    ● Waiting
-                                </td>
+                                <td class="status" style="color:#f0a02c">● Waiting</td>
                             </tr>
 
                             <tr>
@@ -372,9 +370,7 @@
                                 <td>🐕 Max</td>
                                 <td>Ana Reyes</td>
                                 <td>Deworming</td>
-                                <td class="status" style="color:#24a96a">
-                                    ● Confirmed
-                                </td>
+                                <td class="status" style="color:#24a96a">● Confirmed</td>
                             </tr>
 
                             <tr>
@@ -382,9 +378,7 @@
                                 <td>🐈 Mittens</td>
                                 <td>Carlos Tan</td>
                                 <td>Check-up</td>
-                                <td class="status" style="color:#24a96a">
-                                    ● Confirmed
-                                </td>
+                                <td class="status" style="color:#24a96a">● Confirmed</td>
                             </tr>
                         </tbody>
                     </table>
@@ -457,3 +451,5 @@
 
 </body>
 </html>
+
+```
