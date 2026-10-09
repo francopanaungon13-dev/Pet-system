@@ -78,6 +78,11 @@
       border: 1px solid #ccc;
       border-radius: 20px;
       font-size: 12px;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: #2b6cb0;
     }
 
     .user-profile {
@@ -268,7 +273,7 @@
   <main class="main-content">
     
     <header class="top-header">
-      <input type="text" class="search-input" placeholder="Search pets, owners, or appointments...">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search pets, owners, or appointments...">
       <div class="user-profile">🔔 Happy Paws Clinic</div>
     </header>
 
@@ -323,7 +328,7 @@
                 <th>Status</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="appointmentsBody">
               <tr>
                 <td>09:00 AM</td>
                 <td><b>🐾 Buddy</b></td>
@@ -362,7 +367,7 @@
             <a href="#" class="view-link">View All →</a>
           </div>
           
-          <div class="records-list">
+          <div class="records-list" id="recordsList">
             <div class="record-item">
               <h4>🐾 Buddy</h4>
               <p>Golden Retriever</p>
@@ -391,25 +396,27 @@
             <a href="#" class="view-link">View All →</a>
           </div>
           
-          <div class="med-item">
-            <div>
-              <div class="med-name">Amoxicillin 250mg</div>
-              <div class="med-count">3 pcs left</div>
+          <div id="medicineList">
+            <div class="med-item">
+              <div>
+                <div class="med-name">Amoxicillin 250mg</div>
+                <div class="med-count">3 pcs left</div>
+              </div>
+              <span class="text-red" style="font-size:10px; font-weight:bold;">Low Stock</span>
             </div>
-            <span class="text-red" style="font-size:10px; font-weight:bold;">Low Stock</span>
-          </div>
 
-          <div class="med-item">
-            <div>
-              <div class="med-name">Flea & Tick Treatment</div>
-              <div class="med-count">2 pcs left</div>
+            <div class="med-item">
+              <div>
+                <div class="med-name">Flea & Tick Treatment</div>
+                <div class="med-count">2 pcs left</div>
+              </div>
             </div>
-          </div>
 
-          <div class="med-item">
-            <div>
-              <div class="med-name">Multitamins</div>
-              <div class="med-count">8 pcs left</div>
+            <div class="med-item">
+              <div>
+                <div class="med-name">Multitamins</div>
+                <div class="med-count">8 pcs left</div>
+              </div>
             </div>
           </div>
         </div>
@@ -432,6 +439,30 @@
     </div>
 
   </main>
+
+  <script>
+    document.getElementById('searchInput').addEventListener('input', function() {
+      const filter = this.value.toLowerCase().trim();
+
+      const tableRows = document.querySelectorAll('#appointmentsBody tr');
+      tableRows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(filter) ? '' : 'none';
+      });
+
+      const records = document.querySelectorAll('#recordsList .record-item');
+      records.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(filter) ? '' : 'none';
+      });
+
+      const medicines = document.querySelectorAll('#medicineList .med-item');
+      medicines.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(filter) ? '' : 'none';
+      });
+    });
+  </script>
 
 </body>
 </html>
