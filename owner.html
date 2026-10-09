@@ -88,23 +88,23 @@
       <div class="subtitle">Owner Information</div>
     </div>
 
-    <div class="form">
+    <form class="form" onsubmit="event.preventDefault(); window.location.href='pet.html';">
       <h3>Owner Information</h3>
 
       <div class="grid">
         <div>
           <label>Address</label>
-          <input type="text">
+          <input type="text" required>
         </div>
         <div>
           <label>Date of Birth</label>
-          <input type="date">
+          <input type="date" required>
         </div>
 
         <div>
           <label>Gender</label>
-          <select>
-            <option>Select</option>
+          <select required>
+            <option value="">Select</option>
             <option>Male</option>
             <option>Female</option>
           </select>
@@ -112,8 +112,8 @@
 
         <div>
           <label>ID Type</label>
-          <select>
-            <option>Select</option>
+          <select required>
+            <option value="">Select</option>
             <option>National ID</option>
             <option>Driver's License</option>
             <option>Passport</option>
@@ -122,19 +122,19 @@
 
         <div>
           <label>ID Number</label>
-          <input type="text">
+          <input type="text" required>
         </div>
         <div>
           <label>Relationship to Pet</label>
-          <input type="text">
+          <input type="text" required>
         </div>
       </div>
 
       <div class="buttons">
-        <button onclick="window.location.href='account.html'">← Back</button>
-        <button onclick="window.location.href='pet.html'">Next Step →</button>
+        <button type="button" onclick="window.location.href='account.html'">← Back</button>
+        <button type="submit">Next Step →</button>
       </div>
-    </div>
+    </form>
   </div>
 
 </body>
