@@ -1,7 +1,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Happy Paws - Consultations</title>
+  <title>Happy Paws - Consulations</title>
   <style>
     * {
       box-sizing: border-box;
@@ -136,12 +136,90 @@
       border-bottom: 1px solid #f0f4f8;
     }
 
-    .status-completed { color: #38a169; font-weight: bold; }
-    .status-in-progress { color: #dd6b20; font-weight: bold; }
+    .status-completed {
+      color: #38a169;
+      font-weight: bold;
+    }
+
+    .status-in-progress {
+      color: #dd6b20;
+      font-weight: bold;
+    }
 
     .action-link {
       color: #3182ce;
       text-decoration: none;
+      font-weight: bold;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.4);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      width: 400px;
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .modal-card h2 {
+      font-size: 18px;
+      color: #2b6cb0;
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #cbd5e0;
+      border-radius: 6px;
+      font-size: 12px;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .btn-cancel {
+      background: #e2e8f0;
+      color: #4a5568;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn-save {
+      background: #3182ce;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
       font-weight: bold;
     }
   </style>
@@ -156,7 +234,7 @@
       <li><a href="records.html">🐾 Pet Records</a></li>
       <li><a href="owners.html">👤 Owners</a></li>
       <li><a href="appointments.html">📅 Appointments</a></li>
-      <li class="active"><a href="consultations.html">🩺 Consultations</a></li>
+      <li class="active"><a href="consulations.html">🩺 Consultations</a></li>
       <li><a href="services.html">📋 Services</a></li>
       <li><a href="medicines.html">💊 Medicines</a></li>
       <li><a href="billing.html">💳 Billing</a></li>
@@ -166,7 +244,7 @@
 
   <main class="main-content">
     <header class="top-header">
-      <input type="text" class="top-search-input" placeholder="Search pet, owner, consultation...">
+      <input type="text" id="searchInput" class="top-search-input" placeholder="Search pet, owner, consultation...">
       <div style="font-size: 13px; font-weight: bold; color: #2b6cb0;">Happy Paws Clinic</div>
     </header>
 
@@ -175,7 +253,7 @@
         <h1>Consultations</h1>
         <p style="color: #a0aec0; font-size: 13px;">Record and manage pet consultations and clinical notes.</p>
       </div>
-      <button class="btn-add-consultation">+ New Consultation</button>
+      <button class="btn-add-consultation" id="btnOpenModal">+ New Consultation</button>
     </div>
 
     <div class="card-box">
@@ -191,9 +269,9 @@
             <th>ACTION</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="consultationTableBody">
           <tr>
-            <td>Sep 28, 2026</td>
+            <td>Oct 09, 2026</td>
             <td>Buddy</td>
             <td>Maria Santos</td>
             <td>Dr. Reyes</td>
@@ -202,7 +280,7 @@
             <td><a href="#" class="action-link">View</a></td>
           </tr>
           <tr>
-            <td>Sep 28, 2026</td>
+            <td>Oct 09, 2026</td>
             <td>Luna</td>
             <td>John Cruz</td>
             <td>Dr. Santos</td>
@@ -211,7 +289,7 @@
             <td><a href="#" class="action-link">View</a></td>
           </tr>
           <tr>
-            <td>Sep 27, 2026</td>
+            <td>Oct 08, 2026</td>
             <td>Max</td>
             <td>Ana Reyes</td>
             <td>Dr. Reyes</td>
@@ -223,6 +301,59 @@
       </table>
     </div>
   </main>
+
+  <div class="modal-backdrop" id="addModal">
+    <div class="modal-card">
+      <h2>New Consultation</h2>
+      <form id="addForm">
+        <div class="form-group"><label>Pet Name</label><input type="text" id="cPet" class="form-control" required></div>
+        <div class="form-group"><label>Owner Name</label><input type="text" id="cOwner" class="form-control" required></div>
+        <div class="form-group"><label>Veterinarian</label><select id="cVet" class="form-control"><option>Dr. Reyes</option><option>Dr. Santos</option></select></div>
+        <div class="form-group"><label>Diagnosis</label><input type="text" id="cDiagnosis" class="form-control" required></div>
+        <div class="form-group"><label>Status</label><select id="cStatus" class="form-control"><option value="Completed">Completed</option><option value="In Progress">In Progress</option></select></div>
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" id="btnCloseModal">Cancel</button>
+          <button type="submit" class="btn-save">Save Consultation</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const tableBody = document.getElementById('consultationTableBody');
+    const modal = document.getElementById('addModal');
+
+    searchInput.addEventListener('keyup', () => {
+      const filter = searchInput.value.toLowerCase();
+      Array.from(tableBody.querySelectorAll('tr')).forEach(row => {
+        row.style.display = row.textContent.toLowerCase().includes(filter) ? '' : 'none';
+      });
+    });
+
+    document.getElementById('btnOpenModal').onclick = () => modal.style.display = 'flex';
+    document.getElementById('btnCloseModal').onclick = () => modal.style.display = 'none';
+
+    document.getElementById('addForm').onsubmit = (e) => {
+      e.preventDefault();
+      const statusVal = document.getElementById('cStatus').value;
+      const statusClass = statusVal === 'Completed' ? 'status-completed' : 'status-in-progress';
+      const today = new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${today}</td>
+        <td>${document.getElementById('cPet').value}</td>
+        <td>${document.getElementById('cOwner').value}</td>
+        <td>${document.getElementById('cVet').value}</td>
+        <td>${document.getElementById('cDiagnosis').value}</td>
+        <td class="${statusClass}">${statusVal}</td>
+        <td><a href="#" class="action-link">View</a></td>
+      `;
+      tableBody.appendChild(row);
+      modal.style.display = 'none';
+      e.target.reset();
+    };
+  </script>
 
 </body>
 </html>
