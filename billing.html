@@ -1,0 +1,216 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Paws - Billing</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f2f7fb;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #ffffff;
+      padding: 24px 20px;
+      border-right: 1px solid #e2e8f0;
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      color: #2b6cb0;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .brand-subtitle {
+      font-size: 11px;
+      color: #a0aec0;
+      margin: 4px 0 28px 0;
+    }
+
+    .nav-list {
+      list-style: none;
+    }
+
+    .nav-list li {
+      margin-bottom: 6px;
+    }
+
+    .nav-list a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      color: #4a5568;
+      text-decoration: none;
+      font-size: 13px;
+      border-radius: 8px;
+    }
+
+    .nav-list li.active a,
+    .nav-list a:hover {
+      background-color: #ebf8ff;
+      color: #2b6cb0;
+      font-weight: bold;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 24px 36px;
+    }
+
+    .top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .top-search-input {
+      width: 320px;
+      padding: 9px 16px;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      font-size: 12px;
+      outline: none;
+      background-color: #ffffff;
+    }
+
+    .page-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .title-area h1 {
+      color: #1a365d;
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .btn-add {
+      background-color: #3182ce;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .card-box {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .data-table th {
+      background-color: #ebf8ff;
+      text-align: left;
+      padding: 12px 14px;
+      color: #2b6cb0;
+      font-weight: bold;
+    }
+
+    .data-table td {
+      padding: 16px 14px;
+      border-bottom: 1px solid #f0f4f8;
+    }
+
+    .text-green { color: #38a169; font-weight: bold; }
+    .text-orange { color: #dd6b20; font-weight: bold; }
+
+    .action-link {
+      color: #3182ce;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="brand-title">Happy Paws</div>
+    <div class="brand-subtitle">Better Care, Happier Pets.</div>
+    <ul class="nav-list">
+      <li><a href="dashboard.html">🏠 Dashboard</a></li>
+      <li><a href="records.html">🐾 Pet Records</a></li>
+      <li><a href="owners.html">👤 Owners</a></li>
+      <li><a href="appointments.html">📅 Appointments</a></li>
+      <li><a href="consultations.html">🩺 Consultations</a></li>
+      <li><a href="services.html">📋 Services</a></li>
+      <li><a href="medicines.html">💊 Medicines</a></li>
+      <li class="active"><a href="billing.html">💳 Billing</a></li>
+      <li><a href="reports.html">📊 Reports</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <header class="top-header">
+      <input type="text" class="top-search-input" placeholder="Search invoice or owner...">
+      <div style="font-size: 13px; font-weight: bold; color: #2b6cb0;">Happy Paws Clinic</div>
+    </header>
+
+    <div class="page-title-row">
+      <div class="title-area">
+        <h1>Billing & Invoices</h1>
+        <p style="color: #a0aec0; font-size: 13px;">Manage client payments and invoice records.</p>
+      </div>
+      <button class="btn-add">+ Create Invoice</button>
+    </div>
+
+    <div class="card-box">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>INVOICE #</th>
+            <th>OWNER</th>
+            <th>PET</th>
+            <th>AMOUNT</th>
+            <th>STATUS</th>
+            <th>ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>INV-2026-001</td>
+            <td>Maria Santos</td>
+            <td>Buddy</td>
+            <td>₱1,250</td>
+            <td class="text-green">Paid</td>
+            <td><a href="#" class="action-link">View</a></td>
+          </tr>
+          <tr>
+            <td>INV-2026-002</td>
+            <td>John Cruz</td>
+            <td>Luna</td>
+            <td>₱800</td>
+            <td class="text-orange">Pending</td>
+            <td><a href="#" class="action-link">View</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+</body>
+</html>
