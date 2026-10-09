@@ -69,21 +69,13 @@
       justify-content: space-between;
       margin-top: 20px;
     }
-    /* Ito ang magpapamukhang tunay na button sa mga link tags */
-    .btn {
+    button {
       border: 0;
       background: #6caee5;
       color: white;
       padding: 8px 14px;
       border-radius: 15px;
       cursor: pointer;
-      text-decoration: none;
-      font-size: 13px;
-      display: inline-block;
-      text-align: center;
-    }
-    .btn:hover {
-      background: #5a9bd2;
     }
   </style>
 </head>
@@ -142,8 +134,8 @@
       </div>
 
       <div class="buttons">
-        <a href="owner.html" class="btn">← Back</a>
-        <a href="dashboard.html" class="btn">Finish ✓</a>
+        <button type="button" onclick="window.location.href='owner.html'">← Back</button>
+        <button type="button" onclick="window.location.href='dashboard.html'">Finish ✓</button>
       </div>
     </div>
   </div>
