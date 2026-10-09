@@ -69,16 +69,13 @@
       justify-content: space-between;
       margin-top: 20px;
     }
-    .btn {
+    button {
       border: 0;
       background: #6caee5;
       color: white;
       padding: 8px 14px;
       border-radius: 15px;
       cursor: pointer;
-      text-decoration: none;
-      font-size: 13.33px;
-      display: inline-block;
     }
   </style>
 </head>
@@ -137,11 +134,18 @@
       </div>
 
       <div class="buttons">
-        <a href="owner.html" class="btn">← Back</a>
-        <a href="dashboard.html" class="btn">Finish ✓</a>
+        <button type="button" onclick="window.location.href='owner.html'">← Back</button>
+        <button type="button" onclick="goToDashboard(event)">Finish ✓</button>
       </div>
     </div>
   </div>
+
+  <script>
+    function goToDashboard(e) {
+      if (e) e.preventDefault();
+      window.location.replace('dashboard.html');
+    }
+  </script>
 
 </body>
 </html>
