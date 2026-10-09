@@ -69,13 +69,21 @@
       justify-content: space-between;
       margin-top: 20px;
     }
-    button {
+    .btn {
       border: 0;
       background: #6caee5;
       color: white;
       padding: 8px 14px;
       border-radius: 15px;
       cursor: pointer;
+      text-decoration: none;
+      font-size: 13px;
+      display: inline-block;
+      text-align: center;
+      box-sizing: border-box;
+    }
+    .btn:hover {
+      background: #5a9bd2;
     }
   </style>
 </head>
@@ -134,8 +142,8 @@
       </div>
 
       <div class="buttons">
-        <button type="button" onclick="window.location.href='owner.html'">← Back</button>
-        <button type="button" onclick="window.location.href='dashboard.html'">Finish ✓</button>
+        <a href="owner.html" class="btn">← Back</a>
+        <a href="dashboard.html" class="btn">Finish ✓</a>
       </div>
     </div>
   </div>
