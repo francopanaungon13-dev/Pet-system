@@ -91,33 +91,33 @@
       <div class="subtitle">Complete your registration for expert pet care services</div>
     </div>
 
-    <form class="form" onsubmit="event.preventDefault(); window.location.href='owner.html';">
+    <form class="form" id="accountForm">
       <h3>Account Information</h3>
 
       <div class="grid">
         <div>
           <label>First Name</label>
-          <input type="text" required>
+          <input type="text" id="firstName" required>
         </div>
         <div>
           <label>Last Name</label>
-          <input type="text" required>
+          <input type="text" id="lastName" required>
         </div>
         <div>
           <label>Email Address</label>
-          <input type="email" required>
+          <input type="email" id="email" required>
         </div>
         <div>
           <label>Phone Number</label>
-          <input type="text" required>
+          <input type="text" id="phone" required>
         </div>
         <div>
           <label>Password</label>
-          <input type="password" required>
+          <input type="password" id="password" required>
         </div>
         <div>
           <label>Confirm Password</label>
-          <input type="password" required>
+          <input type="password" id="confirmPassword" required>
         </div>
       </div>
 
@@ -126,6 +126,23 @@
       </div>
     </form>
   </div>
+
+  <script>
+    document.getElementById('accountForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const accountData = {
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        password: document.getElementById('password').value
+      };
+
+      localStorage.setItem('accountData', JSON.stringify(accountData));
+      window.location.href = 'owner.html';
+    });
+  </script>
 
 </body>
 </html>
