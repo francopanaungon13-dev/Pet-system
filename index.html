@@ -91,40 +91,40 @@
       <div class="subtitle">Complete your registration for expert pet care services</div>
     </div>
 
-    <div class="form">
+    <form class="form" onsubmit="event.preventDefault(); window.location.href='owner.html';">
       <h3>Account Information</h3>
 
       <div class="grid">
         <div>
           <label>First Name</label>
-          <input type="text">
+          <input type="text" required>
         </div>
         <div>
           <label>Last Name</label>
-          <input type="text">
+          <input type="text" required>
         </div>
         <div>
           <label>Email Address</label>
-          <input type="email">
+          <input type="email" required>
         </div>
         <div>
           <label>Phone Number</label>
-          <input type="text">
+          <input type="text" required>
         </div>
         <div>
           <label>Password</label>
-          <input type="password">
+          <input type="password" required>
         </div>
         <div>
           <label>Confirm Password</label>
-          <input type="password">
+          <input type="password" required>
         </div>
       </div>
 
       <div class="buttons">
-        <button type="button" onclick="window.location.href='owner.html'">Next Step →</button>
+        <button type="submit">Next Step →</button>
       </div>
-    </div>
+    </form>
   </div>
 
 </body>
