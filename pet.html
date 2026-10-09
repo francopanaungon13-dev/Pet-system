@@ -92,8 +92,7 @@
       <div class="subtitle">Pet Information</div>
     </div>
 
-    <!-- Ginawang FORM tag na may action papuntang dashboard.html -->
-    <form class="form" action="dashboard.html" method="GET">
+    <form class="form" id="petForm">
       <h3>Pet Information</h3>
 
       <div class="grid">
@@ -139,11 +138,17 @@
       </div>
 
       <div class="buttons">
-        <a href="owner.html" class="btn">← Back</a>
-        <button type="submit" class="btn">Finish ✓</button>
+        <a href="./owner.html" class="btn">← Back</a>
+        <button type="button" class="btn" onclick="finishRegistration()">Finish ✓</button>
       </div>
     </form>
   </div>
+
+  <script>
+    function finishRegistration() {
+      window.location.href = './dashboard.html';
+    }
+  </script>
 
 </body>
 </html>
