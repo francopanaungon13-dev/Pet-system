@@ -18,22 +18,23 @@
     }
 
     .sidebar {
-      width: 200px;
+      width: 220px;
       background-color: #ffffff;
-      padding: 20px;
-      border-right: 1px solid #dcdcdc;
+      padding: 24px 20px;
+      border-right: 1px solid #e2e8f0;
+      flex-shrink: 0;
     }
 
     .brand-title {
       color: #2b6cb0;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: bold;
     }
 
     .brand-subtitle {
       font-size: 11px;
-      color: #718096;
-      margin: 4px 0 20px 0;
+      color: #a0aec0;
+      margin: 4px 0 28px 0;
     }
 
     .nav-list {
@@ -41,16 +42,18 @@
     }
 
     .nav-list li {
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .nav-list a {
-      display: block;
-      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
       color: #4a5568;
       text-decoration: none;
       font-size: 13px;
-      border-radius: 6px;
+      border-radius: 8px;
     }
 
     .nav-list li.active a,
@@ -62,116 +65,56 @@
 
     .main-content {
       flex: 1;
-      padding: 20px 30px;
+      padding: 24px 36px;
     }
 
     .top-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     .top-search-input {
-      width: 280px;
-      padding: 8px 14px;
-      border: 1px solid #ccc;
+      width: 320px;
+      padding: 9px 16px;
+      border: 1px solid #e2e8f0;
       border-radius: 20px;
       font-size: 12px;
       outline: none;
-    }
-
-    .user-profile {
-      font-size: 13px;
-      font-weight: bold;
+      background-color: #ffffff;
     }
 
     .page-title-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     .title-area h1 {
-      color: #2b6cb0;
-      font-size: 24px;
+      color: #1a365d;
+      font-size: 26px;
+      font-weight: bold;
       margin-bottom: 4px;
-    }
-
-    .title-area p {
-      color: #718096;
-      font-size: 12px;
     }
 
     .btn-add-pet {
       background-color: #3182ce;
       color: white;
       border: none;
-      padding: 10px 18px;
+      padding: 10px 20px;
       border-radius: 8px;
       font-size: 13px;
       font-weight: bold;
       cursor: pointer;
     }
 
-    .btn-add-pet:hover {
-      background-color: #2b6cb0;
-    }
-
-    .filter-box {
-      background-color: #ffffff;
-      padding: 15px;
-      border-radius: 8px;
-      border: 1px solid #e2e8f0;
-      margin-bottom: 20px;
-    }
-
-    .filter-label {
-      font-size: 11px;
-      color: #a0aec0;
-      margin-bottom: 8px;
-      display: block;
-    }
-
-    .filter-inputs {
-      display: flex;
-      gap: 10px;
-    }
-
-    .filter-select, .filter-search {
-      padding: 8px 12px;
-      border: 1px solid #e2e8f0;
-      border-radius: 6px;
-      font-size: 12px;
-      background-color: #f8fafc;
-      color: #4a5568;
-      outline: none;
-      flex: 1;
-    }
-
     .card-box {
       background-color: #ffffff;
-      border-radius: 8px;
-      padding: 20px;
+      border-radius: 12px;
+      padding: 24px;
       border: 1px solid #e2e8f0;
-    }
-
-    .table-header-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-
-    .table-header-info h3 {
-      color: #2b6cb0;
-      font-size: 16px;
-    }
-
-    .pet-count {
-      font-size: 12px;
-      color: #718096;
     }
 
     .data-table {
@@ -183,119 +126,24 @@
     .data-table th {
       background-color: #ebf8ff;
       text-align: left;
-      padding: 10px;
+      padding: 12px 14px;
       color: #2b6cb0;
       font-weight: bold;
     }
 
     .data-table td {
-      padding: 12px 10px;
-      border-bottom: 1px solid #edf2f7;
-      color: #4a5568;
+      padding: 16px 14px;
+      border-bottom: 1px solid #f0f4f8;
     }
 
-    .pet-name-cell {
+    .text-green {
+      color: #38a169;
       font-weight: bold;
-      color: #2b6cb0;
     }
-
-    .pet-sub-info {
-      font-size: 10px;
-      color: #a0aec0;
-      margin-top: 2px;
-    }
-
-    .text-green { color: #38a169; }
-    .text-red { color: #e53e3e; }
 
     .action-link {
       color: #3182ce;
       text-decoration: none;
-      font-weight: bold;
-    }
-
-    .action-link:hover {
-      text-decoration: underline;
-    }
-
-    .modal-backdrop {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.4);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    .modal-card {
-      background: #ffffff;
-      width: 450px;
-      border-radius: 10px;
-      padding: 25px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    }
-
-    .modal-card h2 {
-      font-size: 18px;
-      color: #2b6cb0;
-      margin-bottom: 15px;
-    }
-
-    .form-group {
-      margin-bottom: 12px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 12px;
-      font-weight: bold;
-      color: #4a5568;
-      margin-bottom: 4px;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 8px 10px;
-      border: 1px solid #cbd5e0;
-      border-radius: 6px;
-      font-size: 12px;
-      outline: none;
-    }
-
-    .form-row {
-      display: flex;
-      gap: 10px;
-    }
-
-    .modal-actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .btn-cancel {
-      background: #e2e8f0;
-      color: #4a5568;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 12px;
-    }
-
-    .btn-save {
-      background: #3182ce;
-      color: white;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 12px;
       font-weight: bold;
     }
   </style>
@@ -303,76 +151,36 @@
 <body>
 
   <aside class="sidebar">
-    <div class="brand-title">🐾 Happy Paws</div>
+    <div class="brand-title">Happy Paws</div>
     <div class="brand-subtitle">Better Care, Happier Pets.</div>
     <ul class="nav-list">
-      <li><a href="dashboard.html">Dashboard</a></li>
-      <li class="active"><a href="records.html">Pet Records</a></li>
-      <li><a href="owners.html">Owners</a></li>
-      <li><a href="dashboard.html">Appointments</a></li>
-      <li><a href="dashboard.html">Consultations</a></li>
-      <li><a href="dashboard.html">Services</a></li>
-      <li><a href="dashboard.html">Medicines</a></li>
-      <li><a href="dashboard.html">Billing</a></li>
-      <li><a href="dashboard.html">Reports</a></li>
+      <li><a href="dashboard.html">🏠 Dashboard</a></li>
+      <li class="active"><a href="records.html">🐾 Pet Records</a></li>
+      <li><a href="owners.html">👤 Owners</a></li>
+      <li><a href="appointments.html">📅 Appointments</a></li>
+      <li><a href="consultations.html">🩺 Consultations</a></li>
+      <li><a href="services.html">📋 Services</a></li>
+      <li><a href="medicines.html">💊 Medicines</a></li>
+      <li><a href="billing.html">💳 Billing</a></li>
+      <li><a href="reports.html">📊 Reports</a></li>
     </ul>
   </aside>
 
   <main class="main-content">
-    
     <header class="top-header">
-      <input type="text" id="topSearchInput" class="top-search-input" placeholder="Search pet name, owner, breed...">
-      <div class="user-profile">🔔 Happy Paws Clinic</div>
+      <input type="text" class="top-search-input" placeholder="Search pet name, owner, breed...">
+      <div style="font-size: 13px; font-weight: bold; color: #2b6cb0;">Happy Paws Clinic</div>
     </header>
 
     <div class="page-title-row">
       <div class="title-area">
         <h1>Pet Records</h1>
-        <p>View, search, and manage registered pet information.</p>
+        <p style="color: #a0aec0; font-size: 13px;">View, search, and manage registered pet information.</p>
       </div>
-      <button class="btn-add-pet" id="btnOpenAddModal">+ Add New Pet</button>
-    </div>
-
-    <div class="filter-box">
-      <span class="filter-label">Filter by</span>
-      <div class="filter-inputs">
-        <select class="filter-select" id="typeFilter">
-          <option value="">All Pet Types</option>
-          <option value="dog">Dog</option>
-          <option value="cat">Cat</option>
-        </select>
-
-        <select class="filter-select" id="breedFilter">
-          <option value="">All Breeds</option>
-          <option value="golden retriever">Golden Retriever</option>
-          <option value="domestic shorthair">Domestic Shorthair</option>
-          <option value="labrador retriever">Labrador Retriever</option>
-          <option value="persian">Persian</option>
-          <option value="beagle">Beagle</option>
-        </select>
-
-        <select class="filter-select" id="genderFilter">
-          <option value="">Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-
-        <select class="filter-select" id="statusFilter">
-          <option value="">Status</option>
-          <option value="active">Active</option>
-          <option value="inactive">Inactive</option>
-        </select>
-
-        <input type="text" id="tableSearchInput" class="filter-search" placeholder="Search records...">
-      </div>
+      <button class="btn-add-pet">+ Add New Pet</button>
     </div>
 
     <div class="card-box">
-      <div class="table-header-info">
-        <h3>Registered Pets</h3>
-        <span class="pet-count" id="petCountText">5 pets</span>
-      </div>
-
       <table class="data-table">
         <thead>
           <tr>
@@ -385,12 +193,9 @@
             <th>ACTION</th>
           </tr>
         </thead>
-        <tbody id="petsTableBody">
-          <tr data-type="dog" data-breed="golden retriever" data-gender="male" data-status="active">
-            <td>
-              <div class="pet-name-cell">🐾 Buddy</div>
-              <div class="pet-sub-info">Golden Retriever • ID P-001</div>
-            </td>
+        <tbody>
+          <tr>
+            <td>🐾 Buddy</td>
             <td>Maria Santos</td>
             <td>Golden Retriever</td>
             <td>Male</td>
@@ -398,11 +203,8 @@
             <td class="text-green">● Active</td>
             <td><a href="#" class="action-link">View</a></td>
           </tr>
-          <tr data-type="cat" data-breed="domestic shorthair" data-gender="female" data-status="active">
-            <td>
-              <div class="pet-name-cell">🐱 Luna</div>
-              <div class="pet-sub-info">Domestic Shorthair • ID P-002</div>
-            </td>
+          <tr>
+            <td>🐱 Luna</td>
             <td>John Cruz</td>
             <td>Domestic Shorthair</td>
             <td>Female</td>
@@ -410,11 +212,8 @@
             <td class="text-green">● Active</td>
             <td><a href="#" class="action-link">View</a></td>
           </tr>
-          <tr data-type="dog" data-breed="labrador retriever" data-gender="male" data-status="active">
-            <td>
-              <div class="pet-name-cell">🐾 Max</div>
-              <div class="pet-sub-info">Labrador Retriever • ID P-003</div>
-            </td>
+          <tr>
+            <td>🐾 Max</td>
             <td>Ana Reyes</td>
             <td>Labrador Retriever</td>
             <td>Male</td>
@@ -422,208 +221,10 @@
             <td class="text-green">● Active</td>
             <td><a href="#" class="action-link">View</a></td>
           </tr>
-          <tr data-type="cat" data-breed="persian" data-gender="female" data-status="active">
-            <td>
-              <div class="pet-name-cell">🐱 Mittens</div>
-              <div class="pet-sub-info">Persian • ID P-004</div>
-            </td>
-            <td>Carlos Tan</td>
-            <td>Persian</td>
-            <td>Female</td>
-            <td>4 yrs</td>
-            <td class="text-green">● Active</td>
-            <td><a href="#" class="action-link">View</a></td>
-          </tr>
-          <tr data-type="dog" data-breed="beagle" data-gender="male" data-status="active">
-            <td>
-              <div class="pet-name-cell">🐾 Charlie</div>
-              <div class="pet-sub-info">Beagle • ID P-005</div>
-            </td>
-            <td>Sofia Lim</td>
-            <td>Beagle</td>
-            <td>Male</td>
-            <td>1 yr</td>
-            <td class="text-green">● Active</td>
-            <td><a href="#" class="action-link">View</a></td>
-          </tr>
         </tbody>
       </table>
     </div>
-
   </main>
-
-  <div class="modal-backdrop" id="addPetModal">
-    <div class="modal-card">
-      <h2>Add New Pet</h2>
-      <form id="addPetForm">
-        <div class="form-row">
-          <div class="form-group" style="flex: 1;">
-            <label for="newPetName">Pet Name</label>
-            <input type="text" id="newPetName" class="form-control" placeholder="e.g. Milo" required>
-          </div>
-          <div class="form-group" style="flex: 1;">
-            <label for="newPetType">Pet Type</label>
-            <select id="newPetType" class="form-control" required>
-              <option value="dog">Dog</option>
-              <option value="cat">Cat</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="newOwner">Owner Name</label>
-          <input type="text" id="newOwner" class="form-control" placeholder="e.g. Juan Dela Cruz" required>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group" style="flex: 1;">
-            <label for="newBreed">Breed</label>
-            <input type="text" id="newBreed" class="form-control" placeholder="e.g. Beagle" required>
-          </div>
-          <div class="form-group" style="flex: 1;">
-            <label for="newGender">Gender</label>
-            <select id="newGender" class="form-control" required>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group" style="flex: 1;">
-            <label for="newAge">Age</label>
-            <input type="text" id="newAge" class="form-control" placeholder="e.g. 2 yrs" required>
-          </div>
-          <div class="form-group" style="flex: 1;">
-            <label for="newStatus">Status</label>
-            <select id="newStatus" class="form-control" required>
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="modal-actions">
-          <button type="button" class="btn-cancel" id="btnCloseModal">Cancel</button>
-          <button type="submit" class="btn-save">Save Pet</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <script>
-    const topSearch = document.getElementById('topSearchInput');
-    const tableSearch = document.getElementById('tableSearchInput');
-    const typeFilter = document.getElementById('typeFilter');
-    const breedFilter = document.getElementById('breedFilter');
-    const genderFilter = document.getElementById('genderFilter');
-    const statusFilter = document.getElementById('statusFilter');
-    const petCountText = document.getElementById('petCountText');
-
-    const addPetModal = document.getElementById('addPetModal');
-    const btnOpenAddModal = document.getElementById('btnOpenAddModal');
-    const btnCloseModal = document.getElementById('btnCloseModal');
-    const addPetForm = document.getElementById('addPetForm');
-    const petsTableBody = document.getElementById('petsTableBody');
-
-    let petIdCounter = 6;
-
-    function filterTable() {
-      const topQuery = topSearch.value.toLowerCase().trim();
-      const tableQuery = tableSearch.value.toLowerCase().trim();
-      const selectedType = typeFilter ? typeFilter.value.toLowerCase() : '';
-      const selectedBreed = breedFilter.value.toLowerCase();
-      const selectedGender = genderFilter.value.toLowerCase();
-      const selectedStatus = statusFilter.value.toLowerCase();
-
-      const rows = document.querySelectorAll('#petsTableBody tr');
-      let visibleCount = 0;
-
-      rows.forEach(row => {
-        const text = row.textContent.toLowerCase();
-        const type = row.getAttribute('data-type') || '';
-        const breed = row.getAttribute('data-breed') || '';
-        const gender = row.getAttribute('data-gender') || '';
-        const status = row.getAttribute('data-status') || '';
-
-        const matchesTop = text.includes(topQuery);
-        const matchesTable = text.includes(tableQuery);
-        const matchesType = !selectedType || type === selectedType;
-        const matchesBreed = !selectedBreed || breed === selectedBreed;
-        const matchesGender = !selectedGender || gender === selectedGender;
-        const matchesStatus = !selectedStatus || status === selectedStatus;
-
-        if (matchesTop && matchesTable && matchesType && matchesBreed && matchesGender && matchesStatus) {
-          row.style.display = '';
-          visibleCount++;
-        } else {
-          row.style.display = 'none';
-        }
-      });
-
-      petCountText.textContent = `${visibleCount} pets`;
-    }
-
-    btnOpenAddModal.addEventListener('click', () => {
-      addPetModal.style.display = 'flex';
-    });
-
-    btnCloseModal.addEventListener('click', () => {
-      addPetModal.style.display = 'none';
-    });
-
-    addPetForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const petName = document.getElementById('newPetName').value.trim();
-      const petType = document.getElementById('newPetType').value;
-      const owner = document.getElementById('newOwner').value.trim();
-      const breed = document.getElementById('newBreed').value.trim();
-      const gender = document.getElementById('newGender').value;
-      const age = document.getElementById('newAge').value.trim();
-      const status = document.getElementById('newStatus').value;
-
-      const formattedId = `P-00${petIdCounter++}`;
-      const icon = petType === 'dog' ? '🐾' : '🐱';
-      const statusClass = status === 'active' ? 'text-green' : 'text-red';
-      const statusLabel = status === 'active' ? '● Active' : '● Inactive';
-
-      const tr = document.createElement('tr');
-      tr.setAttribute('data-type', petType);
-      tr.setAttribute('data-breed', breed.toLowerCase());
-      tr.setAttribute('data-gender', gender);
-      tr.setAttribute('data-status', status);
-
-      tr.innerHTML = `
-        <td>
-          <div class="pet-name-cell">${icon} ${petName}</div>
-          <div class="pet-sub-info">${breed} • ID ${formattedId}</div>
-        </td>
-        <td>${owner}</td>
-        <td>${breed}</td>
-        <td>${gender.charAt(0).toUpperCase() + gender.slice(1)}</td>
-        <td>${age}</td>
-        <td class="${statusClass}">${statusLabel}</td>
-        <td><a href="#" class="action-link">View</a></td>
-      `;
-
-      petsTableBody.appendChild(tr);
-
-      addPetForm.reset();
-      addPetModal.style.display = 'none';
-
-      filterTable();
-    });
-
-    topSearch.addEventListener('input', filterTable);
-    tableSearch.addEventListener('input', filterTable);
-    if(typeFilter) typeFilter.addEventListener('change', filterTable);
-    breedFilter.addEventListener('change', filterTable);
-    genderFilter.addEventListener('change', filterTable);
-    statusFilter.addEventListener('change', filterTable);
-
-    filterTable();
-  </script>
 
 </body>
 </html>
