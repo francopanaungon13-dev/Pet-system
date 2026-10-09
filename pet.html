@@ -94,4 +94,58 @@
       <div class="grid">
         <div>
           <label>Pet Name</label>
-          <input type="
+          <input type="text">
+        </div>
+
+        <div>
+          <label>Pet Type</label>
+          <select>
+            <option>Select</option>
+            <option>Dog</option>
+            <option>Cat</option>
+            <option>Bird</option>
+            <option>Rabbit</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Breed</label>
+          <input type="text">
+        </div>
+
+        <div>
+          <label>Gender</label>
+          <select>
+            <option>Select</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Date of Birth</label>
+          <input type="date">
+        </div>
+
+        <div>
+          <label>Color / Markings</label>
+          <input type="text">
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button onclick="window.location.href='owner.html'">← Back</button>
+        <button onclick="finishRegistration()">Finish ✓</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function finishRegistration() {
+      alert('Registration completed!');
+      window.location.href = 'dashboard.html';
+    }
+  </script>
+
+</body>
+</html>
