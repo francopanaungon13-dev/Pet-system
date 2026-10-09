@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+```html
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Paws - Pet Information</title>
-
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -105,9 +102,7 @@
 </head>
 
 <body>
-
   <div class="box">
-
     <div class="header">
       <div class="logo">🐾</div>
       <div class="title">Happy Paws</div>
@@ -115,11 +110,9 @@
     </div>
 
     <form class="form" id="petForm">
-
       <h3>Pet Information</h3>
 
       <div class="grid">
-
         <div>
           <label for="petName">Pet Name</label>
           <input type="text" id="petName" required>
@@ -159,21 +152,13 @@
           <label for="color">Color / Markings</label>
           <input type="text" id="color" required>
         </div>
-
       </div>
 
       <div class="buttons">
-
         <a href="owner.html" class="btn">← Back</a>
-
-        <button type="submit" class="btn">
-          Finish ✓
-        </button>
-
+        <button type="submit" class="btn">Finish ✓</button>
       </div>
-
     </form>
-
   </div>
 
   <script>
@@ -189,13 +174,14 @@
         color: document.getElementById("color").value
       };
 
-     
-      localStorage.setItem("petInformation", JSON.stringify(pet));
-
-  
-      window.location.assign("./dashboard.html");
+      try {
+        localStorage.setItem("petInformation", JSON.stringify(pet));
+        window.location.href = "dashboard.html";
+      } catch (error) {
+        alert("Unable to save pet information in this browser.");
+      }
     });
   </script>
-
 </body>
 </html>
+```
