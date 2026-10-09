@@ -206,6 +206,7 @@
     }
 
     .text-green { color: #38a169; }
+    .text-red { color: #e53e3e; }
 
     .action-link {
       color: #3182ce;
@@ -215,6 +216,88 @@
 
     .action-link:hover {
       text-decoration: underline;
+    }
+
+    /* MODAL STYLES */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.4);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      width: 450px;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .modal-card h2 {
+      font-size: 18px;
+      color: #2b6cb0;
+      margin-bottom: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: bold;
+      color: #4a5568;
+      margin-bottom: 4px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #cbd5e0;
+      border-radius: 6px;
+      font-size: 12px;
+      outline: none;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .btn-cancel {
+      background: #e2e8f0;
+      color: #4a5568;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .btn-save {
+      background: #3182ce;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -248,7 +331,7 @@
         <h1>Pet Records</h1>
         <p>View, search, and manage registered pet information.</p>
       </div>
-      <button class="btn-add-pet" onclick="window.location.href='pet.html'">+ Add New Pet</button>
+      <button class="btn-add-pet" id="btnOpenAddModal">+ Add New Pet</button>
     </div>
 
     <div class="filter-box">
@@ -288,7 +371,7 @@
     <div class="card-box">
       <div class="table-header-info">
         <h3>Registered Pets</h3>
-        <span class="pet-count" id="petCountText">48 pets</span>
+        <span class="pet-count" id="petCountText">5 pets</span>
       </div>
 
       <table class="data-table">
@@ -370,16 +453,87 @@
 
   </main>
 
+  <!-- ADD PET MODAL -->
+  <div class="modal-backdrop" id="addPetModal">
+    <div class="modal-card">
+      <h2>Add New Pet</h2>
+      <form id="addPetForm">
+        <div class="form-row">
+          <div class="form-group" style="flex: 1;">
+            <label for="newPetName">Pet Name</label>
+            <input type="text" id="newPetName" class="form-control" placeholder="e.g. Milo" required>
+          </div>
+          <div class="form-group" style="flex: 1;">
+            <label for="newPetType">Pet Type</label>
+            <select id="newPetType" class="form-control" required>
+              <option value="dog">Dog</option>
+              <option value="cat">Cat</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="newOwner">Owner Name</label>
+          <input type="text" id="newOwner" class="form-control" placeholder="e.g. Juan Dela Cruz" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group" style="flex: 1;">
+            <label for="newBreed">Breed</label>
+            <input type="text" id="newBreed" class="form-control" placeholder="e.g. Beagle" required>
+          </div>
+          <div class="form-group" style="flex: 1;">
+            <label for="newGender">Gender</label>
+            <select id="newGender" class="form-control" required>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group" style="flex: 1;">
+            <label for="newAge">Age</label>
+            <input type="text" id="newAge" class="form-control" placeholder="e.g. 2 yrs" required>
+          </div>
+          <div class="form-group" style="flex: 1;">
+            <label for="newStatus">Status</label>
+            <select id="newStatus" class="form-control" required>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" id="btnCloseModal">Cancel</button>
+          <button type="submit" class="btn-save">Save Pet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script>
     const topSearch = document.getElementById('topSearchInput');
     const tableSearch = document.getElementById('tableSearchInput');
+    const typeFilter = document.getElementById('typeFilter');
     const breedFilter = document.getElementById('breedFilter');
     const genderFilter = document.getElementById('genderFilter');
     const statusFilter = document.getElementById('statusFilter');
+    const petCountText = document.getElementById('petCountText');
+
+    const addPetModal = document.getElementById('addPetModal');
+    const btnOpenAddModal = document.getElementById('btnOpenAddModal');
+    const btnCloseModal = document.getElementById('btnCloseModal');
+    const addPetForm = document.getElementById('addPetForm');
+    const petsTableBody = document.getElementById('petsTableBody');
+
+    let petIdCounter = 6;
 
     function filterTable() {
       const topQuery = topSearch.value.toLowerCase().trim();
       const tableQuery = tableSearch.value.toLowerCase().trim();
+      const selectedType = typeFilter ? typeFilter.value.toLowerCase() : '';
       const selectedBreed = breedFilter.value.toLowerCase();
       const selectedGender = genderFilter.value.toLowerCase();
       const selectedStatus = statusFilter.value.toLowerCase();
@@ -389,30 +543,88 @@
 
       rows.forEach(row => {
         const text = row.textContent.toLowerCase();
+        const type = row.getAttribute('data-type') || '';
         const breed = row.getAttribute('data-breed') || '';
         const gender = row.getAttribute('data-gender') || '';
         const status = row.getAttribute('data-status') || '';
 
         const matchesTop = text.includes(topQuery);
         const matchesTable = text.includes(tableQuery);
+        const matchesType = !selectedType || type === selectedType;
         const matchesBreed = !selectedBreed || breed === selectedBreed;
         const matchesGender = !selectedGender || gender === selectedGender;
         const matchesStatus = !selectedStatus || status === selectedStatus;
 
-        if (matchesTop && matchesTable && matchesBreed && matchesGender && matchesStatus) {
+        if (matchesTop && matchesTable && matchesType && matchesBreed && matchesGender && matchesStatus) {
           row.style.display = '';
           visibleCount++;
         } else {
           row.style.display = 'none';
         }
       });
+
+      petCountText.textContent = `${visibleCount} pets`;
     }
+
+    btnOpenAddModal.addEventListener('click', () => {
+      addPetModal.style.display = 'flex';
+    });
+
+    btnCloseModal.addEventListener('click', () => {
+      addPetModal.style.display = 'none';
+    });
+
+    addPetForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const petName = document.getElementById('newPetName').value.trim();
+      const petType = document.getElementById('newPetType').value;
+      const owner = document.getElementById('newOwner').value.trim();
+      const breed = document.getElementById('newBreed').value.trim();
+      const gender = document.getElementById('newGender').value;
+      const age = document.getElementById('newAge').value.trim();
+      const status = document.getElementById('newStatus').value;
+
+      const formattedId = `P-00${petIdCounter++}`;
+      const icon = petType === 'dog' ? '🐾' : '🐱';
+      const statusClass = status === 'active' ? 'text-green' : 'text-red';
+      const statusLabel = status === 'active' ? '● Active' : '● Inactive';
+
+      const tr = document.createElement('tr');
+      tr.setAttribute('data-type', petType);
+      tr.setAttribute('data-breed', breed.toLowerCase());
+      tr.setAttribute('data-gender', gender);
+      tr.setAttribute('data-status', status);
+
+      tr.innerHTML = `
+        <td>
+          <div class="pet-name-cell">${icon} ${petName}</div>
+          <div class="pet-sub-info">${breed} • ID ${formattedId}</div>
+        </td>
+        <td>${owner}</td>
+        <td>${breed}</td>
+        <td>${gender.charAt(0).toUpperCase() + gender.slice(1)}</td>
+        <td>${age}</td>
+        <td class="${statusClass}">${statusLabel}</td>
+        <td><a href="#" class="action-link">View</a></td>
+      `;
+
+      petsTableBody.appendChild(tr);
+
+      addPetForm.reset();
+      addPetModal.style.display = 'none';
+
+      filterTable();
+    });
 
     topSearch.addEventListener('input', filterTable);
     tableSearch.addEventListener('input', filterTable);
+    if(typeFilter) typeFilter.addEventListener('change', filterTable);
     breedFilter.addEventListener('change', filterTable);
     genderFilter.addEventListener('change', filterTable);
     statusFilter.addEventListener('change', filterTable);
+
+    filterTable();
   </script>
 
 </body>
