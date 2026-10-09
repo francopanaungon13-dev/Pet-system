@@ -241,7 +241,7 @@
       <li><a href="records.html">🐾 Pet Records</a></li>
       <li><a href="owners.html">👤 Owners</a></li>
       <li><a href="appointments.html">📅 Appointments</a></li>
-      <li><a href="consultations.html">🩺 Consultations</a></li>
+      <li><a href="consulations.html">🩺 Consultations</a></li>
       <li><a href="services.html">📋 Services</a></li>
       <li><a href="medicines.html">💊 Medicines</a></li>
       <li><a href="billing.html">💳 Billing</a></li>
@@ -251,7 +251,7 @@
 
   <main class="main-content">
     <header class="top-header">
-      <input type="text" class="search-input" placeholder="Search pets, owners, or appointments...">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search pets, owners, or appointments...">
       <div style="font-size: 13px; font-weight: bold; color: #2b6cb0;">Happy Paws Clinic</div>
     </header>
 
@@ -300,7 +300,7 @@
                 <th>Status</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="appTableBody">
               <tr>
                 <td>09:00 AM</td>
                 <td><b>Buddy</b></td>
@@ -354,13 +354,23 @@
           <div class="actions-grid">
             <button class="btn-action" onclick="window.location.href='records.html'">🐾 Add Pet</button>
             <button class="btn-action" onclick="window.location.href='appointments.html'">📅 Appointment</button>
-            <button class="btn-action" onclick="window.location.href='consultations.html'">🩺 Consultation</button>
+            <button class="btn-action" onclick="window.location.href='consulations.html'">🩺 Consultation</button>
             <button class="btn-action" onclick="window.location.href='services.html'">📋 Services</button>
           </div>
         </div>
       </div>
     </div>
   </main>
+
+  <script>
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+      const filter = this.value.toLowerCase();
+      const rows = document.querySelectorAll('#appTableBody tr');
+      rows.forEach(row => {
+        row.style.display = row.textContent.toLowerCase().includes(filter) ? '' : 'none';
+      });
+    });
+  </script>
 
 </body>
 </html>
