@@ -69,13 +69,17 @@
       justify-content: space-between;
       margin-top: 20px;
     }
-    button {
+    /* Inayos para mukhang button ang link tags */
+    .btn {
       border: 0;
       background: #6caee5;
       color: white;
       padding: 8px 14px;
       border-radius: 15px;
       cursor: pointer;
+      text-decoration: none;
+      font-size: 13.33px;
+      display: inline-block;
     }
   </style>
 </head>
@@ -134,18 +138,11 @@
       </div>
 
       <div class="buttons">
-        <button type="button" onclick="window.location.href='./owner.html'">← Back</button>
-        <button type="button" onclick="finishRegistration()">Finish ✓</button>
+        <a href="owner.html" class="btn">← Back</a>
+        <a href="dashboard.html" class="btn" onclick="alert('Registration completed!')">Finish ✓</a>
       </div>
     </div>
   </div>
-
-  <script>
-    function finishRegistration() {
-      alert('Registration completed!');
-      window.location.href = './dashboard.html';
-    }
-  </script>
 
 </body>
 </html>
