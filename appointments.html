@@ -85,12 +85,6 @@
       background-color: #ffffff;
     }
 
-    .user-profile {
-      font-size: 13px;
-      color: #2b6cb0;
-      font-weight: bold;
-    }
-
     .page-title-row {
       display: flex;
       justify-content: space-between;
@@ -105,11 +99,6 @@
       margin-bottom: 4px;
     }
 
-    .title-area p {
-      color: #a0aec0;
-      font-size: 13px;
-    }
-
     .btn-add-appointment {
       background-color: #3182ce;
       color: white;
@@ -121,63 +110,11 @@
       cursor: pointer;
     }
 
-    .btn-add-appointment:hover {
-      background-color: #2b6cb0;
-    }
-
-    .filter-box {
-      background-color: #ffffff;
-      padding: 18px 20px;
-      border-radius: 12px;
-      border: 1px solid #e2e8f0;
-      margin-bottom: 24px;
-    }
-
-    .filter-label {
-      font-size: 11px;
-      color: #a0aec0;
-      margin-bottom: 10px;
-      display: block;
-    }
-
-    .filter-inputs {
-      display: flex;
-      gap: 12px;
-    }
-
-    .filter-select, .filter-input {
-      padding: 9px 14px;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      font-size: 12px;
-      background-color: #f8fafc;
-      color: #4a5568;
-      outline: none;
-      flex: 1;
-    }
-
     .card-box {
       background-color: #ffffff;
       border-radius: 12px;
       padding: 24px;
       border: 1px solid #e2e8f0;
-    }
-
-    .table-header-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
-    }
-
-    .table-header-info h3 {
-      color: #2b6cb0;
-      font-size: 16px;
-    }
-
-    .appointment-count {
-      font-size: 12px;
-      color: #a0aec0;
     }
 
     .data-table {
@@ -192,113 +129,19 @@
       padding: 12px 14px;
       color: #2b6cb0;
       font-weight: bold;
-      font-size: 11px;
-      letter-spacing: 0.5px;
     }
 
     .data-table td {
       padding: 16px 14px;
       border-bottom: 1px solid #f0f4f8;
-      color: #4a5568;
-    }
-
-    .pet-name {
-      font-weight: bold;
-      color: #2d3748;
     }
 
     .status-confirmed { color: #38a169; font-weight: bold; }
     .status-waiting { color: #dd6b20; font-weight: bold; }
-    .status-cancelled { color: #e53e3e; font-weight: bold; }
 
     .action-link {
       color: #3182ce;
       text-decoration: none;
-      font-weight: bold;
-    }
-
-    .action-link:hover {
-      text-decoration: underline;
-    }
-
-    .modal-backdrop {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.4);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    .modal-card {
-      background: #ffffff;
-      width: 440px;
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
-
-    .modal-card h2 {
-      font-size: 18px;
-      color: #2b6cb0;
-      margin-bottom: 16px;
-    }
-
-    .form-group {
-      margin-bottom: 14px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 12px;
-      font-weight: bold;
-      color: #4a5568;
-      margin-bottom: 6px;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 9px 12px;
-      border: 1px solid #cbd5e0;
-      border-radius: 6px;
-      font-size: 12px;
-      outline: none;
-    }
-
-    .form-row {
-      display: flex;
-      gap: 12px;
-    }
-
-    .modal-actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .btn-cancel {
-      background: #e2e8f0;
-      color: #4a5568;
-      border: none;
-      padding: 9px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 12px;
-    }
-
-    .btn-save {
-      background: #3182ce;
-      color: white;
-      border: none;
-      padding: 9px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 12px;
       font-weight: bold;
     }
   </style>
@@ -313,65 +156,29 @@
       <li><a href="records.html">🐾 Pet Records</a></li>
       <li><a href="owners.html">👤 Owners</a></li>
       <li class="active"><a href="appointments.html">📅 Appointments</a></li>
-      <li><a href="dashboard.html">🩺 Consultations</a></li>
-      <li><a href="dashboard.html">📋 Services</a></li>
-      <li><a href="dashboard.html">💊 Medicines</a></li>
-      <li><a href="dashboard.html">💳 Billing</a></li>
-      <li><a href="dashboard.html">📊 Reports</a></li>
+      <li><a href="consultations.html">🩺 Consultations</a></li>
+      <li><a href="services.html">📋 Services</a></li>
+      <li><a href="medicines.html">💊 Medicines</a></li>
+      <li><a href="billing.html">💳 Billing</a></li>
+      <li><a href="reports.html">📊 Reports</a></li>
     </ul>
   </aside>
 
   <main class="main-content">
-    
     <header class="top-header">
-      <input type="text" id="topSearchInput" class="top-search-input" placeholder="Search pet, owner, appointment...">
-      <div class="user-profile">Happy Paws Clinic</div>
+      <input type="text" class="top-search-input" placeholder="Search pet, owner, appointment...">
+      <div style="font-size: 13px; font-weight: bold; color: #2b6cb0;">Happy Paws Clinic</div>
     </header>
 
     <div class="page-title-row">
       <div class="title-area">
         <h1>Appointments</h1>
-        <p>Schedule and manage clinic appointments.</p>
+        <p style="color: #a0aec0; font-size: 13px;">Schedule and manage clinic appointments.</p>
       </div>
-      <button class="btn-add-appointment" id="btnOpenAddModal">+ New Appointment</button>
-    </div>
-
-    <div class="filter-box">
-      <span class="filter-label">Appointment Filters</span>
-      <div class="filter-inputs">
-        <select class="filter-select" id="timePeriodFilter">
-          <option value="today">Today</option>
-          <option value="upcoming">Upcoming</option>
-          <option value="all">All Dates</option>
-        </select>
-
-        <select class="filter-select" id="serviceFilter">
-          <option value="">All Services</option>
-          <option value="Check-up">Check-up</option>
-          <option value="Vaccination">Vaccination</option>
-          <option value="Deworming">Deworming</option>
-          <option value="Dental Check">Dental Check</option>
-        </select>
-
-        <select class="filter-select" id="statusFilter">
-          <option value="">All Status</option>
-          <option value="Confirmed">Confirmed</option>
-          <option value="Waiting">Waiting</option>
-          <option value="Cancelled">Cancelled</option>
-        </select>
-
-        <input type="date" id="datePicker" class="filter-input">
-
-        <input type="text" id="tableSearchInput" class="filter-input" placeholder="Search">
-      </div>
+      <button class="btn-add-appointment">+ New Appointment</button>
     </div>
 
     <div class="card-box">
-      <div class="table-header-info">
-        <h3>Today's Appointments</h3>
-        <span class="appointment-count" id="appointmentCountText">5 appointments</span>
-      </div>
-
       <table class="data-table">
         <thead>
           <tr>
@@ -384,48 +191,30 @@
             <th>ACTION</th>
           </tr>
         </thead>
-        <tbody id="appointmentsTableBody">
-          <tr data-service="Check-up" data-status="Confirmed">
+        <tbody>
+          <tr>
             <td>09:00 AM</td>
-            <td class="pet-name">Buddy</td>
+            <td>Buddy</td>
             <td>Maria Santos</td>
             <td>Check-up</td>
             <td>Dr. Reyes</td>
             <td class="status-confirmed">Confirmed</td>
             <td><a href="#" class="action-link">View</a></td>
           </tr>
-          <tr data-service="Vaccination" data-status="Waiting">
+          <tr>
             <td>10:30 AM</td>
-            <td class="pet-name">Luna</td>
+            <td>Luna</td>
             <td>John Cruz</td>
             <td>Vaccination</td>
             <td>Dr. Santos</td>
             <td class="status-waiting">Waiting</td>
             <td><a href="#" class="action-link">View</a></td>
           </tr>
-          <tr data-service="Deworming" data-status="Confirmed">
+          <tr>
             <td>01:00 PM</td>
-            <td class="pet-name">Max</td>
+            <td>Max</td>
             <td>Ana Reyes</td>
             <td>Deworming</td>
-            <td>Dr. Reyes</td>
-            <td class="status-confirmed">Confirmed</td>
-            <td><a href="#" class="action-link">View</a></td>
-          </tr>
-          <tr data-service="Dental Check" data-status="Cancelled">
-            <td>02:30 PM</td>
-            <td class="pet-name">Mittens</td>
-            <td>Carlos Tan</td>
-            <td>Dental Check</td>
-            <td>Dr. Santos</td>
-            <td class="status-cancelled">Cancelled</td>
-            <td><a href="#" class="action-link">View</a></td>
-          </tr>
-          <tr data-service="Check-up" data-status="Confirmed">
-            <td>03:30 PM</td>
-            <td class="pet-name">Charlie</td>
-            <td>Sofia Lim</td>
-            <td>Check-up</td>
             <td>Dr. Reyes</td>
             <td class="status-confirmed">Confirmed</td>
             <td><a href="#" class="action-link">View</a></td>
@@ -433,168 +222,7 @@
         </tbody>
       </table>
     </div>
-
   </main>
-
-  <div class="modal-backdrop" id="addModal">
-    <div class="modal-card">
-      <h2>New Appointment</h2>
-      <form id="addForm">
-        <div class="form-row">
-          <div class="form-group" style="flex: 1;">
-            <label for="newTime">Time</label>
-            <input type="time" id="newTime" class="form-control" required>
-          </div>
-          <div class="form-group" style="flex: 1;">
-            <label for="newPet">Pet Name</label>
-            <input type="text" id="newPet" class="form-control" placeholder="e.g. Milo" required>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="newOwner">Owner Name</label>
-          <input type="text" id="newOwner" class="form-control" placeholder="e.g. Juan Dela Cruz" required>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group" style="flex: 1;">
-            <label for="newService">Service</label>
-            <select id="newService" class="form-control" required>
-              <option value="Check-up">Check-up</option>
-              <option value="Vaccination">Vaccination</option>
-              <option value="Deworming">Deworming</option>
-              <option value="Dental Check">Dental Check</option>
-            </select>
-          </div>
-          <div class="form-group" style="flex: 1;">
-            <label for="newVet">Veterinarian</label>
-            <select id="newVet" class="form-control" required>
-              <option value="Dr. Reyes">Dr. Reyes</option>
-              <option value="Dr. Santos">Dr. Santos</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="newStatus">Status</label>
-          <select id="newStatus" class="form-control" required>
-            <option value="Confirmed">Confirmed</option>
-            <option value="Waiting">Waiting</option>
-            <option value="Cancelled">Cancelled</option>
-          </select>
-        </div>
-
-        <div class="modal-actions">
-          <button type="button" class="btn-cancel" id="btnCloseModal">Cancel</button>
-          <button type="submit" class="btn-save">Save Appointment</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <script>
-    const topSearch = document.getElementById('topSearchInput');
-    const tableSearch = document.getElementById('tableSearchInput');
-    const serviceFilter = document.getElementById('serviceFilter');
-    const statusFilter = document.getElementById('statusFilter');
-    const countText = document.getElementById('appointmentCountText');
-
-    const addModal = document.getElementById('addModal');
-    const btnOpenAddModal = document.getElementById('btnOpenAddModal');
-    const btnCloseModal = document.getElementById('btnCloseModal');
-    const addForm = document.getElementById('addForm');
-    const tableBody = document.getElementById('appointmentsTableBody');
-
-    function filterTable() {
-      const topQuery = topSearch.value.toLowerCase().trim();
-      const tableQuery = tableSearch.value.toLowerCase().trim();
-      const selectedService = serviceFilter.value.toLowerCase();
-      const selectedStatus = statusFilter.value.toLowerCase();
-
-      const rows = document.querySelectorAll('#appointmentsTableBody tr');
-      let visibleCount = 0;
-
-      rows.forEach(row => {
-        const text = row.textContent.toLowerCase();
-        const service = (row.getAttribute('data-service') || '').toLowerCase();
-        const status = (row.getAttribute('data-status') || '').toLowerCase();
-
-        const matchesTop = text.includes(topQuery);
-        const matchesTable = text.includes(tableQuery);
-        const matchesService = !selectedService || service === selectedService;
-        const matchesStatus = !selectedStatus || status === selectedStatus;
-
-        if (matchesTop && matchesTable && matchesService && matchesStatus) {
-          row.style.display = '';
-          visibleCount++;
-        } else {
-          row.style.display = 'none';
-        }
-      });
-
-      countText.textContent = `${visibleCount} appointments`;
-    }
-
-    btnOpenAddModal.addEventListener('click', () => {
-      addModal.style.display = 'flex';
-    });
-
-    btnCloseModal.addEventListener('click', () => {
-      addModal.style.display = 'none';
-    });
-
-    addForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const rawTime = document.getElementById('newTime').value;
-      const pet = document.getElementById('newPet').value.trim();
-      const owner = document.getElementById('newOwner').value.trim();
-      const service = document.getElementById('newService').value;
-      const vet = document.getElementById('newVet').value;
-      const status = document.getElementById('newStatus').value;
-
-      let formattedTime = rawTime;
-      if (rawTime) {
-        const [h, m] = rawTime.split(':');
-        const hour = parseInt(h);
-        const ampm = hour >= 12 ? 'PM' : 'AM';
-        const formattedHour = hour % 12 || 12;
-        formattedTime = `${formattedHour.toString().padStart(2, '0')}:${m} ${ampm}`;
-      }
-
-      let statusClass = 'status-confirmed';
-      if (status === 'Waiting') statusClass = 'status-waiting';
-      if (status === 'Cancelled') statusClass = 'status-cancelled';
-
-      const tr = document.createElement('tr');
-      tr.setAttribute('data-service', service);
-      tr.setAttribute('data-status', status);
-
-      tr.innerHTML = `
-        <td>${formattedTime}</td>
-        <td class="pet-name">${pet}</td>
-        <td>${owner}</td>
-        <td>${service}</td>
-        <td>${vet}</td>
-        <td class="${statusClass}">${status}</td>
-        <td><a href="#" class="action-link">View</a></td>
-      `;
-
-      tableBody.appendChild(tr);
-
-      addForm.reset();
-      addModal.style.display = 'none';
-
-      filterTable();
-    });
-
-    topSearch.addEventListener('input', filterTable);
-    tableSearch.addEventListener('input', filterTable);
-    serviceFilter.addEventListener('change', filterTable);
-    statusFilter.addEventListener('change', filterTable);
-
-    filterTable();
-  </script>
 
 </body>
 </html>
