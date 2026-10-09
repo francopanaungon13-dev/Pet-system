@@ -136,12 +136,90 @@
       border-bottom: 1px solid #f0f4f8;
     }
 
-    .text-red { color: #e53e3e; font-weight: bold; }
-    .text-green { color: #38a169; font-weight: bold; }
+    .text-red {
+      color: #e53e3e;
+      font-weight: bold;
+    }
+
+    .text-green {
+      color: #38a169;
+      font-weight: bold;
+    }
 
     .action-link {
       color: #3182ce;
       text-decoration: none;
+      font-weight: bold;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.4);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      width: 400px;
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .modal-card h2 {
+      font-size: 18px;
+      color: #2b6cb0;
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #cbd5e0;
+      border-radius: 6px;
+      font-size: 12px;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .btn-cancel {
+      background: #e2e8f0;
+      color: #4a5568;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn-save {
+      background: #3182ce;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
       font-weight: bold;
     }
   </style>
@@ -156,7 +234,7 @@
       <li><a href="records.html">🐾 Pet Records</a></li>
       <li><a href="owners.html">👤 Owners</a></li>
       <li><a href="appointments.html">📅 Appointments</a></li>
-      <li><a href="consultations.html">🩺 Consultations</a></li>
+      <li><a href="consulations.html">🩺 Consultations</a></li>
       <li><a href="services.html">📋 Services</a></li>
       <li class="active"><a href="medicines.html">💊 Medicines</a></li>
       <li><a href="billing.html">💳 Billing</a></li>
@@ -166,7 +244,7 @@
 
   <main class="main-content">
     <header class="top-header">
-      <input type="text" class="top-search-input" placeholder="Search medicine name...">
+      <input type="text" id="searchInput" class="top-search-input" placeholder="Search medicine name...">
       <div style="font-size: 13px; font-weight: bold; color: #2b6cb0;">Happy Paws Clinic</div>
     </header>
 
@@ -175,7 +253,7 @@
         <h1>Medicines Inventory</h1>
         <p style="color: #a0aec0; font-size: 13px;">Manage clinic stock and medicine records.</p>
       </div>
-      <button class="btn-add">+ Add Medicine</button>
+      <button class="btn-add" id="btnOpenModal">+ Add Medicine</button>
     </div>
 
     <div class="card-box">
@@ -190,7 +268,7 @@
             <th>ACTION</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="medicinesTableBody">
           <tr>
             <td>Amoxicillin 250mg</td>
             <td>Antibiotic</td>
@@ -219,6 +297,57 @@
       </table>
     </div>
   </main>
+
+  <div class="modal-backdrop" id="addModal">
+    <div class="modal-card">
+      <h2>Add Medicine</h2>
+      <form id="addForm">
+        <div class="form-group"><label>Medicine Name</label><input type="text" id="mName" class="form-control" required></div>
+        <div class="form-group"><label>Category</label><input type="text" id="mCat" class="form-control" required></div>
+        <div class="form-group"><label>Stock</label><input type="text" id="mStock" class="form-control" placeholder="e.g. 10 pcs" required></div>
+        <div class="form-group"><label>Unit Price</label><input type="text" id="mPrice" class="form-control" placeholder="e.g. ₱150" required></div>
+        <div class="form-group"><label>Status</label><select id="mStatus" class="form-control"><option value="In Stock">In Stock</option><option value="Low Stock">Low Stock</option></select></div>
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" id="btnCloseModal">Cancel</button>
+          <button type="submit" class="btn-save">Save Medicine</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const tableBody = document.getElementById('medicinesTableBody');
+    const modal = document.getElementById('addModal');
+
+    searchInput.addEventListener('keyup', () => {
+      const filter = searchInput.value.toLowerCase();
+      Array.from(tableBody.querySelectorAll('tr')).forEach(row => {
+        row.style.display = row.textContent.toLowerCase().includes(filter) ? '' : 'none';
+      });
+    });
+
+    document.getElementById('btnOpenModal').onclick = () => modal.style.display = 'flex';
+    document.getElementById('btnCloseModal').onclick = () => modal.style.display = 'none';
+
+    document.getElementById('addForm').onsubmit = (e) => {
+      e.preventDefault();
+      const statusVal = document.getElementById('mStatus').value;
+      const statusClass = statusVal === 'In Stock' ? 'text-green' : 'text-red';
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${document.getElementById('mName').value}</td>
+        <td>${document.getElementById('mCat').value}</td>
+        <td>${document.getElementById('mStock').value}</td>
+        <td>${document.getElementById('mPrice').value}</td>
+        <td class="${statusClass}">${statusVal}</td>
+        <td><a href="#" class="action-link">Edit</a></td>
+      `;
+      tableBody.appendChild(row);
+      modal.style.display = 'none';
+      e.target.reset();
+    };
+  </script>
 
 </body>
 </html>
