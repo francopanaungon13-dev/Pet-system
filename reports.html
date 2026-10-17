@@ -1,7 +1,9 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Paws - Reports</title>
+
   <style>
     * {
       box-sizing: border-box;
@@ -11,154 +13,814 @@
     }
 
     body {
-      background-color: #f2f7fb;
-      color: #333;
       display: flex;
       min-height: 100vh;
+      background: #f2f7fb;
+      color: #333;
     }
 
     .sidebar {
       width: 220px;
-      background-color: #ffffff;
-      padding: 24px 20px;
-      border-right: 1px solid #e2e8f0;
       flex-shrink: 0;
+      padding: 20px 15px;
+      background: white;
     }
 
-    .brand-title {
-      color: #2b6cb0;
-      font-size: 20px;
-      font-weight: bold;
-    }
-
-    .brand-subtitle {
-      font-size: 11px;
-      color: #a0aec0;
-      margin: 4px 0 28px 0;
-    }
-
-    .nav-list {
-      list-style: none;
-    }
-
-    .nav-list li {
-      margin-bottom: 6px;
-    }
-
-    .nav-list a {
+    .logo {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 10px 14px;
-      color: #4a5568;
-      text-decoration: none;
-      font-size: 13px;
-      border-radius: 8px;
+      margin-bottom: 25px;
     }
 
-    .nav-list li.active a,
-    .nav-list a:hover {
-      background-color: #ebf8ff;
-      color: #2b6cb0;
+    .logo-icon {
+      font-size: 30px;
+    }
+
+    .logo h2 {
+      color: #087cff;
+      font-size: 20px;
+    }
+
+    .logo p {
+      color: #888;
+      font-size: 11px;
+    }
+
+    .menu-title {
+      margin: 20px 10px 10px;
+      color: #999;
+      font-size: 11px;
       font-weight: bold;
     }
 
-    .main-content {
-      flex: 1;
-      padding: 24px 36px;
+    .nav-link {
+      display: block;
+      padding: 11px;
+      margin-bottom: 5px;
+      border-radius: 7px;
+      color: #555;
+      text-decoration: none;
+      font-size: 13px;
     }
 
-    .top-header {
+    .nav-link:hover {
+      background: #edf6ff;
+    }
+
+    .nav-link.active {
+      background: #087cff;
+      color: white;
+    }
+
+    .administrator {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    .admin-avatar {
+      display: grid;
+      place-items: center;
+      width: 35px;
+      height: 35px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: #dceeff;
+      color: #087cff;
+      font-size: 17px;
+    }
+
+    .admin-name {
+      font-size: 13px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .admin-role {
+      margin-top: 4px;
+      color: #888;
+      font-size: 11px;
+    }
+
+    .main {
+      flex: 1;
+      min-width: 0;
+      padding: 25px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      color: #20364b;
+      font-size: 26px;
+    }
+
+    .page-title p {
+      margin-top: 6px;
+      color: #788899;
+      font-size: 13px;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      background: white;
+      border-radius: 9px;
+    }
+
+    .profile-icon {
+      display: grid;
+      place-items: center;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: #dceeff;
+      color: #087cff;
+    }
+
+    .profile-name {
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .profile-role {
+      color: #888;
+      font-size: 11px;
+    }
+
+    .report-heading {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 24px;
-    }
-
-    .page-title-row {
-      margin-bottom: 24px;
-    }
-
-    .title-area h1 {
-      color: #1a365d;
-      font-size: 26px;
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-
-    .stats-row {
-      display: flex;
-      gap: 15px;
+      gap: 12px;
+      flex-wrap: wrap;
       margin-bottom: 20px;
     }
 
+    .report-heading h2 {
+      color: #20364b;
+      font-size: 19px;
+    }
+
+    .report-heading p {
+      margin-top: 6px;
+      color: #788899;
+      font-size: 13px;
+    }
+
+    .report-controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .report-controls select,
+    .report-controls button {
+      padding: 10px 13px;
+      border: 1px solid #dce5ed;
+      border-radius: 7px;
+      background: white;
+      font-size: 12px;
+    }
+
+    .report-controls button {
+      border: none;
+      background: #087cff;
+      color: white;
+      cursor: pointer;
+    }
+
+    .report-controls button:hover {
+      background: #0067db;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+      margin-bottom: 22px;
+    }
+
     .stat-card {
-      flex: 1;
-      background-color: #ffffff;
       padding: 20px;
-      border-radius: 12px;
-      border: 1px solid #e2e8f0;
+      background: white;
+      border-radius: 10px;
+    }
+
+    .stat-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
     }
 
     .stat-label {
       font-size: 12px;
-      color: #4a5568;
+      color: #708090;
+    }
+
+    .stat-icon {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      background: #e5f2ff;
+      font-size: 19px;
     }
 
     .stat-number {
-      font-size: 24px;
+      font-size: 25px;
       font-weight: bold;
       color: #2b6cb0;
-      margin: 6px 0;
+      margin: 12px 0 6px;
+    }
+
+    .stat-description {
+      font-size: 11px;
+      color: #8996a3;
+    }
+
+    .report-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      min-width: 0;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+    }
+
+    .card h3 {
+      color: #20364b;
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .card-subtitle {
+      color: #8996a3;
+      font-size: 12px;
+      margin-bottom: 20px;
+    }
+
+    .chart-row {
+      display: grid;
+      grid-template-columns: 95px 1fr 70px;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .chart-label {
+      font-size: 12px;
+      color: #536477;
+    }
+
+    .bar-background {
+      height: 12px;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #edf2f7;
+    }
+
+    .bar {
+      height: 100%;
+      border-radius: 10px;
+      background: #087cff;
+    }
+
+    .chart-value {
+      text-align: right;
+      font-size: 12px;
+      font-weight: bold;
+      color: #2b6cb0;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      min-width: 500px;
+      border-collapse: collapse;
+    }
+
+    thead {
+      background: #f5f9fc;
+    }
+
+    th,
+    td {
+      padding: 13px 10px;
+      border-bottom: 1px solid #edf1f5;
+      text-align: left;
+      font-size: 12px;
+    }
+
+    th {
+      color: #708090;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 6px 9px;
+      border-radius: 20px;
+      font-size: 10px;
+    }
+
+    .paid {
+      background: #e4f8ec;
+      color: #168348;
+    }
+
+    .pending {
+      background: #fff3d9;
+      color: #a96b00;
+    }
+
+    .empty {
+      padding: 25px;
+      text-align: center;
+      color: #8996a3;
+    }
+
+    .report-footer {
+      margin-top: 18px;
+      color: #8996a3;
+      font-size: 11px;
+      text-align: right;
+    }
+
+    @media (max-width: 1000px) {
+      .stats-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .report-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+      }
+
+      .nav-link {
+        display: inline-block;
+        padding: 8px;
+      }
+
+      .main {
+        padding: 14px;
+      }
+
+      .stats-row {
+        grid-template-columns: 1fr;
+      }
+
+      .report-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .chart-row {
+        grid-template-columns: 75px 1fr 60px;
+        gap: 7px;
+      }
     }
   </style>
 </head>
-<body>
 
+<body>
   <aside class="sidebar">
-    <div class="brand-title">Happy Paws</div>
-    <div class="brand-subtitle">Better Care, Happier Pets.</div>
-    <ul class="nav-list">
-      <li><a href="dashboard.html">🏠 Dashboard</a></li>
-      <li><a href="records.html">🐾 Pet Records</a></li>
-      <li><a href="owners.html">👤 Owners</a></li>
-      <li><a href="appointments.html">📅 Appointments</a></li>
-      <li><a href="consulations.html">🩺 Consultations</a></li>
-      <li><a href="services.html">📋 Services</a></li>
-      <li><a href="medicines.html">💊 Medicines</a></li>
-      <li><a href="billing.html">💳 Billing</a></li>
-      <li class="active"><a href="reports.html">📊 Reports</a></li>
-    </ul>
+    <div class="logo">
+      <div class="logo-icon">🐾</div>
+      <div>
+        <h2>Happy Paws</h2>
+        <p>Pet Management System</p>
+      </div>
+    </div>
+
+    <p class="menu-title">Main Menu</p>
+    <a class="nav-link" href="dashboard.html">📊 Dashboard</a>
+
+    <p class="menu-title">Management</p>
+    <a class="nav-link" href="records.html">🐶 Pet Records</a>
+    <a class="nav-link" href="owners.html">👥 Owners</a>
+    <a class="nav-link" href="appointments.html">📅 Appointments</a>
+    <a class="nav-link" href="consulations.html">🩺 Consultations</a>
+    <a class="nav-link" href="services.html">💊 Services</a>
+    <a class="nav-link" href="medicines.html">💉 Medicines</a>
+
+    <p class="menu-title">Management</p>
+    <a class="nav-link" href="billing.html">💳 Billing</a>
+    <a class="nav-link active" href="reports.html">📈 Reports</a>
+
+    <p class="menu-title">Account</p>
+    <div class="administrator">
+      <div class="admin-avatar">👤</div>
+      <div>
+        <div class="admin-name">Administrator</div>
+        <div class="admin-role">System Admin</div>
+      </div>
+    </div>
   </aside>
 
-  <main class="main-content">
-    <header class="top-header">
-      <div style="font-size: 18px; font-weight: bold; color: #2b6cb0;">Clinic Analytics</div>
-      <div style="font-size: 13px; font-weight: bold; color: #2b6cb0;">Happy Paws Clinic</div>
+  <main class="main">
+    <header class="topbar">
+      <div class="page-title">
+        <h1>Clinic Reports</h1>
+        <p>System analytics and clinic performance summaries.</p>
+      </div>
+
+      <div class="profile">
+        <div class="profile-icon">A</div>
+        <div>
+          <p class="profile-name">Administrator</p>
+          <p class="profile-role">Admin Account</p>
+        </div>
+      </div>
     </header>
 
-    <div class="page-title-row">
-      <div class="title-area">
-        <h1>Clinic Reports</h1>
-        <p style="color: #a0aec0; font-size: 13px;">System analytics and clinic performance summaries.</p>
+    <div class="report-heading">
+      <div>
+        <h2>Clinic Analytics</h2>
+        <p>Monitor revenue, appointments, and registered pets.</p>
+      </div>
+
+      <div class="report-controls">
+        <select id="reportPeriod">
+          <option value="all">All Records</option>
+          <option value="month">This Month</option>
+          <option value="year">This Year</option>
+        </select>
+        <button id="refreshButton">Refresh Reports</button>
+        <button id="printButton">Print Report</button>
       </div>
     </div>
 
-    <div class="stats-row">
+    <section class="stats-row">
       <div class="stat-card">
-        <div class="stat-label">Total Monthly Revenue</div>
-        <div class="stat-number">₱45,200</div>
+        <div class="stat-top">
+          <div class="stat-label">Total Revenue</div>
+          <div class="stat-icon">💰</div>
+        </div>
+        <div class="stat-number" id="totalRevenue">₱0</div>
+        <div class="stat-description">Based on recorded invoices marked Paid</div>
       </div>
+
       <div class="stat-card">
-        <div class="stat-label">Total Consultations</div>
-        <div class="stat-number">128</div>
+        <div class="stat-top">
+          <div class="stat-label">Total Appointments</div>
+          <div class="stat-icon">📅</div>
+        </div>
+        <div class="stat-number" id="totalAppointments">0</div>
+        <div class="stat-description">Appointments matching the selected period</div>
       </div>
+
       <div class="stat-card">
-        <div class="stat-label">New Registered Pets</div>
-        <div class="stat-number">18</div>
+        <div class="stat-top">
+          <div class="stat-label">Registered Pets</div>
+          <div class="stat-icon">🐾</div>
+        </div>
+        <div class="stat-number" id="totalPets">0</div>
+        <div class="stat-description">Pet records matching the selected period</div>
       </div>
-    </div>
+    </section>
+
+    <section class="report-grid">
+      <div class="card">
+        <h3>Appointments by Status</h3>
+        <p class="card-subtitle">Appointment records by current status</p>
+        <div id="appointmentChart"></div>
+      </div>
+
+      <div class="card">
+        <h3>Revenue Summary</h3>
+        <p class="card-subtitle">Invoice totals by payment status</p>
+        <div id="revenueChart"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Recent Invoices</h3>
+      <p class="card-subtitle">Latest invoice records from Billing</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>INVOICE #</th>
+              <th>OWNER</th>
+              <th>PET</th>
+              <th>AMOUNT</th>
+              <th>STATUS</th>
+            </tr>
+          </thead>
+          <tbody id="invoiceTableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="report-footer" id="lastUpdated"></div>
+    </section>
   </main>
 
+  <script>
+    const $ = id => document.getElementById(id);
+
+    function readStorage(key) {
+      try {
+        const value = JSON.parse(localStorage.getItem(key) || "[]");
+        return Array.isArray(value) ? value : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function formatCurrency(value) {
+      return "₱" + Number(value || 0).toLocaleString("en-PH", {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function safe(value) {
+      return String(value ?? "").replace(/[&<>"']/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[character]);
+    }
+
+    function getDate(value) {
+      if (!value) return null;
+
+      const date = new Date(value + "T00:00:00");
+
+      return Number.isNaN(date.getTime()) ? null : date;
+    }
+
+    function inSelectedPeriod(dateValue, period) {
+      if (period === "all") return true;
+
+      const date = getDate(dateValue);
+
+      if (!date) return false;
+
+      const now = new Date();
+
+      if (period === "month") {
+        return date.getFullYear() === now.getFullYear() &&
+          date.getMonth() === now.getMonth();
+      }
+
+      if (period === "year") {
+        return date.getFullYear() === now.getFullYear();
+      }
+
+      return true;
+    }
+
+    function getInvoices() {
+      return readStorage("happyPawsBilling");
+    }
+
+    function getAppointments() {
+      return readStorage("happyPawsAppointments");
+    }
+
+    function getPets() {
+      const pets = readStorage("happyPawsPets");
+      const users = readStorage("happyPawsUsers");
+
+      users.forEach(user => {
+        (user.pets || []).forEach(pet => {
+          pets.push({
+            ...pet,
+            ownerName: pet.ownerName ||
+              [user.firstName, user.lastName].filter(Boolean).join(" ")
+          });
+        });
+      });
+
+      const unique = new Map();
+
+      pets.forEach((pet, index) => {
+        const name = pet.name || pet.petName || "";
+        const id = pet.id || pet.petId || name + "-" + index;
+
+        unique.set(String(id), pet);
+      });
+
+      return Array.from(unique.values());
+    }
+
+    function getRecordDate(record) {
+      return record.date ||
+        record.createdAt ||
+        record.registrationDate ||
+        record.appointmentDate ||
+        "";
+    }
+
+    function renderBars(containerId, items, maxValue, valueFormatter) {
+      const container = $(containerId);
+
+      if (!items.length) {
+        container.innerHTML = '<div class="empty">No data available.</div>';
+        return;
+      }
+
+      container.innerHTML = items.map(item => {
+        const percent = maxValue > 0
+          ? Math.max(0, Math.min(100, item.value / maxValue * 100))
+          : 0;
+
+        return `
+          <div class="chart-row">
+            <div class="chart-label">${safe(item.label)}</div>
+            <div class="bar-background">
+              <div class="bar" style="width:${percent}%"></div>
+            </div>
+            <div class="chart-value">${safe(valueFormatter(item.value))}</div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderInvoiceTable(invoices) {
+      const sorted = [...invoices].reverse().slice(0, 8);
+
+      $("invoiceTableBody").innerHTML = sorted.length
+        ? sorted.map(invoice => {
+            const status = invoice.status || "Pending";
+            const paid = status.toLowerCase() === "paid";
+
+            return `
+              <tr>
+                <td>${safe(invoice.invoiceNumber || invoice.id || "—")}</td>
+                <td>${safe(invoice.owner || invoice.ownerName || "—")}</td>
+                <td>${safe(invoice.pet || invoice.petName || "—")}</td>
+                <td>${safe(formatCurrency(invoice.amount))}</td>
+                <td>
+                  <span class="status ${paid ? "paid" : "pending"}">
+                    ${safe(status)}
+                  </span>
+                </td>
+              </tr>
+            `;
+          }).join("")
+        : '<tr><td colspan="5" class="empty">No invoice records found.</td></tr>';
+    }
+
+    function renderReports() {
+      const period = $("reportPeriod").value;
+
+      const allInvoices = getInvoices();
+      const allAppointments = getAppointments();
+      const allPets = getPets();
+
+      const invoices = allInvoices.filter(invoice =>
+        inSelectedPeriod(
+          invoice.date || invoice.createdAt || invoice.invoiceDate,
+          period
+        )
+      );
+
+      const appointments = allAppointments.filter(appointment =>
+        inSelectedPeriod(
+          appointment.date || appointment.appointmentDate,
+          period
+        )
+      );
+
+      const pets = allPets.filter(pet =>
+        inSelectedPeriod(getRecordDate(pet), period)
+      );
+
+      const paidInvoices = invoices.filter(invoice =>
+        String(invoice.status).toLowerCase() === "paid"
+      );
+
+      const pendingInvoices = invoices.filter(invoice =>
+        String(invoice.status).toLowerCase() === "pending"
+      );
+
+      const revenue = paidInvoices.reduce((sum, invoice) =>
+        sum + (Number(invoice.amount) || 0), 0
+      );
+
+      $("totalRevenue").textContent = formatCurrency(revenue);
+      $("totalAppointments").textContent = appointments.length;
+      $("totalPets").textContent = pets.length;
+
+      const statusCounts = [
+        {
+          label: "Confirmed",
+          value: appointments.filter(item => item.status === "Confirmed").length
+        },
+        {
+          label: "Waiting",
+          value: appointments.filter(item => item.status === "Waiting").length
+        },
+        {
+          label: "Cancelled",
+          value: appointments.filter(item => item.status === "Cancelled").length
+        }
+      ];
+
+      renderBars(
+        "appointmentChart",
+        statusCounts,
+        Math.max(1, ...statusCounts.map(item => item.value)),
+        value => value
+      );
+
+      const revenueItems = [
+        {
+          label: "Paid",
+          value: paidInvoices.reduce((sum, invoice) =>
+            sum + (Number(invoice.amount) || 0), 0)
+        },
+        {
+          label: "Pending",
+          value: pendingInvoices.reduce((sum, invoice) =>
+            sum + (Number(invoice.amount) || 0), 0)
+        }
+      ];
+
+      renderBars(
+        "revenueChart",
+        revenueItems,
+        Math.max(1, ...revenueItems.map(item => item.value)),
+        formatCurrency
+      );
+
+      renderInvoiceTable(invoices);
+
+      $("lastUpdated").textContent =
+        "Last updated: " + new Date().toLocaleString("en-PH");
+    }
+
+    $("reportPeriod").addEventListener("change", renderReports);
+    $("refreshButton").addEventListener("click", renderReports);
+
+    $("printButton").addEventListener("click", () => {
+      window.print();
+    });
+
+    const printStyle = document.createElement("style");
+    printStyle.textContent = `
+      @media print {
+        .sidebar,
+        .report-controls,
+        .profile {
+          display: none !important;
+        }
+
+        body {
+          display: block;
+          background: white;
+        }
+
+        .main {
+          padding: 0;
+        }
+
+        .card,
+        .stat-card {
+          break-inside: avoid;
+          box-shadow: none;
+        }
+      }
+    `;
+    document.head.appendChild(printStyle);
+
+    renderReports();
+  </script>
 </body>
 </html>
