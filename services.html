@@ -1,7 +1,7 @@
-
-<html>
+ <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Paws - Services</title>
   <style>
     * {
@@ -12,269 +12,349 @@
     }
 
     body {
-      background-color: #f2f7fb;
-      color: #333;
       display: flex;
       min-height: 100vh;
+      background: #f2f7fb;
+      color: #333;
     }
 
     .sidebar {
-      width: 240px;
-      background-color: #ffffff;
-      padding: 24px 20px;
-      border-right: 1px solid #e2e8f0;
+      width: 220px;
+      padding: 20px 15px;
+      background: white;
+      border-right: 1px solid #dce6ef;
       flex-shrink: 0;
       display: flex;
       flex-direction: column;
     }
 
-    .brand-title {
-      color: #2b6cb0;
-      font-size: 20px;
-      font-weight: bold;
+    .logo {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 25px;
     }
 
-    .brand-subtitle {
+    .logo-icon {
+      font-size: 30px;
+    }
+
+    .logo h2 {
+      color: #087cff;
+      font-size: 20px;
+    }
+
+    .logo p {
+      color: #888;
       font-size: 11px;
-      color: #a0aec0;
-      margin: 4px 0 28px 0;
+      margin-top: 3px;
     }
 
     .menu-title {
-      color: #a0aec0;
-      font-size: 10px;
+      margin: 20px 10px 10px;
+      color: #999;
+      font-size: 11px;
       font-weight: bold;
-      text-transform: uppercase;
-      margin: 18px 0 10px 10px;
-      letter-spacing: 1px;
     }
 
     .nav-link {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 11px 14px;
-      color: #4a5568;
+      display: block;
+      padding: 11px;
+      margin-bottom: 5px;
+      border-radius: 7px;
+      color: #555;
       text-decoration: none;
       font-size: 13px;
-      border-radius: 8px;
-      margin-bottom: 6px;
     }
 
-    .nav-link.active,
     .nav-link:hover {
-      background-color: #ebf8ff;
-      color: #2b6cb0;
-      font-weight: bold;
+      background: #edf6ff;
     }
 
-    .administrator {
+    .nav-link.active {
+      background: #087cff;
+      color: white;
+    }
+
+    .main {
+      flex: 1;
+      min-width: 0;
+      padding: 25px;
+    }
+
+    .topbar,
+    .content-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      color: #20364b;
+      font-size: 26px;
+    }
+
+    .page-title p,
+    .content-header p {
+      margin-top: 6px;
+      color: #788899;
+      font-size: 13px;
+    }
+
+    .profile {
       display: flex;
       align-items: center;
       gap: 10px;
-      border-top: 1px solid #e2e8f0;
-      padding-top: 18px;
-      margin-top: auto;
+      padding: 10px;
+      border: 1px solid #e0e8ef;
+      border-radius: 9px;
+      background: white;
     }
 
-    .admin-avatar {
-      width: 38px;
-      height: 38px;
+    .profile-icon {
+      display: grid;
+      place-items: center;
+      width: 35px;
+      height: 35px;
       border-radius: 50%;
-      background-color: #ebf8ff;
-      color: #2b6cb0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
+      background: #dceeff;
+      color: #087cff;
     }
 
-    .admin-name {
-      color: #2d3748;
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    .admin-role {
-      color: #a0aec0;
-      font-size: 11px;
-      margin-top: 4px;
-    }
-
-    .main-content {
-      flex: 1;
-      padding: 24px 36px;
-      min-width: 0;
-    }
-
-    .top-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-    }
-
-    .top-search-input {
-      width: 320px;
-      padding: 9px 16px;
-      border: 1px solid #e2e8f0;
-      border-radius: 20px;
-      font-size: 12px;
-      outline: none;
-      background-color: #ffffff;
-    }
-
-    .page-title-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-    }
-
-    .title-area h1 {
-      color: #1a365d;
-      font-size: 26px;
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-
-    .btn-add-service {
-      background-color: #3182ce;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
+    .profile-name {
       font-size: 13px;
       font-weight: bold;
+    }
+
+    .profile-role {
+      margin-top: 3px;
+      color: #888;
+      font-size: 11px;
+    }
+
+    .search-input {
+      width: 100%;
+      max-width: 320px;
+      padding: 11px;
+      border: 1px solid #dce5ed;
+      border-radius: 7px;
+      outline: none;
+      background: white;
+      font-size: 12px;
+    }
+
+    .content-card {
+      padding: 20px;
+      border: 1px solid #e2eaf1;
+      border-radius: 10px;
+      background: white;
+    }
+
+    button {
       cursor: pointer;
     }
 
-    .card-box {
-      background-color: #ffffff;
-      border-radius: 12px;
-      padding: 24px;
-      border: 1px solid #e2e8f0;
+    .primary-button {
+      padding: 11px 15px;
+      border: none;
+      border-radius: 7px;
+      background: #087cff;
+      color: white;
+      font-size: 12px;
+    }
+
+    .primary-button:hover {
+      background: #0067db;
+    }
+
+    .table-wrapper {
       overflow-x: auto;
     }
 
-    .data-table {
+    table {
       width: 100%;
+      min-width: 700px;
       border-collapse: collapse;
+    }
+
+    thead {
+      background: #f5f9fc;
+    }
+
+    th,
+    td {
+      padding: 13px 10px;
+      border-bottom: 1px solid #edf1f5;
+      text-align: left;
       font-size: 12px;
     }
 
-    .data-table th {
-      background-color: #ebf8ff;
-      text-align: left;
-      padding: 12px 14px;
-      color: #2b6cb0;
-      font-weight: bold;
-    }
-
-    .data-table td {
-      padding: 16px 14px;
-      border-bottom: 1px solid #f0f4f8;
+    th {
+      color: #708090;
     }
 
     .status-available {
-      color: #38a169;
+      color: #168348;
       font-weight: bold;
     }
 
-    .action-link {
-      color: #3182ce;
-      text-decoration: none;
-      font-weight: bold;
-      margin-right: 8px;
-      cursor: pointer;
+    .action-button {
+      padding: 7px 9px;
+      margin-right: 3px;
+      border: 1px solid #dce5ed;
+      border-radius: 6px;
+      background: white;
+      font-size: 11px;
     }
 
-    .delete-link {
-      color: #e53e3e;
-      text-decoration: none;
-      font-weight: bold;
-      cursor: pointer;
+    .delete-button {
+      color: #cf3d3d;
     }
 
-    .modal-backdrop {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.4);
+    .empty-message {
       display: none;
-      justify-content: center;
-      align-items: center;
+      padding: 25px;
+      text-align: center;
+      color: #8996a3;
+      font-size: 13px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
       z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      background: #0007;
     }
 
-    .modal-card {
-      background: #ffffff;
-      width: 400px;
-      max-width: 95%;
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      width: 100%;
+      max-width: 450px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 22px;
       border-radius: 12px;
-      padding: 24px;
+      background: white;
     }
 
-    .modal-card h2 {
-      font-size: 18px;
-      color: #2b6cb0;
-      margin-bottom: 16px;
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .modal-header h2 {
+      color: #087cff;
+      font-size: 19px;
+    }
+
+    .close-button {
+      border: none;
+      background: none;
+      font-size: 25px;
     }
 
     .form-group {
-      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 13px;
     }
 
     .form-group label {
-      display: block;
       font-size: 12px;
       font-weight: bold;
-      margin-bottom: 4px;
     }
 
-    .form-control {
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
       width: 100%;
-      padding: 8px 10px;
-      border: 1px solid #cbd5e0;
-      border-radius: 6px;
+      padding: 10px;
+      border: 1px solid #dce5ed;
+      border-radius: 7px;
+      outline: none;
       font-size: 12px;
     }
 
-    .modal-actions {
+    .form-group textarea {
+      min-height: 65px;
+      resize: vertical;
+    }
+
+    .form-buttons {
       display: flex;
       justify-content: flex-end;
       gap: 10px;
-      margin-top: 16px;
+      margin-top: 18px;
     }
 
-    .btn-cancel {
-      background: #e2e8f0;
-      color: #4a5568;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 6px;
-      cursor: pointer;
+    .secondary-button {
+      padding: 9px 14px;
+      border: 1px solid #dce5ed;
+      border-radius: 7px;
+      background: white;
+      font-size: 12px;
     }
 
-    .btn-save {
-      background: #3182ce;
-      color: white;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
+    @media (max-width: 900px) {
+      .sidebar {
+        width: 190px;
+      }
+
+      .main {
+        padding: 18px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+      }
+
+      .nav-link {
+        display: inline-block;
+        padding: 8px;
+      }
+
+      .main {
+        padding: 14px;
+      }
+
+      .search-input {
+        max-width: 100%;
+      }
+
+      .content-header {
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
 <body>
-
   <aside class="sidebar">
-    <div class="brand-title">Happy Paws</div>
-    <div class="brand-subtitle">Better Care, Happier Pets.</div>
+    <div class="logo">
+      <div class="logo-icon">🐾</div>
+      <div>
+        <h2>Happy Paws</h2>
+        <p>Pet Management System</p>
+      </div>
+    </div>
 
     <p class="menu-title">Main Menu</p>
     <a class="nav-link" href="dashboard.html">📊 Dashboard</a>
@@ -292,186 +372,305 @@
     <a class="nav-link" href="reports.html">📈 Reports</a>
 
     <p class="menu-title">Account</p>
-
-    <div class="administrator">
-      <div class="admin-avatar">👤</div>
-      <div>
-        <div class="admin-name">Administrator</div>
-        <div class="admin-role">System Admin</div>
-      </div>
-    </div>
+    <a class="nav-link" href="login.html" id="logoutLink">🚪 Logout</a>
   </aside>
 
-  <main class="main-content">
-    <header class="top-header">
-      <input type="text" id="searchInput" class="top-search-input" placeholder="Search service name, category...">
-      <div style="font-size: 13px; font-weight: bold; color: #2b6cb0;">Happy Paws Clinic</div>
+  <main class="main">
+    <header class="topbar">
+      <div class="page-title">
+        <h1>Services</h1>
+        <p>Manage veterinary services, prices, and availability.</p>
+      </div>
+
+      <div class="profile">
+        <div class="profile-icon">A</div>
+        <div>
+          <p class="profile-name">Administrator</p>
+          <p class="profile-role">Admin Account</p>
+        </div>
+      </div>
     </header>
 
-    <div class="page-title-row">
-      <div class="title-area">
-        <h1>Services</h1>
-        <p style="color: #a0aec0; font-size: 13px;">Manage veterinary services, prices, and availability.</p>
+    <section class="content-card">
+      <div class="content-header">
+        <div>
+          <h2>Service Records</h2>
+          <p>View and manage veterinary services.</p>
+        </div>
+        <button class="primary-button" id="btnOpenModal">+ Add New Service</button>
       </div>
-      <button class="btn-add-service" id="btnOpenModal">+ Add New Service</button>
-    </div>
 
-    <div class="card-box">
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>SERVICE</th>
-            <th>CATEGORY</th>
-            <th>DESCRIPTION</th>
-            <th>PRICE</th>
-            <th>STATUS</th>
-            <th>ACTION</th>
-          </tr>
-        </thead>
-        <tbody id="servicesTableBody">
-          <tr>
-            <td>General Check-up</td>
-            <td>Consultation</td>
-            <td>Routine health examination</td>
-            <td>₱500</td>
-            <td class="status-available">Available</td>
-            <td>
-              <a href="#" class="action-link" onclick="viewService(this); return false;">View</a>
-              <a href="#" class="delete-link" onclick="deleteService(this); return false;">Delete</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Vaccination</td>
-            <td>Preventive Care</td>
-            <td>Core vaccine administration</td>
-            <td>₱800</td>
-            <td class="status-available">Available</td>
-            <td>
-              <a href="#" class="action-link" onclick="viewService(this); return false;">View</a>
-              <a href="#" class="delete-link" onclick="deleteService(this); return false;">Delete</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Deworming</td>
-            <td>Preventive Care</td>
-            <td>Internal parasite treatment</td>
-            <td>₱350</td>
-            <td class="status-available">Available</td>
-            <td>
-              <a href="#" class="action-link" onclick="viewService(this); return false;">View</a>
-              <a href="#" class="delete-link" onclick="deleteService(this); return false;">Delete</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      <div style="margin-bottom: 18px;">
+        <input type="search" id="searchInput" class="search-input" placeholder="Search service name, category...">
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>SERVICE</th>
+              <th>CATEGORY</th>
+              <th>DESCRIPTION</th>
+              <th>PRICE</th>
+              <th>STATUS</th>
+              <th>ACTION</th>
+            </tr>
+          </thead>
+          <tbody id="servicesTableBody"></tbody>
+        </table>
+        <div class="empty-message" id="emptyMessage">No services found.</div>
+      </div>
+    </section>
   </main>
 
-  <div class="modal-backdrop" id="addModal">
-    <div class="modal-card">
-      <h2>Add New Service</h2>
-      <form id="addForm">
+  <div class="modal" id="serviceModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Add New Service</h2>
+        <button type="button" class="close-button" id="btnCloseModal">&times;</button>
+      </div>
+
+      <form id="serviceForm">
+        <input type="hidden" id="serviceId">
+
         <div class="form-group">
-          <label>Service Name</label>
-          <input type="text" id="sName" class="form-control" required>
+          <label for="sName">Service Name *</label>
+          <input type="text" id="sName" required>
         </div>
+
         <div class="form-group">
-          <label>Category</label>
-          <input type="text" id="sCategory" class="form-control" required>
+          <label for="sCategory">Category *</label>
+          <input type="text" id="sCategory" required>
         </div>
+
         <div class="form-group">
-          <label>Description</label>
-          <input type="text" id="sDesc" class="form-control" required>
+          <label for="sDesc">Description *</label>
+          <textarea id="sDesc" required></textarea>
         </div>
+
         <div class="form-group">
-          <label>Price</label>
-          <input type="text" id="sPrice" class="form-control" placeholder="e.g. ₱500" required>
+          <label for="sPrice">Price (₱) *</label>
+          <input type="number" id="sPrice" min="0" step="0.01" placeholder="500" required>
         </div>
-        <div class="modal-actions">
-          <button type="button" class="btn-cancel" id="btnCloseModal">Cancel</button>
-          <button type="submit" class="btn-save">Save Service</button>
+
+        <div class="form-group">
+          <label for="sStatus">Status</label>
+          <select id="sStatus">
+            <option>Available</option>
+            <option>Unavailable</option>
+          </select>
+        </div>
+
+        <div class="form-buttons">
+          <button type="button" class="secondary-button" id="btnCancel">Cancel</button>
+          <button type="submit" class="primary-button">Save Service</button>
         </div>
       </form>
     </div>
   </div>
 
   <script>
-    const searchInput = document.getElementById('searchInput');
-    const tableBody = document.getElementById('servicesTableBody');
-    const modal = document.getElementById('addModal');
+    const KEY = "happyPawsServices";
+    const tableBody = document.getElementById("servicesTableBody");
+    const modal = document.getElementById("serviceModal");
+    const form = document.getElementById("serviceForm");
+    const searchInput = document.getElementById("searchInput");
 
-    searchInput.addEventListener('keyup', () => {
-      const filter = searchInput.value.toLowerCase();
-      Array.from(tableBody.querySelectorAll('tr')).forEach(row => {
-        row.style.display = row.textContent.toLowerCase().includes(filter) ? '' : 'none';
-      });
-    });
+    let services = [];
 
-    document.getElementById('btnOpenModal').onclick = () => {
-      document.querySelector('#addModal h2').textContent = 'Add New Service';
-      document.getElementById('addForm').reset();
-      modal.style.display = 'flex';
-    };
-
-    document.getElementById('btnCloseModal').onclick = () => {
-      modal.style.display = 'none';
-    };
-
-    document.getElementById('addForm').onsubmit = (e) => {
-      e.preventDefault();
-
-      const name = document.getElementById('sName').value.trim();
-      const category = document.getElementById('sCategory').value.trim();
-      const description = document.getElementById('sDesc').value.trim();
-      const price = document.getElementById('sPrice').value.trim();
-
-      const row = document.createElement('tr');
-
-      [name, category, description, price].forEach(value => {
-        const cell = document.createElement('td');
-        cell.textContent = value;
-        row.appendChild(cell);
-      });
-
-      const statusCell = document.createElement('td');
-      statusCell.className = 'status-available';
-      statusCell.textContent = 'Available';
-      row.appendChild(statusCell);
-
-      const actionCell = document.createElement('td');
-      actionCell.innerHTML = '<a href="#" class="action-link" onclick="viewService(this); return false;">View</a> <a href="#" class="delete-link" onclick="deleteService(this); return false;">Delete</a>';
-      row.appendChild(actionCell);
-
-      tableBody.appendChild(row);
-      modal.style.display = 'none';
-      e.target.reset();
-
-      alert('Service added successfully!');
-    };
-
-    function deleteService(link) {
-      const row = link.closest('tr');
-      const serviceName = row.cells[0].textContent;
-
-      if (confirm('Are you sure you want to delete ' + serviceName + '?')) {
-        row.remove();
-        alert('Service deleted successfully!');
+    const defaultServices = [
+      {
+        id: "1",
+        name: "General Check-up",
+        category: "Consultation",
+        description: "Routine health examination",
+        price: 500,
+        status: "Available"
+      },
+      {
+        id: "2",
+        name: "Vaccination",
+        category: "Preventive Care",
+        description: "Core vaccine administration",
+        price: 800,
+        status: "Available"
+      },
+      {
+        id: "3",
+        name: "Deworming",
+        category: "Preventive Care",
+        description: "Internal parasite treatment",
+        price: 350,
+        status: "Available"
       }
+    ];
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[char]);
     }
 
-    function viewService(link) {
-      const row = link.closest('tr');
+    function loadServices() {
+      try {
+        const saved = localStorage.getItem(KEY);
+        services = saved === null ? [...defaultServices] : JSON.parse(saved);
+        if (!Array.isArray(services)) services = [...defaultServices];
+      } catch {
+        services = [...defaultServices];
+      }
 
-      alert(
-        'Service Details\n\n' +
-        'Service: ' + row.cells[0].textContent + '\n' +
-        'Category: ' + row.cells[1].textContent + '\n' +
-        'Description: ' + row.cells[2].textContent + '\n' +
-        'Price: ' + row.cells[3].textContent + '\n' +
-        'Status: ' + row.cells[4].textContent
+      saveServices();
+      renderServices();
+    }
+
+    function saveServices() {
+      localStorage.setItem(KEY, JSON.stringify(services));
+    }
+
+    function renderServices() {
+      const term = searchInput.value.toLowerCase().trim();
+
+      const filtered = services.filter(service =>
+        [
+          service.name,
+          service.category,
+          service.description,
+          service.price,
+          service.status
+        ].join(" ").toLowerCase().includes(term)
       );
-    }
-  </script>
 
+      tableBody.innerHTML = filtered.map(service => `
+        <tr>
+          <td>${escapeHTML(service.name)}</td>
+          <td>${escapeHTML(service.category)}</td>
+          <td>${escapeHTML(service.description)}</td>
+          <td>₱${Number(service.price).toLocaleString("en-PH", {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 2
+          })}</td>
+          <td class="${service.status === "Available" ? "status-available" : ""}">
+            ${escapeHTML(service.status)}
+          </td>
+          <td>
+            <button class="action-button" data-action="view" data-id="${escapeHTML(service.id)}">View</button>
+            <button class="action-button" data-action="edit" data-id="${escapeHTML(service.id)}">Edit</button>
+            <button class="action-button delete-button" data-action="delete" data-id="${escapeHTML(service.id)}">Delete</button>
+          </td>
+        </tr>
+      `).join("");
+
+      document.getElementById("emptyMessage").style.display =
+        filtered.length ? "none" : "block";
+    }
+
+    function openModal(service = null) {
+      form.reset();
+      document.getElementById("serviceId").value = service ? service.id : "";
+      document.getElementById("modalTitle").textContent =
+        service ? "Edit Service" : "Add New Service";
+
+      if (service) {
+        document.getElementById("sName").value = service.name;
+        document.getElementById("sCategory").value = service.category;
+        document.getElementById("sDesc").value = service.description;
+        document.getElementById("sPrice").value = service.price;
+        document.getElementById("sStatus").value = service.status;
+      } else {
+        document.getElementById("sStatus").value = "Available";
+      }
+
+      modal.classList.add("show");
+    }
+
+    function closeModal() {
+      modal.classList.remove("show");
+      form.reset();
+    }
+
+    document.getElementById("btnOpenModal").onclick = () => openModal();
+    document.getElementById("btnCloseModal").onclick = closeModal;
+    document.getElementById("btnCancel").onclick = closeModal;
+    searchInput.oninput = renderServices;
+
+    modal.onclick = event => {
+      if (event.target === modal) closeModal();
+    };
+
+    tableBody.onclick = event => {
+      const button = event.target.closest("[data-action]");
+      if (!button) return;
+
+      const service = services.find(item =>
+        String(item.id) === button.dataset.id
+      );
+
+      if (!service) return;
+
+      if (button.dataset.action === "view") {
+        alert(
+          "Service Details\n\n" +
+          "Service: " + service.name + "\n" +
+          "Category: " + service.category + "\n" +
+          "Description: " + service.description + "\n" +
+          "Price: ₱" + service.price + "\n" +
+          "Status: " + service.status
+        );
+      }
+
+      if (button.dataset.action === "edit") {
+        openModal(service);
+      }
+
+      if (button.dataset.action === "delete" &&
+          confirm("Are you sure you want to delete " + service.name + "?")) {
+        services = services.filter(item => String(item.id) !== String(service.id));
+        saveServices();
+        renderServices();
+        alert("Service deleted successfully!");
+      }
+    };
+
+    form.onsubmit = event => {
+      event.preventDefault();
+
+      const id = document.getElementById("serviceId").value;
+
+      const service = {
+        id: id || Date.now().toString(),
+        name: document.getElementById("sName").value.trim(),
+        category: document.getElementById("sCategory").value.trim(),
+        description: document.getElementById("sDesc").value.trim(),
+        price: Number(document.getElementById("sPrice").value),
+        status: document.getElementById("sStatus").value
+      };
+
+      if (id) {
+        const index = services.findIndex(item => String(item.id) === id);
+        if (index !== -1) services[index] = service;
+      } else {
+        services.unshift(service);
+      }
+
+      saveServices();
+      renderServices();
+      closeModal();
+
+      alert(id ? "Service updated successfully!" : "Service added successfully!");
+    };
+
+    document.getElementById("logoutLink").onclick = event => {
+      if (!confirm("Are you sure you want to log out?")) {
+        event.preventDefault();
+      }
+    };
+
+    loadServices();
+  </script>
 </body>
 </html>
