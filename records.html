@@ -1,6 +1,8 @@
+
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Paws - Pet Records</title>
   <style>
     * {
@@ -66,17 +68,20 @@
     .main-content {
       flex: 1;
       padding: 24px 36px;
+      min-width: 0;
     }
 
     .top-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 15px;
       margin-bottom: 24px;
     }
 
     .top-search-input {
       width: 320px;
+      max-width: 100%;
       padding: 9px 16px;
       border: 1px solid #e2e8f0;
       border-radius: 20px;
@@ -89,6 +94,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 15px;
       margin-bottom: 24px;
     }
 
@@ -108,6 +114,7 @@
       font-size: 13px;
       font-weight: bold;
       cursor: pointer;
+      white-space: nowrap;
     }
 
     .card-box {
@@ -115,12 +122,14 @@
       border-radius: 12px;
       padding: 24px;
       border: 1px solid #e2e8f0;
+      overflow-x: auto;
     }
 
     .data-table {
       width: 100%;
       border-collapse: collapse;
       font-size: 12px;
+      min-width: 650px;
     }
 
     .data-table th {
@@ -145,24 +154,29 @@
       color: #3182ce;
       text-decoration: none;
       font-weight: bold;
+      cursor: pointer;
     }
 
     .modal-backdrop {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
       background: rgba(0, 0, 0, 0.4);
       display: none;
       justify-content: center;
       align-items: center;
+      padding: 15px;
       z-index: 1000;
     }
 
     .modal-card {
       background: #ffffff;
       width: 400px;
+      max-width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
       border-radius: 12px;
       padding: 24px;
     }
@@ -217,6 +231,46 @@
       cursor: pointer;
       font-weight: bold;
     }
+
+    @media (max-width: 800px) {
+      body {
+        display: block;
+      }
+
+      .sidebar {
+        width: 100%;
+        padding: 16px;
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .brand-subtitle {
+        margin-bottom: 12px;
+      }
+
+      .nav-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+
+      .nav-list li {
+        margin-bottom: 0;
+      }
+
+      .main-content {
+        padding: 20px 16px;
+      }
+
+      .top-header,
+      .page-title-row {
+        flex-wrap: wrap;
+      }
+
+      .top-search-input {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -264,35 +318,7 @@
             <th>ACTION</th>
           </tr>
         </thead>
-        <tbody id="recordsTableBody">
-          <tr>
-            <td>🐾 Buddy</td>
-            <td>Maria Santos</td>
-            <td>Golden Retriever</td>
-            <td>Male</td>
-            <td>3 yrs</td>
-            <td class="text-green">● Active</td>
-            <td><a href="#" class="action-link">View</a></td>
-          </tr>
-          <tr>
-            <td>🐱 Luna</td>
-            <td>John Cruz</td>
-            <td>Domestic Shorthair</td>
-            <td>Female</td>
-            <td>2 yrs</td>
-            <td class="text-green">● Active</td>
-            <td><a href="#" class="action-link">View</a></td>
-          </tr>
-          <tr>
-            <td>🐾 Max</td>
-            <td>Ana Reyes</td>
-            <td>Labrador Retriever</td>
-            <td>Male</td>
-            <td>5 yrs</td>
-            <td class="text-green">● Active</td>
-            <td><a href="#" class="action-link">View</a></td>
-          </tr>
-        </tbody>
+        <tbody id="recordsTableBody"></tbody>
       </table>
     </div>
   </main>
@@ -301,11 +327,34 @@
     <div class="modal-card">
       <h2>Add New Pet</h2>
       <form id="addForm">
-        <div class="form-group"><label>Pet Name</label><input type="text" id="pName" class="form-control" required></div>
-        <div class="form-group"><label>Owner Name</label><input type="text" id="pOwner" class="form-control" required></div>
-        <div class="form-group"><label>Breed</label><input type="text" id="pBreed" class="form-control" required></div>
-        <div class="form-group"><label>Gender</label><select id="pGender" class="form-control"><option>Male</option><option>Female</option></select></div>
-        <div class="form-group"><label>Age</label><input type="text" id="pAge" class="form-control" placeholder="e.g. 2 yrs" required></div>
+        <div class="form-group">
+          <label for="pName">Pet Name</label>
+          <input type="text" id="pName" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="pOwner">Owner Name</label>
+          <input type="text" id="pOwner" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="pBreed">Breed</label>
+          <input type="text" id="pBreed" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="pGender">Gender</label>
+          <select id="pGender" class="form-control" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="pAge">Age</label>
+          <input type="text" id="pAge" class="form-control" placeholder="e.g. 2 yrs" required>
+        </div>
+
         <div class="modal-actions">
           <button type="button" class="btn-cancel" id="btnCloseModal">Cancel</button>
           <button type="submit" class="btn-save">Save Pet</button>
@@ -315,36 +364,225 @@
   </div>
 
   <script>
-    const searchInput = document.getElementById('searchInput');
-    const tableBody = document.getElementById('recordsTableBody');
-    const modal = document.getElementById('addModal');
+    const searchInput = document.getElementById("searchInput");
+    const tableBody = document.getElementById("recordsTableBody");
+    const modal = document.getElementById("addModal");
+    const addForm = document.getElementById("addForm");
 
-    searchInput.addEventListener('keyup', () => {
-      const filter = searchInput.value.toLowerCase();
-      Array.from(tableBody.querySelectorAll('tr')).forEach(row => {
-        row.style.display = row.textContent.toLowerCase().includes(filter) ? '' : 'none';
+    function readStorage(key) {
+      try {
+        const data = JSON.parse(localStorage.getItem(key) || "[]");
+        return Array.isArray(data) ? data : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function getPets() {
+      const users = readStorage("happyPawsUsers");
+      const savedPets = readStorage("happyPawsPets");
+      const petsById = new Map();
+
+      users.forEach(user => {
+        (Array.isArray(user.pets) ? user.pets : []).forEach(pet => {
+          const id = String(pet.id || (pet.name + pet.dob));
+
+          petsById.set(id, {
+            ...pet,
+            id: id,
+            name: pet.name || pet.petName || "",
+            type: pet.type || pet.petType || "",
+            ownerName: pet.ownerName ||
+              ((user.firstName || "") + " " + (user.lastName || "")).trim(),
+            ownerEmail: pet.ownerEmail || user.email || ""
+          });
+        });
       });
+
+      savedPets.forEach(pet => {
+        const id = String(pet.id || (pet.name + pet.ownerName));
+
+        if (petsById.has(id)) {
+          const existing = petsById.get(id);
+
+          petsById.set(id, {
+            ...pet,
+            ...existing,
+            ownerName: existing.ownerName || pet.ownerName || ""
+          });
+        } else {
+          petsById.set(id, {
+            ...pet,
+            id: id,
+            name: pet.name || pet.petName || "",
+            type: pet.type || pet.petType || ""
+          });
+        }
+      });
+
+      return Array.from(petsById.values());
+    }
+
+    function calculateAge(dob) {
+      if (!dob) return "";
+
+      const birthDate = new Date(dob + "T00:00:00");
+
+      if (isNaN(birthDate.getTime())) return "";
+
+      const today = new Date();
+
+      if (birthDate > today) return "";
+
+      let years = today.getFullYear() - birthDate.getFullYear();
+      let months = today.getMonth() - birthDate.getMonth();
+
+      if (today.getDate() < birthDate.getDate()) {
+        months--;
+      }
+
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      if (years > 0) {
+        return years + (years === 1 ? " yr" : " yrs");
+      }
+
+      if (months > 0) {
+        return months + (months === 1 ? " mo" : " mos");
+      }
+
+      return "Under 1 mo";
+    }
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, function(char) {
+        return {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        }[char];
+      });
+    }
+
+    function renderRecords() {
+      const pets = getPets();
+      tableBody.innerHTML = "";
+
+      if (pets.length === 0) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="7" style="text-align:center;padding:25px;color:#718096;">
+              No pet records found. Register a pet first.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      pets.forEach(pet => {
+        const row = document.createElement("tr");
+        const type = String(pet.type || "").toLowerCase();
+        const emoji = type === "cat" ? "🐱" :
+                      type === "dog" ? "🐶" : "🐾";
+
+        const petName = pet.name || pet.petName || "Unnamed Pet";
+        const age = pet.dob ? calculateAge(pet.dob) : (pet.age || "—");
+
+        row.innerHTML = `
+          <td>${emoji} ${escapeHTML(petName)}</td>
+          <td>${escapeHTML(pet.ownerName || "—")}</td>
+          <td>${escapeHTML(pet.breed || "—")}</td>
+          <td>${escapeHTML(pet.gender || "—")}</td>
+          <td>${escapeHTML(age || "—")}</td>
+          <td class="text-green">● Active</td>
+          <td><a href="#" class="action-link">View</a></td>
+        `;
+
+        row.querySelector(".action-link").addEventListener("click", function(e) {
+          e.preventDefault();
+
+          alert(
+            "Pet Name: " + petName +
+            "\nPet Type: " + (pet.type || "—") +
+            "\nOwner: " + (pet.ownerName || "—") +
+            "\nOwner Email: " + (pet.ownerEmail || "—") +
+            "\nBreed: " + (pet.breed || "—") +
+            "\nGender: " + (pet.gender || "—") +
+            "\nDate of Birth: " + (pet.dob || "—") +
+            "\nColor / Markings: " + (pet.color || "—")
+          );
+        });
+
+        tableBody.appendChild(row);
+      });
+
+      filterRecords();
+    }
+
+    function filterRecords() {
+      const filter = searchInput.value.toLowerCase();
+
+      Array.from(tableBody.querySelectorAll("tr")).forEach(row => {
+        row.style.display = row.textContent.toLowerCase().includes(filter) ? "" : "none";
+      });
+    }
+
+    document.getElementById("btnOpenModal").addEventListener("click", function() {
+      modal.style.display = "flex";
     });
 
-    document.getElementById('btnOpenModal').onclick = () => modal.style.display = 'flex';
-    document.getElementById('btnCloseModal').onclick = () => modal.style.display = 'none';
+    document.getElementById("btnCloseModal").addEventListener("click", function() {
+      modal.style.display = "none";
+    });
 
-    document.getElementById('addForm').onsubmit = (e) => {
+    modal.addEventListener("click", function(e) {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+
+    searchInput.addEventListener("input", filterRecords);
+
+    addForm.addEventListener("submit", function(e) {
       e.preventDefault();
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td>🐾 ${document.getElementById('pName').value}</td>
-        <td>${document.getElementById('pOwner').value}</td>
-        <td>${document.getElementById('pBreed').value}</td>
-        <td>${document.getElementById('pGender').value}</td>
-        <td>${document.getElementById('pAge').value}</td>
-        <td class="text-green">● Active</td>
-        <td><a href="#" class="action-link">View</a></td>
-      `;
-      tableBody.appendChild(row);
-      modal.style.display = 'none';
-      e.target.reset();
-    };
+
+      const pet = {
+        id: Date.now().toString(),
+        name: document.getElementById("pName").value.trim(),
+        ownerName: document.getElementById("pOwner").value.trim(),
+        breed: document.getElementById("pBreed").value.trim(),
+        gender: document.getElementById("pGender").value,
+        age: document.getElementById("pAge").value.trim(),
+        type: "Pet"
+      };
+
+      if (!pet.name || !pet.ownerName || !pet.breed || !pet.age) {
+        alert("Please complete all pet information.");
+        return;
+      }
+
+      try {
+        const savedPets = readStorage("happyPawsPets");
+        savedPets.push(pet);
+
+        localStorage.setItem("happyPawsPets", JSON.stringify(savedPets));
+
+        addForm.reset();
+        modal.style.display = "none";
+        renderRecords();
+
+        alert("Pet record saved successfully!");
+      } catch (error) {
+        alert("Unable to save pet information.");
+      }
+    });
+
+    renderRecords();
   </script>
 
 </body>
