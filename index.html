@@ -128,20 +128,54 @@
   </div>
 
   <script>
-    document.getElementById('accountForm').addEventListener('submit', function(e) {
-      e.preventDefault();
+   document.getElementById("accountForm").addEventListener("submit", function(e) {
+  e.preventDefault();
 
-      const accountData = {
-        firstName: document.getElementById('firstName').value,
-        lastName: document.getElementById('lastName').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        password: document.getElementById('password').value
-      };
+  const firstName = document.getElementById("firstName").value.trim();
+  const lastName = document.getElementById("lastName").value.trim();
+  const email = document.getElementById("email").value.trim().toLowerCase();
+  const phone = document.getElementById("phone").value.trim();
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
 
-      localStorage.setItem('accountData', JSON.stringify(accountData));
-      window.location.href = 'owner.html';
-    });
+  if (password !== confirmPassword) {
+    alert("Passwords do not match.");
+    return;
+  }
+
+  if (password.length < 6) {
+    alert("Password must be at least 6 characters.");
+    return;
+  }
+
+  let users = JSON.parse(localStorage.getItem("happyPawsUsers") || "[]");
+
+  if (users.some(user => user.email === email)) {
+    alert("Email already registered. Please use another email.");
+    return;
+  }
+
+  const account = {
+    id: Date.now().toString(),
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    phone: phone,
+    password: password,
+    owner: {},
+    pets: []
+  };
+
+  users.push(account);
+
+  try {
+    localStorage.setItem("happyPawsUsers", JSON.stringify(users));
+    localStorage.setItem("currentUserEmail", email);
+    window.location.href = "owner.html";
+  } catch (error) {
+    alert("Unable to save registration in this browser.");
+  }
+});
   </script>
 
 </body>
