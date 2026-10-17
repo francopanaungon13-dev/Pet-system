@@ -13,7 +13,7 @@
     }
 
     body {
-      background-color: #f2f7fb;
+      background: #f2f7fb;
       color: #333;
       display: flex;
       min-height: 100vh;
@@ -21,7 +21,7 @@
 
     .sidebar {
       width: 220px;
-      background-color: #ffffff;
+      background: #fff;
       padding: 24px 20px;
       border-right: 1px solid #e2e8f0;
       flex-shrink: 0;
@@ -36,7 +36,7 @@
     .brand-subtitle {
       font-size: 11px;
       color: #a0aec0;
-      margin: 4px 0 28px 0;
+      margin: 4px 0 28px;
     }
 
     .nav-list {
@@ -60,15 +60,15 @@
 
     .nav-list li.active a,
     .nav-list a:hover {
-      background-color: #ebf8ff;
+      background: #ebf8ff;
       color: #2b6cb0;
       font-weight: bold;
     }
 
     .main-content {
       flex: 1;
-      padding: 24px 36px;
       min-width: 0;
+      padding: 24px 36px;
     }
 
     .top-header {
@@ -82,12 +82,12 @@
     .top-search-input {
       width: 320px;
       max-width: 100%;
-      padding: 9px 16px;
+      padding: 10px 16px;
       border: 1px solid #e2e8f0;
       border-radius: 20px;
       font-size: 12px;
       outline: none;
-      background-color: #ffffff;
+      background: #fff;
     }
 
     .page-title-row {
@@ -101,24 +101,22 @@
     .title-area h1 {
       color: #1a365d;
       font-size: 26px;
-      font-weight: bold;
       margin-bottom: 4px;
     }
 
     .btn-add-pet {
-      background-color: #3182ce;
-      color: white;
+      background: #3182ce;
+      color: #fff;
       border: none;
       padding: 10px 20px;
       border-radius: 8px;
       font-size: 13px;
       font-weight: bold;
       cursor: pointer;
-      white-space: nowrap;
     }
 
     .card-box {
-      background-color: #ffffff;
+      background: #fff;
       border-radius: 12px;
       padding: 24px;
       border: 1px solid #e2e8f0;
@@ -127,21 +125,20 @@
 
     .data-table {
       width: 100%;
+      min-width: 760px;
       border-collapse: collapse;
       font-size: 12px;
-      min-width: 650px;
     }
 
     .data-table th {
-      background-color: #ebf8ff;
+      background: #ebf8ff;
       text-align: left;
       padding: 12px 14px;
       color: #2b6cb0;
-      font-weight: bold;
     }
 
     .data-table td {
-      padding: 16px 14px;
+      padding: 14px;
       border-bottom: 1px solid #f0f4f8;
     }
 
@@ -151,18 +148,27 @@
     }
 
     .action-link {
+      border: none;
+      background: none;
       color: #3182ce;
-      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    .delete-btn {
+      border: none;
+      background: #fff0f0;
+      color: #e53e3e;
+      padding: 7px 10px;
+      border-radius: 5px;
       font-weight: bold;
       cursor: pointer;
     }
 
     .modal-backdrop {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       background: rgba(0, 0, 0, 0.4);
       display: none;
       justify-content: center;
@@ -172,7 +178,7 @@
     }
 
     .modal-card {
-      background: #ffffff;
+      background: #fff;
       width: 400px;
       max-width: 100%;
       max-height: 90vh;
@@ -200,7 +206,7 @@
 
     .form-control {
       width: 100%;
-      padding: 8px 10px;
+      padding: 9px 10px;
       border: 1px solid #cbd5e0;
       border-radius: 6px;
       font-size: 12px;
@@ -213,22 +219,22 @@
       margin-top: 16px;
     }
 
-    .btn-cancel {
-      background: #e2e8f0;
-      color: #4a5568;
+    .btn-cancel,
+    .btn-save {
       border: none;
-      padding: 8px 14px;
+      padding: 9px 14px;
       border-radius: 6px;
       cursor: pointer;
     }
 
+    .btn-cancel {
+      background: #e2e8f0;
+      color: #4a5568;
+    }
+
     .btn-save {
       background: #3182ce;
-      color: white;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 6px;
-      cursor: pointer;
+      color: #fff;
       font-weight: bold;
     }
 
@@ -240,8 +246,6 @@
       .sidebar {
         width: 100%;
         padding: 16px;
-        border-right: none;
-        border-bottom: 1px solid #e2e8f0;
       }
 
       .brand-subtitle {
@@ -251,11 +255,6 @@
       .nav-list {
         display: flex;
         flex-wrap: wrap;
-        gap: 4px;
-      }
-
-      .nav-list li {
-        margin-bottom: 0;
       }
 
       .main-content {
@@ -294,13 +293,13 @@
   <main class="main-content">
     <header class="top-header">
       <input type="text" id="searchInput" class="top-search-input" placeholder="Search pet name, owner, breed...">
-      <div style="font-size: 13px; font-weight: bold; color: #2b6cb0;">Happy Paws Clinic</div>
+      <div style="font-size:13px;font-weight:bold;color:#2b6cb0;">Happy Paws Clinic</div>
     </header>
 
     <div class="page-title-row">
       <div class="title-area">
         <h1>Pet Records</h1>
-        <p style="color: #a0aec0; font-size: 13px;">View, search, and manage registered pet information.</p>
+        <p style="color:#a0aec0;font-size:13px;">View, search, add, and delete registered pet information.</p>
       </div>
       <button class="btn-add-pet" id="btnOpenModal">+ Add New Pet</button>
     </div>
@@ -338,6 +337,17 @@
         </div>
 
         <div class="form-group">
+          <label for="pType">Pet Type</label>
+          <select id="pType" class="form-control" required>
+            <option value="">Select</option>
+            <option>Dog</option>
+            <option>Cat</option>
+            <option>Bird</option>
+            <option>Rabbit</option>
+          </select>
+        </div>
+
+        <div class="form-group">
           <label for="pBreed">Breed</label>
           <input type="text" id="pBreed" class="form-control" required>
         </div>
@@ -345,14 +355,20 @@
         <div class="form-group">
           <label for="pGender">Gender</label>
           <select id="pGender" class="form-control" required>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
+            <option value="">Select</option>
+            <option>Male</option>
+            <option>Female</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="pAge">Age</label>
-          <input type="text" id="pAge" class="form-control" placeholder="e.g. 2 yrs" required>
+          <label for="pDob">Date of Birth</label>
+          <input type="date" id="pDob" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="pColor">Color / Markings</label>
+          <input type="text" id="pColor" class="form-control" required>
         </div>
 
         <div class="modal-actions">
@@ -378,82 +394,25 @@
       }
     }
 
-    function getPets() {
-      const users = readStorage("happyPawsUsers");
-      const savedPets = readStorage("happyPawsPets");
-      const petsById = new Map();
-
-      users.forEach(user => {
-        (Array.isArray(user.pets) ? user.pets : []).forEach(pet => {
-          const id = String(pet.id || (pet.name + pet.dob));
-
-          petsById.set(id, {
-            ...pet,
-            id: id,
-            name: pet.name || pet.petName || "",
-            type: pet.type || pet.petType || "",
-            ownerName: pet.ownerName ||
-              ((user.firstName || "") + " " + (user.lastName || "")).trim(),
-            ownerEmail: pet.ownerEmail || user.email || ""
-          });
-        });
-      });
-
-      savedPets.forEach(pet => {
-        const id = String(pet.id || (pet.name + pet.ownerName));
-
-        if (petsById.has(id)) {
-          const existing = petsById.get(id);
-
-          petsById.set(id, {
-            ...pet,
-            ...existing,
-            ownerName: existing.ownerName || pet.ownerName || ""
-          });
-        } else {
-          petsById.set(id, {
-            ...pet,
-            id: id,
-            name: pet.name || pet.petName || "",
-            type: pet.type || pet.petType || ""
-          });
-        }
-      });
-
-      return Array.from(petsById.values());
-    }
-
     function calculateAge(dob) {
       if (!dob) return "";
 
-      const birthDate = new Date(dob + "T00:00:00");
-
-      if (isNaN(birthDate.getTime())) return "";
+      const birth = new Date(dob + "T00:00:00");
+      if (isNaN(birth.getTime()) || birth > new Date()) return "";
 
       const today = new Date();
+      let years = today.getFullYear() - birth.getFullYear();
+      let months = today.getMonth() - birth.getMonth();
 
-      if (birthDate > today) return "";
-
-      let years = today.getFullYear() - birthDate.getFullYear();
-      let months = today.getMonth() - birthDate.getMonth();
-
-      if (today.getDate() < birthDate.getDate()) {
-        months--;
-      }
+      if (today.getDate() < birth.getDate()) months--;
 
       if (months < 0) {
         years--;
         months += 12;
       }
 
-      if (years > 0) {
-        return years + (years === 1 ? " yr" : " yrs");
-      }
-
-      if (months > 0) {
-        return months + (months === 1 ? " mo" : " mos");
-      }
-
+      if (years > 0) return years + (years === 1 ? " yr" : " yrs");
+      if (months > 0) return months + (months === 1 ? " mo" : " mos");
       return "Under 1 mo";
     }
 
@@ -469,6 +428,56 @@
       });
     }
 
+    function getPets() {
+      const users = readStorage("happyPawsUsers");
+      const savedPets = readStorage("happyPawsPets");
+      const pets = new Map();
+
+      users.forEach(user => {
+        (Array.isArray(user.pets) ? user.pets : []).forEach(pet => {
+          const id = String(pet.id || "");
+          if (!id) return;
+
+          pets.set(id, {
+            ...pet,
+            id,
+            name: pet.name || pet.petName || "",
+            type: pet.type || pet.petType || "",
+            ownerName: pet.ownerName ||
+              ((user.firstName || "") + " " + (user.lastName || "")).trim(),
+            ownerEmail: pet.ownerEmail || user.email || "",
+            source: "user"
+          });
+        });
+      });
+
+      savedPets.forEach(pet => {
+        const id = String(pet.id || "");
+        if (!id) return;
+
+        const existing = pets.get(id);
+
+        if (existing) {
+          pets.set(id, {
+            ...pet,
+            ...existing,
+            ownerName: existing.ownerName || pet.ownerName || "",
+            source: "user"
+          });
+        } else {
+          pets.set(id, {
+            ...pet,
+            id,
+            name: pet.name || pet.petName || "",
+            type: pet.type || pet.petType || "",
+            source: "saved"
+          });
+        }
+      });
+
+      return Array.from(pets.values());
+    }
+
     function renderRecords() {
       const pets = getPets();
       tableBody.innerHTML = "";
@@ -477,7 +486,7 @@
         tableBody.innerHTML = `
           <tr>
             <td colspan="7" style="text-align:center;padding:25px;color:#718096;">
-              No pet records found. Register a pet first.
+              No pet records found. Click Add New Pet to register a pet.
             </td>
           </tr>
         `;
@@ -489,33 +498,62 @@
         const type = String(pet.type || "").toLowerCase();
         const emoji = type === "cat" ? "🐱" :
                       type === "dog" ? "🐶" : "🐾";
-
-        const petName = pet.name || pet.petName || "Unnamed Pet";
         const age = pet.dob ? calculateAge(pet.dob) : (pet.age || "—");
 
         row.innerHTML = `
-          <td>${emoji} ${escapeHTML(petName)}</td>
+          <td>${emoji} ${escapeHTML(pet.name || "Unnamed Pet")}</td>
           <td>${escapeHTML(pet.ownerName || "—")}</td>
           <td>${escapeHTML(pet.breed || "—")}</td>
           <td>${escapeHTML(pet.gender || "—")}</td>
           <td>${escapeHTML(age || "—")}</td>
           <td class="text-green">● Active</td>
-          <td><a href="#" class="action-link">View</a></td>
+          <td>
+            <button type="button" class="action-link view-btn">View</button>
+            <button type="button" class="delete-btn">Delete</button>
+          </td>
         `;
 
-        row.querySelector(".action-link").addEventListener("click", function(e) {
-          e.preventDefault();
-
+        row.querySelector(".view-btn").addEventListener("click", function() {
           alert(
-            "Pet Name: " + petName +
-            "\nPet Type: " + (pet.type || "—") +
+            "PET INFORMATION\n\n" +
+            "Name: " + (pet.name || "—") +
+            "\nType: " + (pet.type || "—") +
             "\nOwner: " + (pet.ownerName || "—") +
-            "\nOwner Email: " + (pet.ownerEmail || "—") +
             "\nBreed: " + (pet.breed || "—") +
             "\nGender: " + (pet.gender || "—") +
             "\nDate of Birth: " + (pet.dob || "—") +
             "\nColor / Markings: " + (pet.color || "—")
           );
+        });
+
+        row.querySelector(".delete-btn").addEventListener("click", function() {
+          const confirmed = confirm(
+            "Are you sure you want to delete " + (pet.name || "this pet") + "?"
+          );
+
+          if (!confirmed) return;
+
+          const users = readStorage("happyPawsUsers");
+          let savedPets = readStorage("happyPawsPets");
+          const id = String(pet.id);
+
+          users.forEach(user => {
+            if (Array.isArray(user.pets)) {
+              user.pets = user.pets.filter(item => String(item.id) !== id);
+            }
+          });
+
+          savedPets = savedPets.filter(item => String(item.id) !== id);
+
+          try {
+            localStorage.setItem("happyPawsUsers", JSON.stringify(users));
+            localStorage.setItem("happyPawsPets", JSON.stringify(savedPets));
+
+            renderRecords();
+            alert("Pet record deleted successfully!");
+          } catch (error) {
+            alert("Unable to delete pet record. Please try again.");
+          }
         });
 
         tableBody.appendChild(row);
@@ -533,6 +571,7 @@
     }
 
     document.getElementById("btnOpenModal").addEventListener("click", function() {
+      addForm.reset();
       modal.style.display = "flex";
     });
 
@@ -541,9 +580,7 @@
     });
 
     modal.addEventListener("click", function(e) {
-      if (e.target === modal) {
-        modal.style.display = "none";
-      }
+      if (e.target === modal) modal.style.display = "none";
     });
 
     searchInput.addEventListener("input", filterRecords);
@@ -555,30 +592,38 @@
         id: Date.now().toString(),
         name: document.getElementById("pName").value.trim(),
         ownerName: document.getElementById("pOwner").value.trim(),
+        type: document.getElementById("pType").value,
         breed: document.getElementById("pBreed").value.trim(),
         gender: document.getElementById("pGender").value,
-        age: document.getElementById("pAge").value.trim(),
-        type: "Pet"
+        dob: document.getElementById("pDob").value,
+        color: document.getElementById("pColor").value.trim()
       };
 
-      if (!pet.name || !pet.ownerName || !pet.breed || !pet.age) {
+      if (!pet.name || !pet.ownerName || !pet.type || !pet.breed ||
+          !pet.gender || !pet.dob || !pet.color) {
         alert("Please complete all pet information.");
         return;
       }
 
-      try {
-        const savedPets = readStorage("happyPawsPets");
-        savedPets.push(pet);
+      if (new Date(pet.dob + "T00:00:00") > new Date()) {
+        alert("Date of Birth cannot be in the future.");
+        return;
+      }
 
+      const users = readStorage("happyPawsUsers");
+      const savedPets = readStorage("happyPawsPets");
+
+      try {
+        savedPets.push(pet);
         localStorage.setItem("happyPawsPets", JSON.stringify(savedPets));
 
         addForm.reset();
         modal.style.display = "none";
         renderRecords();
 
-        alert("Pet record saved successfully!");
+        alert("Pet added successfully!");
       } catch (error) {
-        alert("Unable to save pet information.");
+        alert("Unable to save pet information. Please try again.");
       }
     });
 
