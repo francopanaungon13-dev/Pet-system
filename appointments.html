@@ -399,7 +399,6 @@
   <aside class="sidebar">
     <div class="logo">
       <div class="logo-icon">🐾</div>
-
       <div>
         <h2>Happy Paws</h2>
         <p>Pet Management System</p>
@@ -407,7 +406,6 @@
     </div>
 
     <p class="menu-title">Main Menu</p>
-
     <a class="nav-link" href="dashboard.html">📊 Dashboard</a>
     <a class="nav-link" href="records.html">🐶 Pet Records</a>
     <a class="nav-link" href="owners.html">👥 Owners</a>
@@ -417,12 +415,10 @@
     <a class="nav-link" href="medicines.html">💉 Medicines</a>
 
     <p class="menu-title">Management</p>
-
     <a class="nav-link" href="billing.html">💳 Billing</a>
     <a class="nav-link" href="reports.html">📈 Reports</a>
 
     <p class="menu-title">Account</p>
-
     <a class="nav-link" href="login.html" id="logout">🚪 Logout</a>
   </aside>
 
@@ -435,7 +431,6 @@
 
       <div class="profile">
         <div class="profile-icon">A</div>
-
         <div>
           <p class="profile-name">Administrator</p>
           <p class="profile-role">Admin Account</p>
@@ -450,19 +445,13 @@
           <p>View and manage pet appointments.</p>
         </div>
 
-        <button class="primary" id="addButton">
-          + New Appointment
-        </button>
+        <button class="primary" id="addButton">+ New Appointment</button>
       </div>
 
       <div class="notice" id="notice"></div>
 
       <div class="toolbar">
-        <input
-          type="search"
-          id="searchInput"
-          placeholder="Search pet, owner, service..."
-        >
+        <input type="search" id="searchInput" placeholder="Search pet, owner, service...">
 
         <select id="statusFilter">
           <option value="all">All Statuses</option>
@@ -485,7 +474,6 @@
               <th>ACTIONS</th>
             </tr>
           </thead>
-
           <tbody id="appTableBody"></tbody>
         </table>
       </div>
@@ -550,13 +538,8 @@
         </div>
 
         <div class="form-buttons">
-          <button type="button" class="secondary" id="cancelButton">
-            Cancel
-          </button>
-
-          <button type="submit" class="primary" id="saveButton">
-            Save Appointment
-          </button>
+          <button type="button" class="secondary" id="cancelButton">Cancel</button>
+          <button type="submit" class="primary" id="saveButton">Save Appointment</button>
         </div>
       </form>
     </div>
@@ -665,18 +648,15 @@
                 ${safe(appointment.date)}
               </div>
             </td>
-
             <td>${safe(appointment.pet)}</td>
             <td>${safe(appointment.owner)}</td>
             <td>${safe(appointment.service)}</td>
             <td>${safe(appointment.vet)}</td>
-
             <td>
               <span class="status ${String(appointment.status).toLowerCase()}">
                 ${safe(appointment.status)}
               </span>
             </td>
-
             <td class="actions">
               <button class="action" data-action="view" data-id="${safe(appointment.id)}">View</button>
               <button class="action" data-action="edit" data-id="${safe(appointment.id)}">Edit</button>
@@ -728,7 +708,6 @@
     }
 
     $("addButton").onclick = () => openModal();
-
     $("closeButton").onclick = closeModal;
     $("cancelButton").onclick = closeModal;
 
@@ -765,13 +744,16 @@
         status: $("status").value
       };
 
-      if (editingId) {
+      const updated = Boolean(editingId);
+
+      if (updated) {
         const index = records.findIndex(item =>
           String(item.id) === String(editingId)
         );
 
         if (index < 0) {
-          return alert("Appointment not found.");
+          alert("Appointment not found.");
+          return;
         }
 
         records[index] = appointment;
@@ -779,13 +761,15 @@
         records.push(appointment);
       }
 
-      const updated = Boolean(editingId);
-
       save();
       closeModal();
       render();
 
-      showNotice(updated ? "Appointment updated!" : "Appointment added!");
+      if (updated) {
+        alert("Appointment updated successfully!");
+      } else {
+        alert("Appointment added successfully!");
+      }
     };
 
     body.onclick = event => {
@@ -815,17 +799,16 @@
         openModal(appointment);
       }
 
-      if (
-        button.dataset.action === "delete" &&
-        confirm(`Delete appointment for ${appointment.pet}?`)
-      ) {
-        records = records.filter(item =>
-          String(item.id) !== String(appointment.id)
-        );
+      if (button.dataset.action === "delete") {
+        if (confirm(`Delete appointment for ${appointment.pet}?`)) {
+          records = records.filter(item =>
+            String(item.id) !== String(appointment.id)
+          );
 
-        save();
-        render();
-        showNotice("Appointment deleted!");
+          save();
+          render();
+          alert("Appointment deleted successfully!");
+        }
       }
     };
 
