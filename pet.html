@@ -161,45 +161,63 @@
   </div>
 
   <script>
-   const email = localStorage.getItem("currentUserEmail");
+  const petForm = document.getElementById("petForm");
 
-function getUsers() {
-  return JSON.parse(localStorage.getItem("happyPawsUsers") || "[]");
+if (petForm) {
+    petForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const email = localStorage.getItem("currentUserEmail");
+        const users = JSON.parse(localStorage.getItem("happyPawsUsers") || "[]");
+        const user = users.find(item => item.email === email);
+
+        if (!user) {
+            alert("Please register or log in first.");
+            window.location.href = "index.html";
+            return;
+        }
+
+        const petName = document.getElementById("petName");
+        const petType = document.getElementById("petType");
+        const breed = document.getElementById("breed");
+        const gender = document.getElementById("gender");
+        const dob = document.getElementById("dob");
+        const color = document.getElementById("color");
+
+        if (!petName || !petType || !breed || !gender || !dob || !color) {
+            alert("May input ID na hindi tugma sa pet.html. Pakisuri ang IDs.");
+            return;
+        }
+
+        const pet = {
+            id: Date.now(),
+            name: petName.value.trim(),
+            type: petType.value,
+            breed: breed.value.trim(),
+            gender: gender.value,
+            dob: dob.value,
+            color: color.value.trim()
+        };
+
+        if (!pet.name || !pet.type) {
+            alert("Please enter the pet name and type.");
+            return;
+        }
+
+        if (!Array.isArray(user.pets)) {
+            user.pets = [];
+        }
+
+        user.pets.push(pet);
+
+        localStorage.setItem("happyPawsUsers", JSON.stringify(users));
+
+        alert("Pet information saved successfully!");
+        window.location.href = "dashboard.html";
+    });
+} else {
+    alert("Hindi makita ang petForm. Pakisuri ang ID ng form sa pet.html.");
 }
-
-document.getElementById("petForm").addEventListener("submit", function(event) {
-  event.preventDefault();
-
-  const users = getUsers();
-  const index = users.findIndex(user => user.email === email);
-
-  if (index === -1) {
-    alert("Account not found. Please register or log in.");
-    window.location.href = "index.html";
-    return;
-  }
-
-  const pet = {
-    id: Date.now().toString(),
-    name: document.getElementById("petName").value.trim(),
-    type: document.getElementById("petType").value,
-    breed: document.getElementById("breed").value.trim(),
-    gender: document.getElementById("gender").value,
-    dob: document.getElementById("dob").value,
-    color: document.getElementById("color").value.trim()
-  };
-
-  users[index].pets = users[index].pets || [];
-  users[index].pets.push(pet);
-
-  try {
-    localStorage.setItem("happyPawsUsers", JSON.stringify(users));
-    alert("Pet information saved successfully!");
-    window.location.href = "dashboard.html";
-  } catch (error) {
-    alert("Unable to save pet information.");
-  }
-});
   </script>
 </body>
 </html>
