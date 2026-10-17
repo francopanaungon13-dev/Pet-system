@@ -1,4 +1,4 @@
-<html>
+ <html>
 <head>
   <meta charset="UTF-8">
   <title>Happy Paws - Billing</title>
@@ -23,6 +23,9 @@
       padding: 24px 20px;
       border-right: 1px solid #e2e8f0;
       flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     .brand-title {
@@ -35,6 +38,15 @@
       font-size: 11px;
       color: #a0aec0;
       margin: 4px 0 28px 0;
+    }
+
+    .menu-title {
+      font-size: 10px;
+      font-weight: bold;
+      color: #a0aec0;
+      margin: 18px 0 10px 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .nav-list {
@@ -63,9 +75,43 @@
       font-weight: bold;
     }
 
+    .admin-profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: auto;
+      padding: 18px 0 0;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .admin-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #ebf8ff;
+      color: #2b6cb0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .admin-name {
+      font-size: 12px;
+      font-weight: bold;
+      color: #2d3748;
+    }
+
+    .admin-role {
+      font-size: 10px;
+      color: #a0aec0;
+      margin-top: 4px;
+    }
+
     .main-content {
       flex: 1;
       padding: 24px 36px;
+      min-width: 0;
     }
 
     .top-header {
@@ -73,10 +119,12 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 24px;
+      gap: 16px;
     }
 
     .top-search-input {
       width: 320px;
+      max-width: 100%;
       padding: 9px 16px;
       border: 1px solid #e2e8f0;
       border-radius: 20px;
@@ -89,6 +137,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 16px;
       margin-bottom: 24px;
     }
 
@@ -110,11 +159,17 @@
       cursor: pointer;
     }
 
+    .btn-add:hover,
+    .btn-save:hover {
+      background-color: #2b6cb0;
+    }
+
     .card-box {
       background-color: #ffffff;
       border-radius: 12px;
       padding: 24px;
       border: 1px solid #e2e8f0;
+      overflow-x: auto;
     }
 
     .data-table {
@@ -129,6 +184,7 @@
       padding: 12px 14px;
       color: #2b6cb0;
       font-weight: bold;
+      white-space: nowrap;
     }
 
     .data-table td {
@@ -150,6 +206,17 @@
       color: #3182ce;
       text-decoration: none;
       font-weight: bold;
+      margin-right: 10px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .delete-link {
+      color: #e53e3e;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+      white-space: nowrap;
     }
 
     .modal-backdrop {
@@ -163,11 +230,15 @@
       justify-content: center;
       align-items: center;
       z-index: 1000;
+      padding: 16px;
     }
 
     .modal-card {
       background: #ffffff;
       width: 400px;
+      max-width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
       border-radius: 12px;
       padding: 24px;
     }
@@ -222,25 +293,63 @@
       cursor: pointer;
       font-weight: bold;
     }
+
+    @media (max-width: 800px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        min-height: auto;
+      }
+
+      .admin-profile {
+        margin-top: 20px;
+      }
+
+      .main-content {
+        padding: 20px;
+      }
+
+      .page-title-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
   </style>
 </head>
 <body>
 
   <aside class="sidebar">
-    <div class="brand-title">Happy Paws</div>
-    <div class="brand-subtitle">Better Care, Happier Pets.</div>
-    <ul class="nav-list">
-      <li><a href="dashboard.html">🏠 Dashboard</a></li>
-      <li><a href="records.html">🐾 Pet Records</a></li>
-      <li><a href="owners.html">👤 Owners</a></li>
-      <li><a href="appointments.html">📅 Appointments</a></li>
-      <li><a href="consulations.html">🩺 Consultations</a></li>
-      <li><a href="services.html">📋 Services</a></li>
-      <li><a href="medicines.html">💊 Medicines</a></li>
-      <li class="active"><a href="billing.html">💳 Billing</a></li>
-      <li><a href="reports.html">📊 Reports</a></li>
-    </ul>
-  </aside>
+  <div class="brand-title">Happy Paws</div>
+  <div class="brand-subtitle">Better Care, Happier Pets.</div>
+
+  <p class="menu-title">Main Menu</p>
+  <a class="nav-link" href="dashboard.html">📊 Dashboard</a>
+
+  <p class="menu-title">Management</p>
+  <a class="nav-link" href="records.html">🐶 Pet Records</a>
+  <a class="nav-link" href="owners.html">👥 Owners</a>
+  <a class="nav-link" href="appointments.html">📅 Appointments</a>
+  <a class="nav-link" href="consulations.html">🩺 Consultations</a>
+  <a class="nav-link" href="services.html">💊 Services</a>
+  <a class="nav-link" href="medicines.html">💉 Medicines</a>
+
+  <p class="menu-title">Management</p>
+  <a class="nav-link active" href="billing.html">💳 Billing</a>
+  <a class="nav-link" href="reports.html">📈 Reports</a>
+
+  <p class="menu-title">Account</p>
+
+  <div class="administrator">
+    <div class="admin-avatar">👤</div>
+    <div>
+      <div class="admin-name">Administrator</div>
+      <div class="admin-role">System Admin</div>
+    </div>
+  </div>
+</aside>
 
   <main class="main-content">
     <header class="top-header">
@@ -250,7 +359,7 @@
 
     <div class="page-title-row">
       <div class="title-area">
-        <h1>Billing & Invoices</h1>
+        <h1>Billing &amp; Invoices</h1>
         <p style="color: #a0aec0; font-size: 13px;">Manage client payments and invoice records.</p>
       </div>
       <button class="btn-add" id="btnOpenModal">+ Create Invoice</button>
@@ -275,7 +384,10 @@
             <td>Buddy</td>
             <td>₱1,250</td>
             <td class="text-green">Paid</td>
-            <td><a href="#" class="action-link">View</a></td>
+            <td>
+              <a href="#" class="action-link view-link">View</a>
+              <a href="#" class="delete-link">Delete</a>
+            </td>
           </tr>
           <tr>
             <td>INV-2026-002</td>
@@ -283,7 +395,10 @@
             <td>Luna</td>
             <td>₱800</td>
             <td class="text-orange">Pending</td>
-            <td><a href="#" class="action-link">View</a></td>
+            <td>
+              <a href="#" class="action-link view-link">View</a>
+              <a href="#" class="delete-link">Delete</a>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -294,11 +409,29 @@
     <div class="modal-card">
       <h2>Create Invoice</h2>
       <form id="addForm">
-        <div class="form-group"><label>Invoice No.</label><input type="text" id="bInv" class="form-control" placeholder="e.g. INV-2026-003" required></div>
-        <div class="form-group"><label>Owner Name</label><input type="text" id="bOwner" class="form-control" required></div>
-        <div class="form-group"><label>Pet Name</label><input type="text" id="bPet" class="form-control" required></div>
-        <div class="form-group"><label>Amount</label><input type="text" id="bAmount" class="form-control" placeholder="e.g. ₱1,500" required></div>
-        <div class="form-group"><label>Status</label><select id="bStatus" class="form-control"><option value="Paid">Paid</option><option value="Pending">Pending</option></select></div>
+        <div class="form-group">
+          <label for="bInv">Invoice No.</label>
+          <input type="text" id="bInv" class="form-control" placeholder="e.g. INV-2026-003" required>
+        </div>
+        <div class="form-group">
+          <label for="bOwner">Owner Name</label>
+          <input type="text" id="bOwner" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="bPet">Pet Name</label>
+          <input type="text" id="bPet" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="bAmount">Amount</label>
+          <input type="number" id="bAmount" class="form-control" min="0" step="0.01" placeholder="e.g. 1500" required>
+        </div>
+        <div class="form-group">
+          <label for="bStatus">Status</label>
+          <select id="bStatus" class="form-control">
+            <option value="Paid">Paid</option>
+            <option value="Pending">Pending</option>
+          </select>
+        </div>
         <div class="modal-actions">
           <button type="button" class="btn-cancel" id="btnCloseModal">Cancel</button>
           <button type="submit" class="btn-save">Save Invoice</button>
@@ -311,34 +444,124 @@
     const searchInput = document.getElementById('searchInput');
     const tableBody = document.getElementById('billingTableBody');
     const modal = document.getElementById('addModal');
+    const addForm = document.getElementById('addForm');
 
-    searchInput.addEventListener('keyup', () => {
+    function formatAmount(value) {
+      return '₱' + Number(value).toLocaleString('en-PH', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function updateStatusCell(cell, status) {
+      cell.textContent = status;
+      cell.className = status === 'Paid' ? 'text-green' : 'text-orange';
+    }
+
+    function attachRowActions(row) {
+      const viewLink = row.querySelector('.view-link');
+      const deleteLink = row.querySelector('.delete-link');
+
+      viewLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        const cells = row.querySelectorAll('td');
+        alert(
+          'Invoice Details\n\n' +
+          'Invoice No.: ' + cells[0].textContent + '\n' +
+          'Owner: ' + cells[1].textContent + '\n' +
+          'Pet: ' + cells[2].textContent + '\n' +
+          'Amount: ' + cells[3].textContent + '\n' +
+          'Status: ' + cells[4].textContent
+        );
+      });
+
+      deleteLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        const invoiceNo = row.cells[0].textContent;
+
+        if (confirm('Are you sure you want to delete invoice ' + invoiceNo + '?')) {
+          row.remove();
+          alert('Invoice deleted successfully!');
+        }
+      });
+    }
+
+    Array.from(tableBody.querySelectorAll('tr')).forEach(attachRowActions);
+
+    searchInput.addEventListener('input', function() {
       const filter = searchInput.value.toLowerCase();
-      Array.from(tableBody.querySelectorAll('tr')).forEach(row => {
+
+      Array.from(tableBody.querySelectorAll('tr')).forEach(function(row) {
         row.style.display = row.textContent.toLowerCase().includes(filter) ? '' : 'none';
       });
     });
 
-    document.getElementById('btnOpenModal').onclick = () => modal.style.display = 'flex';
-    document.getElementById('btnCloseModal').onclick = () => modal.style.display = 'none';
+    document.getElementById('btnOpenModal').addEventListener('click', function() {
+      modal.style.display = 'flex';
+      document.getElementById('bInv').focus();
+    });
 
-    document.getElementById('addForm').onsubmit = (e) => {
-      e.preventDefault();
-      const statusVal = document.getElementById('bStatus').value;
-      const statusClass = statusVal === 'Paid' ? 'text-green' : 'text-orange';
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td>${document.getElementById('bInv').value}</td>
-        <td>${document.getElementById('bOwner').value}</td>
-        <td>${document.getElementById('bPet').value}</td>
-        <td>${document.getElementById('bAmount').value}</td>
-        <td class="${statusClass}">${statusVal}</td>
-        <td><a href="#" class="action-link">View</a></td>
-      `;
-      tableBody.appendChild(row);
+    document.getElementById('btnCloseModal').addEventListener('click', function() {
       modal.style.display = 'none';
-      e.target.reset();
-    };
+      addForm.reset();
+    });
+
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+        addForm.reset();
+      }
+    });
+
+    addForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const invoiceNo = document.getElementById('bInv').value.trim();
+      const owner = document.getElementById('bOwner').value.trim();
+      const pet = document.getElementById('bPet').value.trim();
+      const amount = document.getElementById('bAmount').value;
+      const status = document.getElementById('bStatus').value;
+
+      if (!invoiceNo || !owner || !pet || amount === '' || Number(amount) < 0) {
+        alert('Please complete all fields correctly.');
+        return;
+      }
+
+      const duplicate = Array.from(tableBody.querySelectorAll('tr')).some(function(row) {
+        return row.cells[0].textContent.toLowerCase() === invoiceNo.toLowerCase();
+      });
+
+      if (duplicate) {
+        alert('This invoice number already exists. Please use a different invoice number.');
+        return;
+      }
+
+      const row = document.createElement('tr');
+      const invoiceCell = document.createElement('td');
+      const ownerCell = document.createElement('td');
+      const petCell = document.createElement('td');
+      const amountCell = document.createElement('td');
+      const statusCell = document.createElement('td');
+      const actionCell = document.createElement('td');
+
+      invoiceCell.textContent = invoiceNo;
+      ownerCell.textContent = owner;
+      petCell.textContent = pet;
+      amountCell.textContent = formatAmount(amount);
+      updateStatusCell(statusCell, status);
+
+      actionCell.innerHTML = '<a href="#" class="action-link view-link">View</a> <a href="#" class="delete-link">Delete</a>';
+
+      row.append(invoiceCell, ownerCell, petCell, amountCell, statusCell, actionCell);
+      tableBody.appendChild(row);
+      attachRowActions(row);
+
+      modal.style.display = 'none';
+      addForm.reset();
+
+      searchInput.dispatchEvent(new Event('input'));
+      alert('Invoice created successfully!');
+    });
   </script>
 
 </body>
