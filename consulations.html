@@ -285,7 +285,7 @@
 
     <p class="menu-title">Main Menu</p>
     <a class="nav-link" href="dashboard.html">📊 Dashboard</a>
-     <p class="menu-title">Management</p>
+    <p class="menu-title">Management</p>
     <a class="nav-link" href="records.html">🐶 Pet Records</a>
     <a class="nav-link" href="owners.html">👥 Owners</a>
     <a class="nav-link" href="appointments.html">📅 Appointments</a>
@@ -632,6 +632,7 @@
         );
         save();
         render();
+        alert("Consultation deleted successfully!");
       }
     };
 
@@ -664,10 +665,11 @@
       suggestions();
       closeModal();
 
-      const notice = document.getElementById("notice");
-      notice.textContent = id ? "Consultation updated." : "Consultation added.";
-      notice.classList.add("show");
-      setTimeout(() => notice.classList.remove("show"), 2500);
+      if (id) {
+        alert("Consultation updated successfully!");
+      } else {
+        alert("Consultation added successfully!");
+      }
     };
 
     document.getElementById("logoutLink").onclick = event => {
