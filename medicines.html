@@ -1,7 +1,7 @@
-
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Paws - Medicines</title>
   <style>
     * {
@@ -12,274 +12,353 @@
     }
 
     body {
-      background-color: #f2f7fb;
-      color: #333;
       display: flex;
       min-height: 100vh;
+      background: #f2f7fb;
+      color: #333;
     }
 
     .sidebar {
-      width: 240px;
-      background-color: #ffffff;
-      padding: 24px 20px;
-      border-right: 1px solid #e2e8f0;
+      width: 220px;
+      padding: 20px 15px;
+      background: white;
+      border-right: 1px solid #dce6ef;
       flex-shrink: 0;
+    }
+
+    .logo {
       display: flex;
-      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 25px;
     }
 
-    .brand-title {
-      color: #2b6cb0;
+    .logo-icon {
+      font-size: 30px;
+    }
+
+    .logo h2 {
+      color: #087cff;
       font-size: 20px;
-      font-weight: bold;
     }
 
-    .brand-subtitle {
+    .logo p {
+      color: #888;
       font-size: 11px;
-      color: #a0aec0;
-      margin: 4px 0 28px 0;
+      margin-top: 3px;
     }
 
     .menu-title {
-      color: #a0aec0;
-      font-size: 10px;
+      margin: 20px 10px 10px;
+      color: #999;
+      font-size: 11px;
       font-weight: bold;
-      text-transform: uppercase;
-      margin: 18px 0 10px 10px;
-      letter-spacing: 1px;
     }
 
     .nav-link {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 11px 14px;
-      color: #4a5568;
+      display: block;
+      padding: 11px;
+      margin-bottom: 5px;
+      border-radius: 7px;
+      color: #555;
       text-decoration: none;
       font-size: 13px;
-      border-radius: 8px;
-      margin-bottom: 6px;
     }
 
-    .nav-link.active,
     .nav-link:hover {
-      background-color: #ebf8ff;
-      color: #2b6cb0;
-      font-weight: bold;
+      background: #edf6ff;
     }
 
-    .administrator {
+    .nav-link.active {
+      background: #087cff;
+      color: white;
+    }
+
+    .main {
+      flex: 1;
+      min-width: 0;
+      padding: 25px;
+    }
+
+    .topbar,
+    .content-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      color: #20364b;
+      font-size: 26px;
+    }
+
+    .page-title p,
+    .content-header p {
+      margin-top: 6px;
+      color: #788899;
+      font-size: 13px;
+    }
+
+    .profile {
       display: flex;
       align-items: center;
       gap: 10px;
-      border-top: 1px solid #e2e8f0;
-      padding-top: 18px;
-      margin-top: auto;
+      padding: 10px;
+      border: 1px solid #e0e8ef;
+      border-radius: 9px;
+      background: white;
     }
 
-    .admin-avatar {
-      width: 38px;
-      height: 38px;
+    .profile-icon {
+      display: grid;
+      place-items: center;
+      width: 35px;
+      height: 35px;
       border-radius: 50%;
-      background-color: #ebf8ff;
-      color: #2b6cb0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
+      background: #dceeff;
+      color: #087cff;
     }
 
-    .admin-name {
-      color: #2d3748;
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    .admin-role {
-      color: #a0aec0;
-      font-size: 11px;
-      margin-top: 4px;
-    }
-
-    .main-content {
-      flex: 1;
-      padding: 24px 36px;
-      min-width: 0;
-    }
-
-    .top-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-    }
-
-    .top-search-input {
-      width: 320px;
-      padding: 9px 16px;
-      border: 1px solid #e2e8f0;
-      border-radius: 20px;
-      font-size: 12px;
-      outline: none;
-      background-color: #ffffff;
-    }
-
-    .page-title-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-    }
-
-    .title-area h1 {
-      color: #1a365d;
-      font-size: 26px;
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-
-    .btn-add {
-      background-color: #3182ce;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
+    .profile-name {
       font-size: 13px;
       font-weight: bold;
+    }
+
+    .profile-role {
+      margin-top: 3px;
+      color: #888;
+      font-size: 11px;
+    }
+
+    .content-card {
+      padding: 20px;
+      border: 1px solid #e2eaf1;
+      border-radius: 10px;
+      background: white;
+    }
+
+    button {
       cursor: pointer;
     }
 
-    .card-box {
-      background-color: #ffffff;
-      border-radius: 12px;
-      padding: 24px;
-      border: 1px solid #e2e8f0;
+    .primary-button {
+      padding: 11px 15px;
+      border: none;
+      border-radius: 7px;
+      background: #087cff;
+      color: white;
+      font-size: 12px;
+    }
+
+    .primary-button:hover {
+      background: #0067db;
+    }
+
+    .toolbar {
+      margin-bottom: 18px;
+    }
+
+    .toolbar input {
+      width: 100%;
+      max-width: 350px;
+      padding: 11px;
+      border: 1px solid #dce5ed;
+      border-radius: 7px;
+      outline: none;
+      background: white;
+    }
+
+    .table-wrapper {
       overflow-x: auto;
     }
 
-    .data-table {
+    table {
       width: 100%;
+      min-width: 700px;
       border-collapse: collapse;
+    }
+
+    thead {
+      background: #f5f9fc;
+    }
+
+    th,
+    td {
+      padding: 13px 10px;
+      border-bottom: 1px solid #edf1f5;
+      text-align: left;
       font-size: 12px;
     }
 
-    .data-table th {
-      background-color: #ebf8ff;
-      text-align: left;
-      padding: 12px 14px;
-      color: #2b6cb0;
-      font-weight: bold;
+    th {
+      color: #708090;
     }
 
-    .data-table td {
-      padding: 16px 14px;
-      border-bottom: 1px solid #f0f4f8;
+    .status {
+      display: inline-block;
+      padding: 6px 9px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: bold;
     }
 
     .text-red {
-      color: #e53e3e;
-      font-weight: bold;
+      background: #ffe9e9;
+      color: #cf3d3d;
     }
 
     .text-green {
-      color: #38a169;
-      font-weight: bold;
+      background: #e4f8ec;
+      color: #168348;
     }
 
-    .action-link {
-      color: #3182ce;
-      text-decoration: none;
-      font-weight: bold;
-      cursor: pointer;
-      margin-right: 8px;
+    .action-button {
+      padding: 7px 9px;
+      margin-right: 3px;
+      border: 1px solid #dce5ed;
+      border-radius: 6px;
+      background: white;
+      font-size: 11px;
     }
 
-    .delete-link {
-      color: #e53e3e;
-      text-decoration: none;
-      font-weight: bold;
-      cursor: pointer;
+    .delete-button {
+      color: #cf3d3d;
     }
 
-    .modal-backdrop {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.4);
+    .empty-message {
       display: none;
-      justify-content: center;
-      align-items: center;
+      padding: 25px;
+      text-align: center;
+      color: #8996a3;
+      font-size: 13px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
       z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      background: #0007;
     }
 
-    .modal-card {
-      background: #ffffff;
-      width: 400px;
-      max-width: 95%;
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      width: 100%;
+      max-width: 450px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 22px;
       border-radius: 12px;
-      padding: 24px;
+      background: white;
     }
 
-    .modal-card h2 {
-      font-size: 18px;
-      color: #2b6cb0;
-      margin-bottom: 16px;
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .modal-header h2 {
+      color: #087cff;
+      font-size: 19px;
+    }
+
+    .close-button {
+      border: none;
+      background: none;
+      font-size: 25px;
     }
 
     .form-group {
-      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 13px;
     }
 
     .form-group label {
-      display: block;
       font-size: 12px;
       font-weight: bold;
-      margin-bottom: 4px;
     }
 
-    .form-control {
+    .form-group input,
+    .form-group select {
       width: 100%;
-      padding: 8px 10px;
-      border: 1px solid #cbd5e0;
-      border-radius: 6px;
+      padding: 10px;
+      border: 1px solid #dce5ed;
+      border-radius: 7px;
+      outline: none;
       font-size: 12px;
     }
 
-    .modal-actions {
+    .form-buttons {
       display: flex;
       justify-content: flex-end;
       gap: 10px;
-      margin-top: 16px;
+      margin-top: 18px;
     }
 
-    .btn-cancel {
-      background: #e2e8f0;
-      color: #4a5568;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 6px;
-      cursor: pointer;
+    .secondary-button {
+      padding: 9px 14px;
+      border: 1px solid #dce5ed;
+      border-radius: 7px;
+      background: white;
+      font-size: 12px;
     }
 
-    .btn-save {
-      background: #3182ce;
-      color: white;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
+    @media (max-width: 900px) {
+      .sidebar {
+        width: 190px;
+      }
+
+      .main {
+        padding: 18px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+      }
+
+      .nav-link {
+        display: inline-block;
+        padding: 8px;
+      }
+
+      .main {
+        padding: 14px;
+      }
+
+      .toolbar input {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-
   <aside class="sidebar">
-    <div class="brand-title">Happy Paws</div>
-    <div class="brand-subtitle">Better Care, Happier Pets.</div>
+    <div class="logo">
+      <div class="logo-icon">🐾</div>
+      <div>
+        <h2>Happy Paws</h2>
+        <p>Pet Management System</p>
+      </div>
+    </div>
 
     <p class="menu-title">Main Menu</p>
     <a class="nav-link" href="dashboard.html">📊 Dashboard</a>
@@ -297,214 +376,316 @@
     <a class="nav-link" href="reports.html">📈 Reports</a>
 
     <p class="menu-title">Account</p>
-
-    <div class="administrator">
-      <div class="admin-avatar">👤</div>
-      <div>
-        <div class="admin-name">Administrator</div>
-        <div class="admin-role">System Admin</div>
-      </div>
-    </div>
+    <a class="nav-link" href="login.html" id="logoutLink">🚪 Logout</a>
   </aside>
 
-  <main class="main-content">
-    <header class="top-header">
-      <input type="text" id="searchInput" class="top-search-input" placeholder="Search medicine name...">
-      <div style="font-size: 13px; font-weight: bold; color: #2b6cb0;">Happy Paws Clinic</div>
+  <main class="main">
+    <header class="topbar">
+      <div class="page-title">
+        <h1>Medicines Inventory</h1>
+        <p>Manage clinic stock and medicine records.</p>
+      </div>
+
+      <div class="profile">
+        <div class="profile-icon">A</div>
+        <div>
+          <p class="profile-name">Administrator</p>
+          <p class="profile-role">Admin Account</p>
+        </div>
+      </div>
     </header>
 
-    <div class="page-title-row">
-      <div class="title-area">
-        <h1>Medicines Inventory</h1>
-        <p style="color: #a0aec0; font-size: 13px;">Manage clinic stock and medicine records.</p>
+    <section class="content-card">
+      <div class="content-header">
+        <div>
+          <h2>Medicine Records</h2>
+          <p>View and manage clinic medicine inventory.</p>
+        </div>
+        <button class="primary-button" id="btnOpenModal">+ Add Medicine</button>
       </div>
-      <button class="btn-add" id="btnOpenModal">+ Add Medicine</button>
-    </div>
 
-    <div class="card-box">
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>MEDICINE NAME</th>
-            <th>CATEGORY</th>
-            <th>STOCK</th>
-            <th>UNIT PRICE</th>
-            <th>STATUS</th>
-            <th>ACTION</th>
-          </tr>
-        </thead>
-        <tbody id="medicinesTableBody">
-          <tr>
-            <td>Amoxicillin 250mg</td>
-            <td>Antibiotic</td>
-            <td>3 pcs</td>
-            <td>₱150</td>
-            <td class="text-red">Low Stock</td>
-            <td>
-              <a href="#" class="action-link" onclick="editMedicine(this); return false;">Edit</a>
-              <a href="#" class="delete-link" onclick="deleteMedicine(this); return false;">Delete</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Flea & Tick Treatment</td>
-            <td>Preventive Care</td>
-            <td>2 pcs</td>
-            <td>₱450</td>
-            <td class="text-red">Low Stock</td>
-            <td>
-              <a href="#" class="action-link" onclick="editMedicine(this); return false;">Edit</a>
-              <a href="#" class="delete-link" onclick="deleteMedicine(this); return false;">Delete</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Multitamins</td>
-            <td>Supplements</td>
-            <td>25 pcs</td>
-            <td>₱200</td>
-            <td class="text-green">In Stock</td>
-            <td>
-              <a href="#" class="action-link" onclick="editMedicine(this); return false;">Edit</a>
-              <a href="#" class="delete-link" onclick="deleteMedicine(this); return false;">Delete</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      <div class="toolbar">
+        <input type="search" id="searchInput" placeholder="Search medicine name, category...">
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>MEDICINE NAME</th>
+              <th>CATEGORY</th>
+              <th>STOCK</th>
+              <th>UNIT PRICE</th>
+              <th>STATUS</th>
+              <th>ACTION</th>
+            </tr>
+          </thead>
+          <tbody id="medicinesTableBody"></tbody>
+        </table>
+        <div class="empty-message" id="emptyMessage">No medicines found.</div>
+      </div>
+    </section>
   </main>
 
-  <div class="modal-backdrop" id="addModal">
-    <div class="modal-card">
-      <h2 id="modalTitle">Add Medicine</h2>
-      <form id="addForm">
+  <div class="modal" id="medicineModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Add Medicine</h2>
+        <button type="button" class="close-button" id="btnCloseModal">&times;</button>
+      </div>
+
+      <form id="medicineForm">
+        <input type="hidden" id="medicineId">
+
         <div class="form-group">
-          <label>Medicine Name</label>
-          <input type="text" id="mName" class="form-control" required>
+          <label for="mName">Medicine Name *</label>
+          <input type="text" id="mName" required>
         </div>
+
         <div class="form-group">
-          <label>Category</label>
-          <input type="text" id="mCat" class="form-control" required>
+          <label for="mCat">Category *</label>
+          <input type="text" id="mCat" required>
         </div>
+
         <div class="form-group">
-          <label>Stock</label>
-          <input type="text" id="mStock" class="form-control" placeholder="e.g. 10 pcs" required>
+          <label for="mStock">Stock Quantity *</label>
+          <input type="number" id="mStock" min="0" step="1" placeholder="e.g. 10" required>
         </div>
+
         <div class="form-group">
-          <label>Unit Price</label>
-          <input type="text" id="mPrice" class="form-control" placeholder="e.g. ₱150" required>
+          <label for="mUnit">Stock Unit</label>
+          <select id="mUnit">
+            <option value="pcs">Pieces (pcs)</option>
+            <option value="bottles">Bottles</option>
+            <option value="boxes">Boxes</option>
+            <option value="packs">Packs</option>
+            <option value="tablets">Tablets</option>
+          </select>
         </div>
+
         <div class="form-group">
-          <label>Status</label>
-          <select id="mStatus" class="form-control">
+          <label for="mPrice">Unit Price (₱) *</label>
+          <input type="number" id="mPrice" min="0" step="0.01" placeholder="150" required>
+        </div>
+
+        <div class="form-group">
+          <label for="mStatus">Status</label>
+          <select id="mStatus">
             <option value="In Stock">In Stock</option>
             <option value="Low Stock">Low Stock</option>
           </select>
         </div>
-        <div class="modal-actions">
-          <button type="button" class="btn-cancel" id="btnCloseModal">Cancel</button>
-          <button type="submit" class="btn-save">Save Medicine</button>
+
+        <div class="form-buttons">
+          <button type="button" class="secondary-button" id="btnCancel">Cancel</button>
+          <button type="submit" class="primary-button">Save Medicine</button>
         </div>
       </form>
     </div>
   </div>
 
   <script>
-    const searchInput = document.getElementById('searchInput');
-    const tableBody = document.getElementById('medicinesTableBody');
-    const modal = document.getElementById('addModal');
-    const addForm = document.getElementById('addForm');
-    let editingRow = null;
+    const KEY = "happyPawsMedicines";
+    const tableBody = document.getElementById("medicinesTableBody");
+    const modal = document.getElementById("medicineModal");
+    const form = document.getElementById("medicineForm");
+    const searchInput = document.getElementById("searchInput");
 
-    searchInput.addEventListener('keyup', () => {
-      const filter = searchInput.value.toLowerCase();
-      Array.from(tableBody.querySelectorAll('tr')).forEach(row => {
-        row.style.display = row.textContent.toLowerCase().includes(filter) ? '' : 'none';
-      });
-    });
+    const defaultMedicines = [
+      {
+        id: "1",
+        name: "Amoxicillin 250mg",
+        category: "Antibiotic",
+        stock: 3,
+        unit: "pcs",
+        price: 150,
+        status: "Low Stock"
+      },
+      {
+        id: "2",
+        name: "Flea & Tick Treatment",
+        category: "Preventive Care",
+        stock: 2,
+        unit: "pcs",
+        price: 450,
+        status: "Low Stock"
+      },
+      {
+        id: "3",
+        name: "Multitamins",
+        category: "Supplements",
+        stock: 25,
+        unit: "pcs",
+        price: 200,
+        status: "In Stock"
+      }
+    ];
 
-    document.getElementById('btnOpenModal').onclick = () => {
-      editingRow = null;
-      addForm.reset();
-      document.getElementById('modalTitle').textContent = 'Add Medicine';
-      modal.style.display = 'flex';
-    };
+    let medicines = [];
 
-    document.getElementById('btnCloseModal').onclick = () => {
-      modal.style.display = 'none';
-      editingRow = null;
-    };
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[char]);
+    }
 
-    addForm.onsubmit = (e) => {
-      e.preventDefault();
+    function loadMedicines() {
+      try {
+        const saved = localStorage.getItem(KEY);
+        medicines = saved === null ? [...defaultMedicines] : JSON.parse(saved);
+        if (!Array.isArray(medicines)) medicines = [...defaultMedicines];
+      } catch {
+        medicines = [...defaultMedicines];
+      }
 
-      const name = document.getElementById('mName').value.trim();
-      const category = document.getElementById('mCat').value.trim();
-      const stock = document.getElementById('mStock').value.trim();
-      const price = document.getElementById('mPrice').value.trim();
-      const statusVal = document.getElementById('mStatus').value;
-      const statusClass = statusVal === 'In Stock' ? 'text-green' : 'text-red';
+      saveMedicines();
+      renderMedicines();
+    }
 
-      if (editingRow) {
-        editingRow.cells[0].textContent = name;
-        editingRow.cells[1].textContent = category;
-        editingRow.cells[2].textContent = stock;
-        editingRow.cells[3].textContent = price;
-        editingRow.cells[4].textContent = statusVal;
-        editingRow.cells[4].className = statusClass;
+    function saveMedicines() {
+      localStorage.setItem(KEY, JSON.stringify(medicines));
+    }
 
-        modal.style.display = 'none';
-        addForm.reset();
-        editingRow = null;
+    function renderMedicines() {
+      const term = searchInput.value.toLowerCase().trim();
 
-        alert('Medicine updated successfully!');
+      const filtered = medicines.filter(medicine =>
+        [
+          medicine.name,
+          medicine.category,
+          medicine.stock,
+          medicine.unit,
+          medicine.price,
+          medicine.status
+        ].join(" ").toLowerCase().includes(term)
+      );
+
+      tableBody.innerHTML = filtered.map(medicine => `
+        <tr>
+          <td>${escapeHTML(medicine.name)}</td>
+          <td>${escapeHTML(medicine.category)}</td>
+          <td>${escapeHTML(medicine.stock)} ${escapeHTML(medicine.unit || "pcs")}</td>
+          <td>₱${Number(medicine.price).toLocaleString("en-PH", {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 2
+          })}</td>
+          <td>
+            <span class="status ${medicine.status === "In Stock" ? "text-green" : "text-red"}">
+              ${escapeHTML(medicine.status)}
+            </span>
+          </td>
+          <td>
+            <button class="action-button" data-action="edit" data-id="${escapeHTML(medicine.id)}">Edit</button>
+            <button class="action-button delete-button" data-action="delete" data-id="${escapeHTML(medicine.id)}">Delete</button>
+          </td>
+        </tr>
+      `).join("");
+
+      document.getElementById("emptyMessage").style.display =
+        filtered.length ? "none" : "block";
+    }
+
+    function openModal(medicine = null) {
+      form.reset();
+      document.getElementById("medicineId").value = medicine ? medicine.id : "";
+      document.getElementById("modalTitle").textContent =
+        medicine ? "Edit Medicine" : "Add Medicine";
+
+      if (medicine) {
+        document.getElementById("mName").value = medicine.name;
+        document.getElementById("mCat").value = medicine.category;
+        document.getElementById("mStock").value = medicine.stock;
+        document.getElementById("mUnit").value = medicine.unit || "pcs";
+        document.getElementById("mPrice").value = medicine.price;
+        document.getElementById("mStatus").value = medicine.status;
       } else {
-        const row = document.createElement('tr');
+        document.getElementById("mUnit").value = "pcs";
+        document.getElementById("mStatus").value = "In Stock";
+      }
 
-        [name, category, stock, price].forEach(value => {
-          const cell = document.createElement('td');
-          cell.textContent = value;
-          row.appendChild(cell);
-        });
+      modal.classList.add("show");
+    }
 
-        const statusCell = document.createElement('td');
-        statusCell.className = statusClass;
-        statusCell.textContent = statusVal;
-        row.appendChild(statusCell);
+    function closeModal() {
+      modal.classList.remove("show");
+      form.reset();
+    }
 
-        const actionCell = document.createElement('td');
-        actionCell.innerHTML = '<a href="#" class="action-link" onclick="editMedicine(this); return false;">Edit</a> <a href="#" class="delete-link" onclick="deleteMedicine(this); return false;">Delete</a>';
-        row.appendChild(actionCell);
+    document.getElementById("btnOpenModal").onclick = () => openModal();
+    document.getElementById("btnCloseModal").onclick = closeModal;
+    document.getElementById("btnCancel").onclick = closeModal;
+    searchInput.oninput = renderMedicines;
 
-        tableBody.appendChild(row);
-        modal.style.display = 'none';
-        addForm.reset();
+    modal.onclick = event => {
+      if (event.target === modal) closeModal();
+    };
 
-        alert('Medicine added successfully!');
+    tableBody.onclick = event => {
+      const button = event.target.closest("[data-action]");
+      if (!button) return;
+
+      const medicine = medicines.find(item =>
+        String(item.id) === button.dataset.id
+      );
+
+      if (!medicine) return;
+
+      if (button.dataset.action === "edit") {
+        openModal(medicine);
+      }
+
+      if (button.dataset.action === "delete" &&
+          confirm("Are you sure you want to delete " + medicine.name + "?")) {
+        medicines = medicines.filter(item =>
+          String(item.id) !== String(medicine.id)
+        );
+        saveMedicines();
+        renderMedicines();
+        alert("Medicine deleted successfully!");
       }
     };
 
-    function editMedicine(link) {
-      editingRow = link.closest('tr');
+    form.onsubmit = event => {
+      event.preventDefault();
 
-      document.getElementById('mName').value = editingRow.cells[0].textContent;
-      document.getElementById('mCat').value = editingRow.cells[1].textContent;
-      document.getElementById('mStock').value = editingRow.cells[2].textContent;
-      document.getElementById('mPrice').value = editingRow.cells[3].textContent;
-      document.getElementById('mStatus').value = editingRow.cells[4].textContent;
+      const id = document.getElementById("medicineId").value;
+      const stock = Number(document.getElementById("mStock").value);
 
-      document.getElementById('modalTitle').textContent = 'Edit Medicine';
-      modal.style.display = 'flex';
-    }
+      const medicine = {
+        id: id || Date.now().toString(),
+        name: document.getElementById("mName").value.trim(),
+        category: document.getElementById("mCat").value.trim(),
+        stock: stock,
+        unit: document.getElementById("mUnit").value,
+        price: Number(document.getElementById("mPrice").value),
+        status: document.getElementById("mStatus").value
+      };
 
-    function deleteMedicine(link) {
-      const row = link.closest('tr');
-      const medicineName = row.cells[0].textContent;
-
-      if (confirm('Are you sure you want to delete ' + medicineName + '?')) {
-        row.remove();
-        alert('Medicine deleted successfully!');
+      if (id) {
+        const index = medicines.findIndex(item => String(item.id) === id);
+        if (index !== -1) medicines[index] = medicine;
+      } else {
+        medicines.unshift(medicine);
       }
-    }
-  </script>
 
+      saveMedicines();
+      renderMedicines();
+      closeModal();
+
+      alert(id ? "Medicine updated successfully!" : "Medicine added successfully!");
+    };
+
+    document.getElementById("logoutLink").onclick = event => {
+      if (!confirm("Are you sure you want to log out?")) {
+        event.preventDefault();
+      }
+    };
+
+    loadMedicines();
+  </script>
 </body>
 </html>
