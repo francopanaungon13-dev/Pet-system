@@ -1,7 +1,14 @@
+
 <html>
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Paws - Pet Information</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
       background: #eaf5ff;
@@ -10,6 +17,7 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      padding: 20px 0;
     }
 
     .box {
@@ -73,12 +81,13 @@
       background: #d8eafb;
       border-radius: 5px;
       padding: 5px;
-      box-sizing: border-box;
+      font-family: Arial, sans-serif;
     }
 
     .buttons {
       display: flex;
       justify-content: space-between;
+      gap: 10px;
       margin-top: 22px;
     }
 
@@ -92,6 +101,7 @@
       text-decoration: none;
       font-size: 13px;
       font-family: Arial, sans-serif;
+      text-align: center;
     }
 
     .btn:hover {
@@ -121,10 +131,10 @@
           <label for="petType">Pet Type</label>
           <select id="petType" required>
             <option value="">Select</option>
-            <option>Dog</option>
-            <option>Cat</option>
-            <option>Bird</option>
-            <option>Rabbit</option>
+            <option value="Dog">Dog</option>
+            <option value="Cat">Cat</option>
+            <option value="Bird">Bird</option>
+            <option value="Rabbit">Rabbit</option>
           </select>
         </div>
 
@@ -137,8 +147,8 @@
           <label for="gender">Gender</label>
           <select id="gender" required>
             <option value="">Select</option>
-            <option>Male</option>
-            <option>Female</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
           </select>
         </div>
 
@@ -161,63 +171,93 @@
   </div>
 
   <script>
-  const petForm = document.getElementById("petForm");
+    const petForm = document.getElementById("petForm");
 
-if (petForm) {
     petForm.addEventListener("submit", function(e) {
-        e.preventDefault();
+      e.preventDefault();
 
-        const email = localStorage.getItem("currentUserEmail");
-        const users = JSON.parse(localStorage.getItem("happyPawsUsers") || "[]");
-        const user = users.find(item => item.email === email);
+      let users = [];
 
-        if (!user) {
-            alert("Please register or log in first.");
-            window.location.href = "index.html";
-            return;
-        }
+      try {
+        users = JSON.parse(localStorage.getItem("happyPawsUsers") || "[]");
+      } catch (error) {
+        alert("Unable to read owner information. Please register again.");
+        return;
+      }
 
-        const petName = document.getElementById("petName");
-        const petType = document.getElementById("petType");
-        const breed = document.getElementById("breed");
-        const gender = document.getElementById("gender");
-        const dob = document.getElementById("dob");
-        const color = document.getElementById("color");
+      const email = localStorage.getItem("currentUserEmail");
 
-        if (!petName || !petType || !breed || !gender || !dob || !color) {
-            alert("May input ID na hindi tugma sa pet.html. Pakisuri ang IDs.");
-            return;
-        }
+      const user = users.find(function(item) {
+        return item.email === email;
+      });
 
-        const pet = {
-            id: Date.now(),
-            name: petName.value.trim(),
-            type: petType.value,
-            breed: breed.value.trim(),
-            gender: gender.value,
-            dob: dob.value,
-            color: color.value.trim()
-        };
+      if (!user) {
+        alert("Please register or log in first.");
+        window.location.href = "index.html";
+        return;
+      }
 
-        if (!pet.name || !pet.type) {
-            alert("Please enter the pet name and type.");
-            return;
-        }
+      const pet = {
+        id: Date.now().toString(),
+        name: document.getElementById("petName").value.trim(),
+        type: document.getElementById("petType").value,
+        breed: document.getElementById("breed").value.trim(),
+        gender: document.getElementById("gender").value,
+        dob: document.getElementById("dob").value,
+        color: document.getElementById("color").value.trim(),
+        ownerName: ((user.firstName || "") + " " + (user.lastName || "")).trim(),
+        ownerEmail: user.email
+      };
 
-        if (!Array.isArray(user.pets)) {
-            user.pets = [];
-        }
+      if (
+        !pet.name ||
+        !pet.type ||
+        !pet.breed ||
+        !pet.gender ||
+        !pet.dob ||
+        !pet.color
+      ) {
+        alert("Please complete all pet information.");
+        return;
+      }
 
-        user.pets.push(pet);
+      if (new Date(pet.dob + "T00:00:00") > new Date()) {
+        alert("Date of Birth cannot be in the future.");
+        return;
+      }
 
+      if (!Array.isArray(user.pets)) {
+        user.pets = [];
+      }
+
+      user.pets.push(pet);
+
+      try {
         localStorage.setItem("happyPawsUsers", JSON.stringify(users));
 
+        let savedPets = [];
+
+        try {
+          savedPets = JSON.parse(localStorage.getItem("happyPawsPets") || "[]");
+
+          if (!Array.isArray(savedPets)) {
+            savedPets = [];
+          }
+        } catch (error) {
+          savedPets = [];
+        }
+
+        savedPets.push(pet);
+
+        localStorage.setItem("happyPawsPets", JSON.stringify(savedPets));
+
         alert("Pet information saved successfully!");
-        window.location.href = "dashboard.html";
+        window.location.href = "records.html";
+      } catch (error) {
+        user.pets.pop();
+        alert("Unable to save pet information. Please try again.");
+      }
     });
-} else {
-    alert("Hindi makita ang petForm. Pakisuri ang ID ng form sa pet.html.");
-}
   </script>
 </body>
 </html>
