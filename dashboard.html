@@ -1,6 +1,7 @@
  <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Paws - Dashboard</title>
   <style>
     * {
@@ -11,7 +12,7 @@
     }
 
     body {
-      background-color: #f2f7fb;
+      background: #f2f7fb;
       color: #333;
       display: flex;
       min-height: 100vh;
@@ -19,96 +20,152 @@
 
     .sidebar {
       width: 220px;
-      background-color: #ffffff;
-      padding: 24px 20px;
-      border-right: 1px solid #e2e8f0;
+      padding: 20px 15px;
+      background: white;
+      border-right: 1px solid #dce6ef;
       flex-shrink: 0;
     }
 
-    .brand-title {
-      color: #2b6cb0;
+    .logo {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .logo-icon {
+      font-size: 30px;
+    }
+
+    .logo h2 {
+      color: #087cff;
       font-size: 20px;
+    }
+
+    .logo p {
+      color: #888;
+      font-size: 11px;
+      margin-top: 3px;
+    }
+
+    .menu-title {
+      margin: 20px 10px 10px;
+      color: #999;
+      font-size: 11px;
       font-weight: bold;
     }
 
-    .brand-subtitle {
-      font-size: 11px;
-      color: #a0aec0;
-      margin: 4px 0 28px 0;
-    }
-
-    .nav-list {
-      list-style: none;
-    }
-
-    .nav-list li {
-      margin-bottom: 6px;
-    }
-
-    .nav-list a {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      color: #4a5568;
+    .nav-link {
+      display: block;
+      padding: 11px;
+      margin-bottom: 5px;
+      border-radius: 7px;
+      color: #555;
       text-decoration: none;
       font-size: 13px;
-      border-radius: 8px;
+      transition: 0.2s;
     }
 
-    .nav-list li.active a,
-    .nav-list a:hover {
-      background-color: #ebf8ff;
-      color: #2b6cb0;
+    .nav-link:hover {
+      background: #edf6ff;
+      color: #087cff;
+    }
+
+    .nav-link.active {
+      background: #087cff;
+      color: white;
       font-weight: bold;
     }
 
-    .main-content {
+    .main {
       flex: 1;
-      padding: 24px 36px;
+      min-width: 0;
+      padding: 25px;
     }
 
-    .top-header {
+    .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 24px;
+      gap: 15px;
+      margin-bottom: 25px;
     }
 
     .search-input {
       width: 300px;
-      padding: 9px 16px;
-      border: 1px solid #e2e8f0;
+      max-width: 100%;
+      padding: 11px 16px;
+      border: 1px solid #dce6ef;
       border-radius: 20px;
       font-size: 12px;
       outline: none;
-      background-color: #ffffff;
+      background: white;
+    }
+
+    .search-input:focus {
+      border-color: #087cff;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: white;
+      padding: 9px 14px;
+      border-radius: 10px;
+      border: 1px solid #dce6ef;
+      flex-shrink: 0;
+    }
+
+    .profile-icon {
+      width: 35px;
+      height: 35px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background: #087cff;
+      color: white;
+      font-weight: bold;
+    }
+
+    .profile-name {
+      font-size: 12px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .profile-role {
+      font-size: 10px;
+      color: #888;
+      margin-top: 3px;
     }
 
     .welcome-text h1 {
       color: #1a365d;
       font-size: 24px;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .welcome-text p {
-      color: #a0aec0;
+      color: #888;
       font-size: 12px;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     .stats-row {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 15px;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     .stat-card {
-      flex: 1;
-      background-color: #ffffff;
-      padding: 15px;
+      min-width: 0;
+      background: white;
+      padding: 17px;
       border-radius: 12px;
-      border: 1px solid #e2e8f0;
+      border: 1px solid #dce6ef;
     }
 
     .stat-label {
@@ -117,143 +174,303 @@
     }
 
     .stat-number {
-      font-size: 24px;
+      font-size: 25px;
       font-weight: bold;
-      color: #2b6cb0;
-      margin: 6px 0;
+      color: #087cff;
+      margin: 9px 0;
     }
 
     .stat-sub {
       font-size: 11px;
     }
 
+    .text-green {
+      color: #38a169;
+    }
+
+    .text-orange {
+      color: #dd6b20;
+    }
+
+    .text-red {
+      color: #e53e3e;
+    }
+
     .content-grid {
-      display: flex;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
       gap: 20px;
+      align-items: start;
     }
 
-    .left-panel {
-      flex: 2;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
+    .left-panel,
     .right-panel {
-      flex: 1;
       display: flex;
       flex-direction: column;
       gap: 20px;
+      min-width: 0;
     }
 
     .card-box {
-      background-color: #ffffff;
+      min-width: 0;
+      background: white;
       border-radius: 12px;
       padding: 20px;
-      border: 1px solid #e2e8f0;
+      border: 1px solid #dce6ef;
     }
 
     .card-title {
       display: flex;
       justify-content: space-between;
-      color: #2b6cb0;
+      align-items: center;
+      gap: 10px;
+      color: #087cff;
       font-size: 14px;
       font-weight: bold;
-      margin-bottom: 12px;
+      margin-bottom: 15px;
     }
 
     .view-link {
       font-size: 11px;
-      color: #3182ce;
+      color: #087cff;
       text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .view-link:hover {
+      text-decoration: underline;
+    }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
     }
 
     .data-table {
       width: 100%;
       border-collapse: collapse;
       font-size: 12px;
+      min-width: 520px;
     }
 
     .data-table th {
-      background-color: #ebf8ff;
+      background: #edf6ff;
       text-align: left;
-      padding: 10px;
-      color: #2b6cb0;
+      padding: 11px 10px;
+      color: #087cff;
       font-weight: bold;
     }
 
     .data-table td {
-      padding: 10px;
+      padding: 11px 10px;
       border-bottom: 1px solid #f0f4f8;
     }
 
     .records-list {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 10px;
     }
 
     .record-item {
-      flex: 1;
-      background-color: #f8fafc;
-      padding: 10px;
+      min-width: 0;
+      background: #f8fafc;
+      padding: 12px;
       border-radius: 8px;
       font-size: 11px;
     }
 
     .record-item h4 {
-      color: #2b6cb0;
-      margin-bottom: 4px;
+      color: #087cff;
+      margin-bottom: 6px;
+      font-size: 12px;
+    }
+
+    .record-item p {
+      color: #666;
+      line-height: 1.5;
     }
 
     .actions-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
     }
 
     .btn-action {
+      width: 100%;
+      min-height: 43px;
       padding: 10px;
-      background-color: #ebf8ff;
+      background: #edf6ff;
       border: none;
       border-radius: 8px;
-      color: #2b6cb0;
+      color: #087cff;
       font-weight: bold;
       font-size: 11px;
       cursor: pointer;
+      transition: 0.2s;
     }
 
     .btn-action:hover {
-      background-color: #bee3f8;
+      background: #d7eaff;
     }
 
-    .text-green { color: #38a169; }
-    .text-orange { color: #dd6b20; }
-    .text-red { color: #e53e3e; }
+    .empty-row {
+      text-align: center;
+      color: #888;
+      padding: 20px !important;
+    }
+
+    @media (max-width: 1100px) {
+      .main {
+        padding: 20px;
+      }
+
+      .stats-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .content-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .sidebar {
+        width: 190px;
+      }
+
+      .main {
+        padding: 18px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+      }
+
+      .search-input {
+        width: 240px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        padding: 15px;
+        border-right: none;
+        border-bottom: 1px solid #dce6ef;
+      }
+
+      .logo {
+        margin-bottom: 15px;
+      }
+
+      .menu-title {
+        margin: 12px 5px 8px;
+      }
+
+      .nav-link {
+        display: inline-block;
+        padding: 9px;
+        margin: 0 3px 5px 0;
+      }
+
+      .main {
+        padding: 15px;
+      }
+
+      .topbar {
+        flex-direction: column-reverse;
+        gap: 12px;
+      }
+
+      .search-input {
+        width: 100%;
+      }
+
+      .profile {
+        align-self: flex-end;
+      }
+
+      .welcome-text h1 {
+        font-size: 21px;
+      }
+
+      .stats-row {
+        gap: 10px;
+      }
+
+      .stat-card {
+        padding: 13px;
+      }
+
+      .stat-label {
+        line-height: 1.5;
+      }
+
+      .stat-number {
+        font-size: 22px;
+      }
+
+      .card-box {
+        padding: 14px;
+      }
+
+      .records-list {
+        grid-template-columns: 1fr;
+      }
+
+      .record-item {
+        padding: 12px;
+      }
+    }
   </style>
 </head>
 <body>
 
   <aside class="sidebar">
-    <div class="brand-title">Happy Paws</div>
-    <div class="brand-subtitle">Better Care, Happier Pets.</div>
+    <div class="logo">
+      <div class="logo-icon">🐾</div>
+      <div>
+        <h2>Happy Paws</h2>
+        <p>Pet Management System</p>
+      </div>
+    </div>
 
-    <ul class="nav-list">
-      <li class="active"><a href="dashboard.html">🏠 Dashboard</a></li>
-      <li><a href="records.html">🐾 Pet Records</a></li>
-      <li><a href="owners.html">👤 Owners</a></li>
-      <li><a href="appointments.html">📅 Appointments</a></li>
-      <li><a href="consulations.html">🩺 Consultations</a></li>
-      <li><a href="services.html">📋 Services</a></li>
-      <li><a href="medicines.html">💊 Medicines</a></li>
-      <li><a href="billing.html">💳 Billing</a></li>
-      <li><a href="reports.html">📊 Reports</a></li>
-    </ul>
+    <p class="menu-title">Main Menu</p>
+    <a class="nav-link active" href="dashboard.html">📊 Dashboard</a>
+
+    <p class="menu-title">Management</p>
+    <a class="nav-link" href="records.html">🐶 Pet Records</a>
+    <a class="nav-link" href="owners.html">👥 Owners</a>
+    <a class="nav-link" href="appointments.html">📅 Appointments</a>
+    <a class="nav-link" href="consulations.html">🩺 Consultations</a>
+    <a class="nav-link" href="services.html">💊 Services</a>
+    <a class="nav-link" href="medicines.html">💉 Medicines</a>
+
+    <p class="menu-title">Reports</p>
+    <a class="nav-link" href="billing.html">💳 Billing</a>
+    <a class="nav-link" href="reports.html">📈 Reports</a>
+
+    <p class="menu-title">Account</p>
+    <a class="nav-link" href="login.html" id="logoutLink">🚪 Logout</a>
   </aside>
 
-  <main class="main-content">
-    <header class="top-header">
+  <main class="main">
+    <header class="topbar">
       <input type="text" id="searchInput" class="search-input" placeholder="Search pets, owners, or appointments...">
-      <div style="font-size: 13px; font-weight: bold; color: #2b6cb0;">Happy Paws Clinic</div>
+
+      <div class="profile">
+        <div class="profile-icon">A</div>
+        <div>
+          <p class="profile-name">Administrator</p>
+          <p class="profile-role">Admin Account</p>
+        </div>
+      </div>
     </header>
 
     <section class="welcome-text">
@@ -264,25 +481,25 @@
     <section class="stats-row">
       <div class="stat-card">
         <div class="stat-label">📅 Today's Appointments</div>
-        <div class="stat-number">5</div>
+        <div class="stat-number" id="appointmentCount">5</div>
         <div class="stat-sub text-green">↑ 2 more than yesterday</div>
       </div>
 
       <div class="stat-card">
         <div class="stat-label">🐾 Total Pets</div>
-        <div class="stat-number">48</div>
+        <div class="stat-number" id="petCount">48</div>
         <div class="stat-sub text-green">↑ 6 new this month</div>
       </div>
 
       <div class="stat-card">
         <div class="stat-label">🩺 Pending Consultations</div>
-        <div class="stat-number">3</div>
+        <div class="stat-number" id="consultationCount">3</div>
         <div class="stat-sub text-orange">Requires attention</div>
       </div>
 
       <div class="stat-card">
         <div class="stat-label">💊 Low Stock</div>
-        <div class="stat-number">2</div>
+        <div class="stat-number" id="lowStockCount">2</div>
         <div class="stat-sub text-red">Refill needed</div>
       </div>
     </section>
@@ -295,41 +512,42 @@
             <a href="appointments.html" class="view-link">View All →</a>
           </div>
 
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Time</th>
-                <th>Pet</th>
-                <th>Owner</th>
-                <th>Service</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-
-            <tbody id="appTableBody">
-              <tr>
-                <td>09:00 AM</td>
-                <td><b>Buddy</b></td>
-                <td>Maria Santos</td>
-                <td>Check-up</td>
-                <td class="text-green">● Confirmed</td>
-              </tr>
-              <tr>
-                <td>10:30 AM</td>
-                <td><b>Luna</b></td>
-                <td>John Cruz</td>
-                <td>Vaccination</td>
-                <td class="text-orange">● Waiting</td>
-              </tr>
-              <tr>
-                <td>01:00 PM</td>
-                <td><b>Max</b></td>
-                <td>Ana Reyes</td>
-                <td>Deworming</td>
-                <td class="text-green">● Confirmed</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Pet</th>
+                  <th>Owner</th>
+                  <th>Service</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="appTableBody">
+                <tr>
+                  <td>09:00 AM</td>
+                  <td><b>Buddy</b></td>
+                  <td>Maria Santos</td>
+                  <td>Check-up</td>
+                  <td class="text-green">● Confirmed</td>
+                </tr>
+                <tr>
+                  <td>10:30 AM</td>
+                  <td><b>Luna</b></td>
+                  <td>John Cruz</td>
+                  <td>Vaccination</td>
+                  <td class="text-orange">● Waiting</td>
+                </tr>
+                <tr>
+                  <td>01:00 PM</td>
+                  <td><b>Max</b></td>
+                  <td>Ana Reyes</td>
+                  <td>Deworming</td>
+                  <td class="text-green">● Confirmed</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div class="card-box">
@@ -363,13 +581,13 @@
 
           <div class="actions-grid">
             <button class="btn-action" onclick="goToPage('owners.html')">➕ New Owner</button>
-            <button class="btn-action" onclick="goToPage('admin.html')">👤 Owner Information</button>
-            <button class="btn-action" onclick="goToPage('pet.html')">🐾 Pet Information</button>
-            <button class="btn-action" onclick="goToPage('records.html')">📋 Pet Records</button>
+            <button class="btn-action" onclick="goToPage('owners.html')">👥 All Owners</button>
+            <button class="btn-action" onclick="goToPage('records.html')">🐾 Pet Records</button>
             <button class="btn-action" onclick="goToPage('appointments.html')">📅 Appointment</button>
             <button class="btn-action" onclick="goToPage('consulations.html')">🩺 Consultation</button>
-            <button class="btn-action" onclick="goToPage('services.html')">📋 Services</button>
-            <button class="btn-action" onclick="goToPage('owners.html')">👥 All Owners</button>
+            <button class="btn-action" onclick="goToPage('services.html')">💊 Services</button>
+            <button class="btn-action" onclick="goToPage('medicines.html')">💉 Medicines</button>
+            <button class="btn-action" onclick="goToPage('billing.html')">💳 Billing</button>
           </div>
         </div>
       </div>
@@ -378,16 +596,34 @@
 
   <script>
     function goToPage(page) {
-      window.location.href = new URL(page, window.location.href).href;
+      window.location.href = page;
     }
 
-    document.getElementById('searchInput').addEventListener('keyup', function() {
-      const filter = this.value.toLowerCase();
-      const rows = document.querySelectorAll('#appTableBody tr');
+    const searchInput = document.getElementById('searchInput');
+    const appTableBody = document.getElementById('appTableBody');
 
-      rows.forEach(row => {
-        row.style.display = row.textContent.toLowerCase().includes(filter) ? '' : 'none';
+    searchInput.addEventListener('input', function() {
+      const filter = this.value.toLowerCase().trim();
+      let visibleRows = 0;
+
+      appTableBody.querySelectorAll('tr').forEach(function(row) {
+        const matches = row.textContent.toLowerCase().includes(filter);
+        row.style.display = matches ? '' : 'none';
+        if (matches) visibleRows++;
       });
+
+      const existingMessage = appTableBody.querySelector('.empty-row');
+
+      if (existingMessage) {
+        existingMessage.remove();
+      }
+
+      if (visibleRows === 0) {
+        const row = document.createElement('tr');
+        row.innerHTML = '<td colspan="5" class="empty-row">No matching appointments found.</td>';
+        row.className = 'empty-row-container';
+        appTableBody.appendChild(row);
+      }
     });
   </script>
 
