@@ -128,53 +128,45 @@
   </div>
 
   <script>
-   document.getElementById("accountForm").addEventListener("submit", function(e) {
-  e.preventDefault();
+   document.getElementById("registerForm").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-  const firstName = document.getElementById("firstName").value.trim();
-  const lastName = document.getElementById("lastName").value.trim();
-  const email = document.getElementById("email").value.trim().toLowerCase();
-  const phone = document.getElementById("phone").value.trim();
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const email = document.getElementById("email").value.trim().toLowerCase();
+    const phone = document.getElementById("phone").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
 
-  if (password !== confirmPassword) {
-    alert("Passwords do not match.");
-    return;
-  }
+    if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
+    }
 
-  if (password.length < 6) {
-    alert("Password must be at least 6 characters.");
-    return;
-  }
+    const users = JSON.parse(localStorage.getItem("happyPawsUsers") || "[]");
 
-  let users = JSON.parse(localStorage.getItem("happyPawsUsers") || "[]");
+    if (users.some(user => user.email === email)) {
+        alert("Email is already registered.");
+        return;
+    }
 
-  if (users.some(user => user.email === email)) {
-    alert("Email already registered. Please use another email.");
-    return;
-  }
+    const user = {
+        id: Date.now(),
+        firstName,
+        lastName,
+        email,
+        phone,
+        password,
+        owner: {},
+        pets: []
+    };
 
-  const account = {
-    id: Date.now().toString(),
-    firstName: firstName,
-    lastName: lastName,
-    email: email,
-    phone: phone,
-    password: password,
-    owner: {},
-    pets: []
-  };
-
-  users.push(account);
-
-  try {
+    users.push(user);
     localStorage.setItem("happyPawsUsers", JSON.stringify(users));
     localStorage.setItem("currentUserEmail", email);
+
+    alert("Registration successful!");
     window.location.href = "owner.html";
-  } catch (error) {
-    alert("Unable to save registration in this browser.");
-  }
 });
   </script>
 
