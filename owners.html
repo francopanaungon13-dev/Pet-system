@@ -1,7 +1,6 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Paws - Owners</title>
   <style>
     * {
@@ -10,42 +9,31 @@
       padding: 0;
       font-family: Arial, sans-serif;
     }
-
     body {
       background-color: #f2f7fb;
       color: #333;
       display: flex;
       min-height: 100vh;
     }
-
     .sidebar {
       width: 220px;
-      background-color: #ffffff;
+      background-color: #fff;
       padding: 24px 20px;
       border-right: 1px solid #e2e8f0;
       flex-shrink: 0;
     }
-
     .brand-title {
       color: #2b6cb0;
       font-size: 20px;
       font-weight: bold;
     }
-
     .brand-subtitle {
       font-size: 11px;
       color: #a0aec0;
-      margin: 4px 0 28px 0;
+      margin: 4px 0 28px;
     }
-
-    .nav-list {
-      list-style: none;
-    }
-
-    .nav-list li {
-      margin-bottom: 6px;
-    }
-
+    .nav-list { list-style: none; }
+    .nav-list li { margin-bottom: 6px; }
     .nav-list a {
       display: flex;
       align-items: center;
@@ -56,54 +44,42 @@
       font-size: 13px;
       border-radius: 8px;
     }
-
     .nav-list li.active a,
     .nav-list a:hover {
       background-color: #ebf8ff;
       color: #2b6cb0;
       font-weight: bold;
     }
-
     .main-content {
       flex: 1;
-      min-width: 0;
       padding: 24px 36px;
-      overflow-x: auto;
     }
-
     .top-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 15px;
       margin-bottom: 24px;
     }
-
     .top-search-input {
       width: 320px;
-      max-width: 100%;
       padding: 9px 16px;
       border: 1px solid #e2e8f0;
       border-radius: 20px;
       font-size: 12px;
       outline: none;
-      background-color: #ffffff;
+      background-color: #fff;
     }
-
     .page-title-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 15px;
       margin-bottom: 24px;
     }
-
     .title-area h1 {
       color: #1a365d;
       font-size: 26px;
       margin-bottom: 4px;
     }
-
     .btn-add-owner {
       background-color: #3182ce;
       color: white;
@@ -114,158 +90,98 @@
       font-weight: bold;
       cursor: pointer;
     }
-
     .card-box {
-      background-color: #ffffff;
+      background-color: white;
       border-radius: 12px;
       padding: 24px;
       border: 1px solid #e2e8f0;
       overflow-x: auto;
     }
-
     .data-table {
       width: 100%;
-      min-width: 650px;
       border-collapse: collapse;
       font-size: 12px;
     }
-
     .data-table th {
       background-color: #ebf8ff;
       text-align: left;
       padding: 12px 14px;
       color: #2b6cb0;
-      font-weight: bold;
     }
-
     .data-table td {
       padding: 16px 14px;
       border-bottom: 1px solid #f0f4f8;
     }
-
     .text-green {
       color: #38a169;
       font-weight: bold;
     }
-
     .action-link {
       color: #3182ce;
       text-decoration: none;
       font-weight: bold;
-      cursor: pointer;
     }
-
-    .empty-message {
-      text-align: center;
-      color: #718096;
-      padding: 25px;
-    }
-
     .modal-backdrop {
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.4);
       display: none;
       justify-content: center;
       align-items: center;
-      padding: 15px;
       z-index: 1000;
     }
-
     .modal-card {
-      background: #ffffff;
+      background: white;
       width: 400px;
-      max-width: 100%;
+      max-width: 90%;
       border-radius: 12px;
       padding: 24px;
     }
-
     .modal-card h2 {
       font-size: 18px;
       color: #2b6cb0;
       margin-bottom: 16px;
     }
-
-    .form-group {
-      margin-bottom: 12px;
-    }
-
+    .form-group { margin-bottom: 12px; }
     .form-group label {
       display: block;
       font-size: 12px;
       font-weight: bold;
       margin-bottom: 4px;
     }
-
     .form-control {
       width: 100%;
-      padding: 9px 10px;
+      padding: 8px 10px;
       border: 1px solid #cbd5e0;
       border-radius: 6px;
       font-size: 12px;
     }
-
     .modal-actions {
       display: flex;
       justify-content: flex-end;
       gap: 10px;
       margin-top: 16px;
     }
-
+    .btn-cancel, .btn-save {
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
     .btn-cancel {
       background: #e2e8f0;
       color: #4a5568;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 6px;
-      cursor: pointer;
     }
-
     .btn-save {
       background: #3182ce;
       color: white;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 6px;
-      cursor: pointer;
       font-weight: bold;
-    }
-
-    @media(max-width: 800px) {
-      body {
-        display: block;
-      }
-
-      .sidebar {
-        width: 100%;
-        padding: 15px;
-      }
-
-      .nav-list {
-        display: flex;
-        flex-wrap: wrap;
-      }
-
-      .nav-list li {
-        margin: 3px;
-      }
-
-      .main-content {
-        padding: 20px 12px;
-      }
-
-      .top-header,
-      .page-title-row {
-        flex-wrap: wrap;
-      }
     }
   </style>
 </head>
 <body>
-
   <aside class="sidebar">
     <div class="brand-title">Happy Paws</div>
     <div class="brand-subtitle">Better Care, Happier Pets.</div>
@@ -284,19 +200,14 @@
 
   <main class="main-content">
     <header class="top-header">
-      <input type="text" id="searchInput" class="top-search-input"
-        placeholder="Search owner name, contact...">
-      <div style="font-size:13px;font-weight:bold;color:#2b6cb0;">
-        Happy Paws Clinic
-      </div>
+      <input type="text" id="searchInput" class="top-search-input" placeholder="Search owner name, contact...">
+      <div style="font-size:13px;font-weight:bold;color:#2b6cb0">Happy Paws Clinic</div>
     </header>
 
     <div class="page-title-row">
       <div class="title-area">
         <h1>Owners</h1>
-        <p style="color:#a0aec0;font-size:13px;">
-          View and manage pet owners and their registered pets.
-        </p>
+        <p style="color:#a0aec0;font-size:13px">View and manage pet owners and their registered pets.</p>
       </div>
       <button class="btn-add-owner" id="btnOpenModal">+ Add New Owner</button>
     </div>
@@ -313,11 +224,33 @@
             <th>ACTION</th>
           </tr>
         </thead>
-        <tbody id="ownersTableBody"></tbody>
+        <tbody id="ownersTableBody">
+          <tr>
+            <td>Maria Santos</td>
+            <td>0917 123 4567</td>
+            <td>Quezon City</td>
+            <td>2 pets</td>
+            <td class="text-green">Active</td>
+            <td><a href="#" class="action-link">View</a></td>
+          </tr>
+          <tr>
+            <td>John Cruz</td>
+            <td>0918 234 5678</td>
+            <td>Manila</td>
+            <td>1 pet</td>
+            <td class="text-green">Active</td>
+            <td><a href="#" class="action-link">View</a></td>
+          </tr>
+          <tr>
+            <td>Ana Reyes</td>
+            <td>0919 345 6789</td>
+            <td>Makati</td>
+            <td>3 pets</td>
+            <td class="text-green">Active</td>
+            <td><a href="#" class="action-link">View</a></td>
+          </tr>
+        </tbody>
       </table>
-      <p id="emptyMessage" class="empty-message" style="display:none;">
-        No registered owners found.
-      </p>
     </div>
   </main>
 
@@ -326,26 +259,23 @@
       <h2>Add New Owner</h2>
       <form id="addForm">
         <div class="form-group">
-          <label for="oName">Owner Name</label>
+          <label>Owner Name</label>
           <input type="text" id="oName" class="form-control" required>
         </div>
         <div class="form-group">
-          <label for="oContact">Contact</label>
+          <label>Contact</label>
           <input type="text" id="oContact" class="form-control" required>
         </div>
         <div class="form-group">
-          <label for="oAddress">Address</label>
+          <label>Address</label>
           <input type="text" id="oAddress" class="form-control" required>
         </div>
         <div class="form-group">
-          <label for="oPets">Number of Pets</label>
-          <input type="number" id="oPets" class="form-control"
-            min="0" value="0" required>
+          <label>Number of Pets</label>
+          <input type="text" id="oPets" class="form-control" placeholder="e.g. 1 pet" required>
         </div>
         <div class="modal-actions">
-          <button type="button" class="btn-cancel" id="btnCloseModal">
-            Cancel
-          </button>
+          <button type="button" class="btn-cancel" id="btnCloseModal">Cancel</button>
           <button type="submit" class="btn-save">Save Owner</button>
         </div>
       </form>
@@ -353,177 +283,145 @@
   </div>
 
   <script>
-    const searchInput = document.getElementById("searchInput");
-    const tableBody = document.getElementById("ownersTableBody");
-    const emptyMessage = document.getElementById("emptyMessage");
-    const modal = document.getElementById("addModal");
+   const searchInput = document.getElementById("searchInput");
+const tableBody = document.getElementById("ownersTableBody");
+const modal = document.getElementById("addModal");
 
-    function getUsers() {
-      try {
-        const data = JSON.parse(
-          localStorage.getItem("happyPawsUsers") || "[]"
-        );
-        return Array.isArray(data) ? data : [];
-      } catch (error) {
-        return [];
-      }
-    }
+function getUsers() {
+  return JSON.parse(localStorage.getItem("happyPawsUsers") || "[]");
+}
 
-    function getManualOwners() {
-      try {
-        const data = JSON.parse(
-          localStorage.getItem("happyPawsManualOwners") || "[]"
-        );
-        return Array.isArray(data) ? data : [];
-      } catch (error) {
-        return [];
-      }
-    }
+function getManualOwners() {
+  return JSON.parse(localStorage.getItem("happyPawsManualOwners") || "[]");
+}
 
-    function createCell(row, value, className) {
+function renderOwners() {
+  const users = getUsers();
+  const manualOwners = getManualOwners();
+
+  tableBody.replaceChildren();
+
+  users.forEach(user => {
+    const owner = user.owner || {};
+    const row = document.createElement("tr");
+
+    const values = [
+      user.firstName + " " + user.lastName,
+      user.phone || "",
+      owner.address || "Not provided",
+      (user.pets || []).length + " pet(s)",
+      "Registered"
+    ];
+
+    values.forEach((value, index) => {
       const cell = document.createElement("td");
-      cell.textContent = value || "Not provided";
-      if (className) cell.className = className;
-      row.appendChild(cell);
-      return cell;
-    }
+      cell.textContent = value;
 
-    function renderOwners() {
-      const users = getUsers();
-      const manualOwners = getManualOwners();
-
-      tableBody.replaceChildren();
-
-      users.forEach(user => {
-        const owner = user.owner || {};
-        const row = document.createElement("tr");
-
-        createCell(row, (user.firstName || "") + " " +
-          (user.lastName || ""));
-        createCell(row, user.phone);
-        createCell(row, owner.address);
-        createCell(row, (user.pets || []).length + " pet(s)");
-        createCell(row, "Registered", "text-green");
-
-        const actionCell = document.createElement("td");
-        const viewLink = document.createElement("a");
-
-        viewLink.href = "#";
-        viewLink.className = "action-link";
-        viewLink.textContent = "View";
-
-        viewLink.addEventListener("click", function(e) {
-          e.preventDefault();
-
-          const pets = (user.pets || []).map(pet =>
-            (pet.name || pet.petName || "Unnamed Pet") +
-            " (" + (pet.type || pet.petType || "Unknown") + ")"
-          ).join(", ") || "No pets registered";
-
-          alert(
-            "Owner: " + (user.firstName || "") + " " +
-              (user.lastName || "") +
-            "\nEmail: " + (user.email || "") +
-            "\nPhone: " + (user.phone || "") +
-            "\nAddress: " + (owner.address || "Not provided") +
-            "\nDate of Birth: " + (owner.dob || "Not provided") +
-            "\nGender: " + (owner.gender || "Not provided") +
-            "\nID Type: " + (owner.idType || "Not provided") +
-            "\nRelationship to Pet: " +
-              (owner.relationship || "Not provided") +
-            "\nPets: " + pets
-          );
-        });
-
-        actionCell.appendChild(viewLink);
-        row.appendChild(actionCell);
-        tableBody.appendChild(row);
-      });
-
-      manualOwners.forEach(owner => {
-        const row = document.createElement("tr");
-
-        createCell(row, owner.name);
-        createCell(row, owner.contact);
-        createCell(row, owner.address);
-        createCell(row, owner.pets + " pet(s)");
-        createCell(row, "Active", "text-green");
-        createCell(row, "Manual Entry");
-
-        tableBody.appendChild(row);
-      });
-
-      emptyMessage.style.display =
-        tableBody.children.length === 0 ? "block" : "none";
-
-      filterOwners();
-    }
-
-    function filterOwners() {
-      const filter = searchInput.value.toLowerCase();
-
-      Array.from(tableBody.querySelectorAll("tr")).forEach(row => {
-        row.style.display = row.textContent.toLowerCase().includes(filter)
-          ? ""
-          : "none";
-      });
-
-      const visibleRows = Array.from(tableBody.querySelectorAll("tr"))
-        .some(row => row.style.display !== "none");
-
-      emptyMessage.style.display = visibleRows ? "none" : "block";
-
-      if (tableBody.children.length > 0 && !visibleRows) {
-        emptyMessage.textContent = "No matching owners found.";
-      } else {
-        emptyMessage.textContent = "No registered owners found.";
+      if (index === 4) {
+        cell.className = "text-green";
       }
-    }
 
-    searchInput.addEventListener("input", filterOwners);
-
-    document.getElementById("btnOpenModal").onclick = function() {
-      modal.style.display = "flex";
-    };
-
-    document.getElementById("btnCloseModal").onclick = function() {
-      modal.style.display = "none";
-    };
-
-    modal.addEventListener("click", function(e) {
-      if (e.target === modal) modal.style.display = "none";
+      row.appendChild(cell);
     });
 
-    document.getElementById("addForm").addEventListener("submit", function(e) {
+    const actionCell = document.createElement("td");
+    const viewLink = document.createElement("a");
+
+    viewLink.href = "#";
+    viewLink.className = "action-link";
+    viewLink.textContent = "View";
+
+    viewLink.addEventListener("click", function(e) {
       e.preventDefault();
 
-      const manualOwners = getManualOwners();
+      const petDetails = (user.pets || []).map(pet =>
+        pet.name + " (" + pet.type + ")"
+      ).join(", ") || "No pets registered";
 
-      manualOwners.push({
-        name: document.getElementById("oName").value.trim(),
-        contact: document.getElementById("oContact").value.trim(),
-        address: document.getElementById("oAddress").value.trim(),
-        pets: document.getElementById("oPets").value
-      });
-
-      try {
-        localStorage.setItem(
-          "happyPawsManualOwners",
-          JSON.stringify(manualOwners)
-        );
-
-        modal.style.display = "none";
-        this.reset();
-        renderOwners();
-      } catch (error) {
-        alert("Unable to save owner information.");
-      }
+      alert(
+        "Owner: " + user.firstName + " " + user.lastName +
+        "\nEmail: " + user.email +
+        "\nPhone: " + user.phone +
+        "\nAddress: " + (owner.address || "Not provided") +
+        "\nDate of Birth: " + (owner.dob || "Not provided") +
+        "\nGender: " + (owner.gender || "Not provided") +
+        "\nID Type: " + (owner.idType || "Not provided") +
+        "\nRelationship: " + (owner.relationship || "Not provided") +
+        "\nPets: " + petDetails
+      );
     });
 
-    window.addEventListener("storage", renderOwners);
+    actionCell.appendChild(viewLink);
+    row.appendChild(actionCell);
+    tableBody.appendChild(row);
+  });
 
-    renderOwners();
+  manualOwners.forEach(owner => {
+    const row = document.createElement("tr");
+
+    [
+      owner.name,
+      owner.contact,
+      owner.address,
+      owner.pets,
+      "Active"
+    ].forEach((value, index) => {
+      const cell = document.createElement("td");
+      cell.textContent = value;
+
+      if (index === 4) cell.className = "text-green";
+      row.appendChild(cell);
+    });
+
+    const actionCell = document.createElement("td");
+    actionCell.textContent = "Manual Entry";
+    row.appendChild(actionCell);
+    tableBody.appendChild(row);
+  });
+
+  filterOwners();
+}
+
+function filterOwners() {
+  const filter = searchInput.value.toLowerCase();
+
+  Array.from(tableBody.querySelectorAll("tr")).forEach(row => {
+    row.style.display = row.textContent.toLowerCase().includes(filter)
+      ? ""
+      : "none";
+  });
+}
+
+searchInput.addEventListener("input", filterOwners);
+
+document.getElementById("btnOpenModal").onclick = function() {
+  modal.style.display = "flex";
+};
+
+document.getElementById("btnCloseModal").onclick = function() {
+  modal.style.display = "none";
+};
+
+document.getElementById("addForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const manualOwners = getManualOwners();
+
+  manualOwners.push({
+    name: document.getElementById("oName").value.trim(),
+    contact: document.getElementById("oContact").value.trim(),
+    address: document.getElementById("oAddress").value.trim(),
+    pets: document.getElementById("oPets").value.trim()
+  });
+
+  localStorage.setItem("happyPawsManualOwners", JSON.stringify(manualOwners));
+
+  modal.style.display = "none";
+  this.reset();
+  renderOwners();
+});
+
+renderOwners();
   </script>
-
 </body>
 </html>
