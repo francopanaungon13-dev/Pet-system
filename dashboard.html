@@ -1,3 +1,4 @@
+```html
 <html>
 <head>
   <meta charset="UTF-8">
@@ -236,6 +237,7 @@
   <aside class="sidebar">
     <div class="brand-title">Happy Paws</div>
     <div class="brand-subtitle">Better Care, Happier Pets.</div>
+
     <ul class="nav-list">
       <li class="active"><a href="dashboard.html">🏠 Dashboard</a></li>
       <li><a href="records.html">🐾 Pet Records</a></li>
@@ -266,16 +268,19 @@
         <div class="stat-number">5</div>
         <div class="stat-sub text-green">↑ 2 more than yesterday</div>
       </div>
+
       <div class="stat-card">
         <div class="stat-label">🐾 Total Pets</div>
         <div class="stat-number">48</div>
         <div class="stat-sub text-green">↑ 6 new this month</div>
       </div>
+
       <div class="stat-card">
         <div class="stat-label">🩺 Pending Consultations</div>
         <div class="stat-number">3</div>
         <div class="stat-sub text-orange">Requires attention</div>
       </div>
+
       <div class="stat-card">
         <div class="stat-label">💊 Low Stock</div>
         <div class="stat-number">2</div>
@@ -290,6 +295,7 @@
             <span>Today's Appointments</span>
             <a href="appointments.html" class="view-link">View All →</a>
           </div>
+
           <table class="data-table">
             <thead>
               <tr>
@@ -300,6 +306,7 @@
                 <th>Status</th>
               </tr>
             </thead>
+
             <tbody id="appTableBody">
               <tr>
                 <td>09:00 AM</td>
@@ -331,6 +338,7 @@
             <span>Recent Pet Records</span>
             <a href="records.html" class="view-link">View All →</a>
           </div>
+
           <div class="records-list">
             <div class="record-item">
               <h4>🐾 Buddy</h4>
@@ -350,12 +358,19 @@
 
       <div class="right-panel">
         <div class="card-box">
-          <div class="card-title"><span>Quick Actions</span></div>
+          <div class="card-title">
+            <span>Quick Actions</span>
+          </div>
+
           <div class="actions-grid">
-            <button class="btn-action" onclick="window.location.href='records.html'">🐾 Add Pet</button>
+            <button class="btn-action" onclick="window.location.href='registration.html'">➕ New Owner</button>
+            <button class="btn-action" onclick="window.location.href='owner.html'">👤 Owner Information</button>
+            <button class="btn-action" onclick="window.location.href='pet.html'">🐾 Pet Information</button>
+            <button class="btn-action" onclick="window.location.href='records.html'">📋 Pet Records</button>
             <button class="btn-action" onclick="window.location.href='appointments.html'">📅 Appointment</button>
             <button class="btn-action" onclick="window.location.href='consulations.html'">🩺 Consultation</button>
             <button class="btn-action" onclick="window.location.href='services.html'">📋 Services</button>
+            <button class="btn-action" onclick="window.location.href='owners.html'">👥 All Owners</button>
           </div>
         </div>
       </div>
@@ -366,6 +381,7 @@
     document.getElementById('searchInput').addEventListener('keyup', function() {
       const filter = this.value.toLowerCase();
       const rows = document.querySelectorAll('#appTableBody tr');
+
       rows.forEach(row => {
         row.style.display = row.textContent.toLowerCase().includes(filter) ? '' : 'none';
       });
@@ -374,3 +390,4 @@
 
 </body>
 </html>
+```
