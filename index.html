@@ -190,39 +190,49 @@
 
     <script>
         const ADMIN_EMAIL = "admin@happypaws.com";
-        const ADMIN_PASSWORD = "HappyPaws123";
+const ADMIN_PASSWORD = "HappyPaws123";
 
-        const form = document.getElementById("adminLoginForm");
-        const emailInput = document.getElementById("email");
-        const passwordInput = document.getElementById("password");
-        const message = document.getElementById("message");
-        const loginButton = document.getElementById("loginButton");
+const form = document.getElementById("adminLoginForm");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const message = document.getElementById("message");
+const loginButton = document.getElementById("loginButton");
 
-        sessionStorage.removeItem("happyPawsAdminLoggedIn");
+localStorage.setItem("happyPawsAdmin", JSON.stringify({
+    email: ADMIN_EMAIL,
+    role: "admin"
+}));
 
-        form.addEventListener("submit", function(event) {
-            event.preventDefault();
+sessionStorage.removeItem("happyPawsAdminLoggedIn");
 
-            const email = emailInput.value.trim();
-            const password = passwordInput.value;
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
 
-            message.textContent = "";
-            message.className = "";
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
 
-            if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
-                sessionStorage.setItem("happyPawsAdminLoggedIn", "true");
-                message.textContent = "Login successful. Opening dashboard...";
-                message.className = "success";
-                loginButton.disabled = true;
+    message.textContent = "";
+    message.className = "";
 
-                window.location.href = "dashboard.html";
-            } else {
-                message.textContent = "Incorrect email or password.";
-                message.className = "error";
-                passwordInput.value = "";
-                passwordInput.focus();
-            }
-        });
+    if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+        localStorage.setItem("happyPawsAdminLoggedIn", JSON.stringify({
+            email: ADMIN_EMAIL,
+            role: "admin",
+            loggedIn: true
+        }));
+
+        message.textContent = "Login successful!";
+        message.className = "success";
+        loginButton.disabled = true;
+
+        window.location.href = "dashboard.html";
+    } else {
+        message.textContent = "Incorrect email or password.";
+        message.className = "error";
+        passwordInput.value = "";
+        passwordInput.focus();
+    }
+});
     </script>
 </body>
 </html>
