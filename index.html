@@ -1,6 +1,7 @@
 <html>
 <head>
   <title>Happy Paws - Account</title>
+  <meta http-equiv="refresh" content="0;url=admin-login.html">
   <style>
     body {
       font-family: Arial;
@@ -128,54 +129,54 @@
   </div>
 
   <script>
-  document.getElementById("accountForm").addEventListener("submit", function(e) {
-  e.preventDefault();
+    document.getElementById("accountForm").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-  const firstName = document.getElementById("firstName").value.trim();
-  const lastName = document.getElementById("lastName").value.trim();
-  const email = document.getElementById("email").value.trim().toLowerCase();
-  const phone = document.getElementById("phone").value.trim();
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
+      const firstName = document.getElementById("firstName").value.trim();
+      const lastName = document.getElementById("lastName").value.trim();
+      const email = document.getElementById("email").value.trim().toLowerCase();
+      const phone = document.getElementById("phone").value.trim();
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
 
-  if (password !== confirmPassword) {
-    alert("Passwords do not match.");
-    return;
-  }
+      if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
+      }
 
-  if (password.length < 6) {
-    alert("Password must be at least 6 characters.");
-    return;
-  }
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters.");
+        return;
+      }
 
-  let users = JSON.parse(localStorage.getItem("happyPawsUsers") || "[]");
+      let users = JSON.parse(localStorage.getItem("happyPawsUsers") || "[]");
 
-  if (users.some(user => user.email === email)) {
-    alert("Email already registered. Please use another email.");
-    return;
-  }
+      if (users.some(user => user.email === email)) {
+        alert("Email already registered. Please use another email.");
+        return;
+      }
 
-  const account = {
-    id: Date.now().toString(),
-    firstName: firstName,
-    lastName: lastName,
-    email: email,
-    phone: phone,
-    password: password,
-    owner: {},
-    pets: []
-  };
+      const account = {
+        id: Date.now().toString(),
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phone: phone,
+        password: password,
+        owner: {},
+        pets: []
+      };
 
-  users.push(account);
+      users.push(account);
 
-  try {
-    localStorage.setItem("happyPawsUsers", JSON.stringify(users));
-    localStorage.setItem("currentUserEmail", email);
-    window.location.href = "owner.html";
-  } catch (error) {
-    alert("Unable to save registration in this browser.");
-  }
-});
+      try {
+        localStorage.setItem("happyPawsUsers", JSON.stringify(users));
+        localStorage.setItem("currentUserEmail", email);
+        window.location.href = "owner.html";
+      } catch (error) {
+        alert("Unable to save registration in this browser.");
+      }
+    });
   </script>
 
 </body>
