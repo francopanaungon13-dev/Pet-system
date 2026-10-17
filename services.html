@@ -1,3 +1,4 @@
+
 <html>
 <head>
   <meta charset="UTF-8">
@@ -18,11 +19,13 @@
     }
 
     .sidebar {
-      width: 220px;
+      width: 240px;
       background-color: #ffffff;
       padding: 24px 20px;
       border-right: 1px solid #e2e8f0;
       flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
     }
 
     .brand-title {
@@ -37,35 +40,72 @@
       margin: 4px 0 28px 0;
     }
 
-    .nav-list {
-      list-style: none;
+    .menu-title {
+      color: #a0aec0;
+      font-size: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin: 18px 0 10px 10px;
+      letter-spacing: 1px;
     }
 
-    .nav-list li {
-      margin-bottom: 6px;
-    }
-
-    .nav-list a {
+    .nav-link {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 10px 14px;
+      padding: 11px 14px;
       color: #4a5568;
       text-decoration: none;
       font-size: 13px;
       border-radius: 8px;
+      margin-bottom: 6px;
     }
 
-    .nav-list li.active a,
-    .nav-list a:hover {
+    .nav-link.active,
+    .nav-link:hover {
       background-color: #ebf8ff;
       color: #2b6cb0;
       font-weight: bold;
     }
 
+    .administrator {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 18px;
+      margin-top: auto;
+    }
+
+    .admin-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background-color: #ebf8ff;
+      color: #2b6cb0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .admin-name {
+      color: #2d3748;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .admin-role {
+      color: #a0aec0;
+      font-size: 11px;
+      margin-top: 4px;
+    }
+
     .main-content {
       flex: 1;
       padding: 24px 36px;
+      min-width: 0;
     }
 
     .top-header {
@@ -115,6 +155,7 @@
       border-radius: 12px;
       padding: 24px;
       border: 1px solid #e2e8f0;
+      overflow-x: auto;
     }
 
     .data-table {
@@ -145,6 +186,15 @@
       color: #3182ce;
       text-decoration: none;
       font-weight: bold;
+      margin-right: 8px;
+      cursor: pointer;
+    }
+
+    .delete-link {
+      color: #e53e3e;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
     }
 
     .modal-backdrop {
@@ -163,6 +213,7 @@
     .modal-card {
       background: #ffffff;
       width: 400px;
+      max-width: 95%;
       border-radius: 12px;
       padding: 24px;
     }
@@ -224,17 +275,31 @@
   <aside class="sidebar">
     <div class="brand-title">Happy Paws</div>
     <div class="brand-subtitle">Better Care, Happier Pets.</div>
-    <ul class="nav-list">
-      <li><a href="dashboard.html">🏠 Dashboard</a></li>
-      <li><a href="records.html">🐾 Pet Records</a></li>
-      <li><a href="owners.html">👤 Owners</a></li>
-      <li><a href="appointments.html">📅 Appointments</a></li>
-      <li><a href="consulations.html">🩺 Consultations</a></li>
-      <li class="active"><a href="services.html">📋 Services</a></li>
-      <li><a href="medicines.html">💊 Medicines</a></li>
-      <li><a href="billing.html">💳 Billing</a></li>
-      <li><a href="reports.html">📊 Reports</a></li>
-    </ul>
+
+    <p class="menu-title">Main Menu</p>
+    <a class="nav-link" href="dashboard.html">📊 Dashboard</a>
+
+    <p class="menu-title">Management</p>
+    <a class="nav-link" href="records.html">🐶 Pet Records</a>
+    <a class="nav-link" href="owners.html">👥 Owners</a>
+    <a class="nav-link" href="appointments.html">📅 Appointments</a>
+    <a class="nav-link" href="consulations.html">🩺 Consultations</a>
+    <a class="nav-link active" href="services.html">💊 Services</a>
+    <a class="nav-link" href="medicines.html">💉 Medicines</a>
+
+    <p class="menu-title">Management</p>
+    <a class="nav-link" href="billing.html">💳 Billing</a>
+    <a class="nav-link" href="reports.html">📈 Reports</a>
+
+    <p class="menu-title">Account</p>
+
+    <div class="administrator">
+      <div class="admin-avatar">👤</div>
+      <div>
+        <div class="admin-name">Administrator</div>
+        <div class="admin-role">System Admin</div>
+      </div>
+    </div>
   </aside>
 
   <main class="main-content">
@@ -270,7 +335,10 @@
             <td>Routine health examination</td>
             <td>₱500</td>
             <td class="status-available">Available</td>
-            <td><a href="#" class="action-link">View</a></td>
+            <td>
+              <a href="#" class="action-link" onclick="viewService(this); return false;">View</a>
+              <a href="#" class="delete-link" onclick="deleteService(this); return false;">Delete</a>
+            </td>
           </tr>
           <tr>
             <td>Vaccination</td>
@@ -278,7 +346,10 @@
             <td>Core vaccine administration</td>
             <td>₱800</td>
             <td class="status-available">Available</td>
-            <td><a href="#" class="action-link">View</a></td>
+            <td>
+              <a href="#" class="action-link" onclick="viewService(this); return false;">View</a>
+              <a href="#" class="delete-link" onclick="deleteService(this); return false;">Delete</a>
+            </td>
           </tr>
           <tr>
             <td>Deworming</td>
@@ -286,7 +357,10 @@
             <td>Internal parasite treatment</td>
             <td>₱350</td>
             <td class="status-available">Available</td>
-            <td><a href="#" class="action-link">View</a></td>
+            <td>
+              <a href="#" class="action-link" onclick="viewService(this); return false;">View</a>
+              <a href="#" class="delete-link" onclick="deleteService(this); return false;">Delete</a>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -297,10 +371,22 @@
     <div class="modal-card">
       <h2>Add New Service</h2>
       <form id="addForm">
-        <div class="form-group"><label>Service Name</label><input type="text" id="sName" class="form-control" required></div>
-        <div class="form-group"><label>Category</label><input type="text" id="sCategory" class="form-control" required></div>
-        <div class="form-group"><label>Description</label><input type="text" id="sDesc" class="form-control" required></div>
-        <div class="form-group"><label>Price</label><input type="text" id="sPrice" class="form-control" placeholder="e.g. ₱500" required></div>
+        <div class="form-group">
+          <label>Service Name</label>
+          <input type="text" id="sName" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <input type="text" id="sCategory" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" id="sDesc" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label>Price</label>
+          <input type="text" id="sPrice" class="form-control" placeholder="e.g. ₱500" required>
+        </div>
         <div class="modal-actions">
           <button type="button" class="btn-cancel" id="btnCloseModal">Cancel</button>
           <button type="submit" class="btn-save">Save Service</button>
@@ -321,24 +407,70 @@
       });
     });
 
-    document.getElementById('btnOpenModal').onclick = () => modal.style.display = 'flex';
-    document.getElementById('btnCloseModal').onclick = () => modal.style.display = 'none';
+    document.getElementById('btnOpenModal').onclick = () => {
+      document.querySelector('#addModal h2').textContent = 'Add New Service';
+      document.getElementById('addForm').reset();
+      modal.style.display = 'flex';
+    };
+
+    document.getElementById('btnCloseModal').onclick = () => {
+      modal.style.display = 'none';
+    };
 
     document.getElementById('addForm').onsubmit = (e) => {
       e.preventDefault();
+
+      const name = document.getElementById('sName').value.trim();
+      const category = document.getElementById('sCategory').value.trim();
+      const description = document.getElementById('sDesc').value.trim();
+      const price = document.getElementById('sPrice').value.trim();
+
       const row = document.createElement('tr');
-      row.innerHTML = `
-        <td>${document.getElementById('sName').value}</td>
-        <td>${document.getElementById('sCategory').value}</td>
-        <td>${document.getElementById('sDesc').value}</td>
-        <td>${document.getElementById('sPrice').value}</td>
-        <td class="status-available">Available</td>
-        <td><a href="#" class="action-link">View</a></td>
-      `;
+
+      [name, category, description, price].forEach(value => {
+        const cell = document.createElement('td');
+        cell.textContent = value;
+        row.appendChild(cell);
+      });
+
+      const statusCell = document.createElement('td');
+      statusCell.className = 'status-available';
+      statusCell.textContent = 'Available';
+      row.appendChild(statusCell);
+
+      const actionCell = document.createElement('td');
+      actionCell.innerHTML = '<a href="#" class="action-link" onclick="viewService(this); return false;">View</a> <a href="#" class="delete-link" onclick="deleteService(this); return false;">Delete</a>';
+      row.appendChild(actionCell);
+
       tableBody.appendChild(row);
       modal.style.display = 'none';
       e.target.reset();
+
+      alert('Service added successfully!');
     };
+
+    function deleteService(link) {
+      const row = link.closest('tr');
+      const serviceName = row.cells[0].textContent;
+
+      if (confirm('Are you sure you want to delete ' + serviceName + '?')) {
+        row.remove();
+        alert('Service deleted successfully!');
+      }
+    }
+
+    function viewService(link) {
+      const row = link.closest('tr');
+
+      alert(
+        'Service Details\n\n' +
+        'Service: ' + row.cells[0].textContent + '\n' +
+        'Category: ' + row.cells[1].textContent + '\n' +
+        'Description: ' + row.cells[2].textContent + '\n' +
+        'Price: ' + row.cells[3].textContent + '\n' +
+        'Status: ' + row.cells[4].textContent
+      );
+    }
   </script>
 
 </body>
