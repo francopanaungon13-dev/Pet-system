@@ -362,14 +362,14 @@
           </div>
 
           <div class="actions-grid">
-            <button class="btn-action" onclick="window.location.href='registration.html'">➕ New Owner</button>
-            <button class="btn-action" onclick="window.location.href='owner.html'">👤 Owner Information</button>
-            <button class="btn-action" onclick="window.location.href='pet.html'">🐾 Pet Information</button>
-            <button class="btn-action" onclick="window.location.href='records.html'">📋 Pet Records</button>
-            <button class="btn-action" onclick="window.location.href='appointments.html'">📅 Appointment</button>
-            <button class="btn-action" onclick="window.location.href='consulations.html'">🩺 Consultation</button>
-            <button class="btn-action" onclick="window.location.href='services.html'">📋 Services</button>
-            <button class="btn-action" onclick="window.location.href='owners.html'">👥 All Owners</button>
+            <button class="btn-action" onclick="goToPage('index.html')">➕ New Owner</button>
+            <button class="btn-action" onclick="goToPage('owner.html')">👤 Owner Information</button>
+            <button class="btn-action" onclick="goToPage('pet.html')">🐾 Pet Information</button>
+            <button class="btn-action" onclick="goToPage('records.html')">📋 Pet Records</button>
+            <button class="btn-action" onclick="goToPage('appointments.html')">📅 Appointment</button>
+            <button class="btn-action" onclick="goToPage('consulations.html')">🩺 Consultation</button>
+            <button class="btn-action" onclick="goToPage('services.html')">📋 Services</button>
+            <button class="btn-action" onclick="goToPage('owners.html')">👥 All Owners</button>
           </div>
         </div>
       </div>
@@ -377,6 +377,10 @@
   </main>
 
   <script>
+    function goToPage(page) {
+      window.location.href = new URL(page, window.location.href).href;
+    }
+
     document.getElementById('searchInput').addEventListener('keyup', function() {
       const filter = this.value.toLowerCase();
       const rows = document.querySelectorAll('#appTableBody tr');
