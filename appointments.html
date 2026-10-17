@@ -1,9 +1,9 @@
-
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Paws - Appointments</title>
+
   <style>
     * {
       box-sizing: border-box;
@@ -13,377 +13,548 @@
     }
 
     body {
-      background: #f2f7fb;
-      color: #333;
       display: flex;
       min-height: 100vh;
+      background: #f2f7fb;
+      color: #333;
     }
 
     .sidebar {
       width: 220px;
-      background: white;
-      padding: 24px 20px;
-      border-right: 1px solid #e2e8f0;
       flex-shrink: 0;
+      padding: 20px 15px;
+      background: white;
+      border-right: 1px solid #dce6ef;
     }
 
-    .brand-title {
-      color: #2b6cb0;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .logo-icon {
+      font-size: 30px;
+    }
+
+    .logo h2 {
+      color: #087cff;
       font-size: 20px;
+    }
+
+    .logo p {
+      color: #888;
+      font-size: 11px;
+    }
+
+    .menu-title {
+      margin: 20px 10px 10px;
+      color: #999;
+      font-size: 11px;
       font-weight: bold;
     }
 
-    .brand-subtitle {
-      font-size: 11px;
-      color: #a0aec0;
-      margin: 4px 0 28px;
-    }
-
-    .nav-list {
-      list-style: none;
-    }
-
-    .nav-list li {
-      margin-bottom: 6px;
-    }
-
-    .nav-list a {
+    .nav-link {
       display: block;
-      padding: 10px 14px;
-      color: #4a5568;
+      padding: 11px;
+      margin-bottom: 5px;
+      border-radius: 7px;
+      color: #555;
       text-decoration: none;
       font-size: 13px;
-      border-radius: 8px;
     }
 
-    .nav-list a:hover,
-    .active a {
-      background: #ebf8ff;
-      color: #2b6cb0;
-      font-weight: bold;
+    .nav-link:hover {
+      background: #edf6ff;
     }
 
-    .main-content {
+    .nav-link.active {
+      background: #087cff;
+      color: white;
+    }
+
+    .main {
       flex: 1;
       min-width: 0;
-      padding: 24px 36px;
+      padding: 25px;
     }
 
-    .top-header,
-    .page-title-row {
+    .topbar,
+    .content-header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 15px;
-      margin-bottom: 24px;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
     }
 
-    .top-search-input {
-      width: 320px;
-      max-width: 100%;
-      padding: 9px 16px;
-      border: 1px solid #e2e8f0;
-      border-radius: 20px;
-      outline: none;
-    }
-
-    .title-area h1 {
-      color: #1a365d;
+    h1 {
+      color: #20364b;
       font-size: 26px;
-      margin-bottom: 4px;
     }
 
-    .btn-add-appointment,
-    .btn-save {
-      background: #3182ce;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
+    .page-title p,
+    .content-header p {
+      margin-top: 6px;
+      color: #788899;
+      font-size: 13px;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border: 1px solid #e0e8ef;
+      border-radius: 9px;
+      background: white;
+    }
+
+    .profile-icon {
+      display: grid;
+      place-items: center;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: #dceeff;
+      color: #087cff;
+    }
+
+    .profile-name {
+      font-size: 13px;
       font-weight: bold;
+    }
+
+    .profile-role {
+      color: #888;
+      font-size: 11px;
+    }
+
+    .card {
+      padding: 20px;
+      border: 1px solid #e2eaf1;
+      border-radius: 10px;
+      background: white;
+    }
+
+    .content-header {
+      margin-bottom: 18px;
+    }
+
+    .content-header h2 {
+      color: #20364b;
+      font-size: 19px;
+    }
+
+    button {
       cursor: pointer;
     }
 
-    .card-box {
+    .primary {
+      padding: 11px 15px;
+      border: none;
+      border-radius: 7px;
+      background: #087cff;
+      color: white;
+      font-size: 12px;
+    }
+
+    .primary:hover {
+      background: #0067db;
+    }
+
+    .secondary,
+    .action {
+      padding: 8px;
+      border: 1px solid #dce5ed;
+      border-radius: 6px;
       background: white;
-      border-radius: 12px;
-      padding: 24px;
-      border: 1px solid #e2e8f0;
+      font-size: 11px;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .toolbar input {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .toolbar input,
+    .toolbar select {
+      padding: 11px;
+      border: 1px solid #dce5ed;
+      border-radius: 7px;
+      background: white;
+    }
+
+    .toolbar select {
+      width: 170px;
+    }
+
+    .table-wrap {
       overflow-x: auto;
     }
 
-    .data-table {
+    table {
       width: 100%;
       min-width: 750px;
       border-collapse: collapse;
-      font-size: 12px;
     }
 
-    .data-table th {
-      background: #ebf8ff;
+    thead {
+      background: #f5f9fc;
+    }
+
+    th,
+    td {
+      padding: 13px 10px;
+      border-bottom: 1px solid #edf1f5;
       text-align: left;
-      padding: 12px;
-      color: #2b6cb0;
-    }
-
-    .data-table td {
-      padding: 14px;
-      border-bottom: 1px solid #f0f4f8;
-    }
-
-    .status-confirmed {
-      color: #38a169;
-      font-weight: bold;
-    }
-
-    .status-waiting {
-      color: #dd6b20;
-      font-weight: bold;
-    }
-
-    .status-cancelled,
-    .delete-link {
-      color: #e53e3e;
-    }
-
-    .action-link,
-    .delete-link {
-      border: none;
-      background: none;
       font-size: 12px;
-      font-weight: bold;
-      margin-right: 7px;
-      cursor: pointer;
     }
 
-    .action-link {
-      color: #3182ce;
+    th {
+      color: #708090;
     }
 
-    .modal-backdrop {
+    .status {
+      display: inline-block;
+      padding: 6px 9px;
+      border-radius: 20px;
+      font-size: 10px;
+    }
+
+    .confirmed {
+      background: #e4f8ec;
+      color: #168348;
+    }
+
+    .waiting {
+      background: #fff3d9;
+      color: #a96b00;
+    }
+
+    .cancelled {
+      background: #ffe9e9;
+      color: #cf3d3d;
+    }
+
+    .actions {
+      display: flex;
+      gap: 4px;
+    }
+
+    .empty {
+      padding: 25px;
+      text-align: center;
+      color: #8996a3;
+    }
+
+    .modal {
+      display: none;
       position: fixed;
       inset: 0;
-      background: #0006;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      padding: 15px;
       z-index: 10;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      background: #0007;
     }
 
-    .modal-card {
-      background: white;
-      width: 400px;
-      max-width: 100%;
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      width: 100%;
+      max-width: 500px;
       max-height: 90vh;
       overflow-y: auto;
-      padding: 24px;
+      padding: 22px;
       border-radius: 12px;
+      background: white;
     }
 
-    .modal-card h2 {
-      color: #2b6cb0;
-      font-size: 18px;
-      margin-bottom: 16px;
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 18px;
     }
 
-    .form-group {
-      margin-bottom: 12px;
+    .modal-header h2 {
+      color: #20364b;
+      font-size: 19px;
     }
 
-    .form-group label {
-      display: block;
+    .close {
+      border: none;
+      background: none;
+      font-size: 25px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+    }
+
+    .group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .group label {
       font-size: 12px;
       font-weight: bold;
-      margin-bottom: 4px;
     }
 
-    .form-control {
+    .group input,
+    .group select {
       width: 100%;
-      padding: 8px 10px;
-      border: 1px solid #cbd5e0;
-      border-radius: 6px;
+      padding: 10px;
+      border: 1px solid #dce5ed;
+      border-radius: 7px;
     }
 
-    .modal-actions {
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .form-buttons {
       display: flex;
       justify-content: flex-end;
       gap: 10px;
-      margin-top: 16px;
+      margin-top: 18px;
     }
 
-    .btn-cancel {
-      background: #e2e8f0;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 6px;
-      cursor: pointer;
+    .notice {
+      display: none;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 7px;
+      background: #e4f8ec;
+      color: #168348;
+      font-size: 12px;
     }
 
-    .empty-row {
-      text-align: center;
-      color: #718096;
-      padding: 25px !important;
+    .notice.show {
+      display: block;
     }
 
-    @media (max-width: 850px) {
+    @media (max-width: 900px) {
+      .sidebar {
+        width: 190px;
+      }
+
+      .main {
+        padding: 18px;
+      }
+    }
+
+    @media (max-width: 650px) {
       body {
         flex-direction: column;
       }
 
       .sidebar {
         width: 100%;
-        padding: 16px;
       }
 
-      .nav-list {
-        display: flex;
-        flex-wrap: wrap;
-      }
-
-      .nav-list li {
-        margin: 2px;
-      }
-
-      .nav-list a {
+      .nav-link {
+        display: inline-block;
         padding: 8px;
       }
 
-      .main-content {
-        padding: 20px 16px;
+      .main {
+        padding: 14px;
       }
 
-      .top-header,
-      .page-title-row {
-        flex-wrap: wrap;
+      .toolbar {
+        flex-direction: column;
       }
 
-      .top-search-input {
+      .toolbar select {
         width: 100%;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
       }
     }
   </style>
 </head>
+
 <body>
-
   <aside class="sidebar">
-    <div class="brand-title">Happy Paws</div>
-    <div class="brand-subtitle">Better Care, Happier Pets.</div>
+    <div class="logo">
+      <div class="logo-icon">🐾</div>
 
-    <ul class="nav-list">
-      <li><a href="dashboard.html">🏠 Dashboard</a></li>
-      <li><a href="records.html">🐾 Pet Records</a></li>
-      <li><a href="owners.html">👤 Owners</a></li>
-      <li class="active"><a href="appointments.html">📅 Appointments</a></li>
-      <li><a href="consulations.html">🩺 Consultations</a></li>
-      <li><a href="services.html">📋 Services</a></li>
-      <li><a href="medicines.html">💊 Medicines</a></li>
-      <li><a href="billing.html">💳 Billing</a></li>
-      <li><a href="reports.html">📊 Reports</a></li>
-    </ul>
+      <div>
+        <h2>Happy Paws</h2>
+        <p>Pet Management System</p>
+      </div>
+    </div>
+
+    <p class="menu-title">Main Menu</p>
+
+    <a class="nav-link" href="dashboard.html">📊 Dashboard</a>
+    <a class="nav-link" href="petrecords.html">🐶 Pet Records</a>
+    <a class="nav-link" href="owners.html">👥 Owners</a>
+    <a class="nav-link active" href="appointments.html">📅 Appointments</a>
+    <a class="nav-link" href="consulations.html">🩺 Consultations</a>
+    <a class="nav-link" href="services.html">💊 Services</a>
+    <a class="nav-link" href="medicines.html">💉 Medicines</a>
+
+    <p class="menu-title">Management</p>
+
+    <a class="nav-link" href="billing.html">💳 Billing</a>
+    <a class="nav-link" href="reports.html">📈 Reports</a>
+
+    <p class="menu-title">Account</p>
+
+    <a class="nav-link" href="login.html" id="logout">🚪 Logout</a>
   </aside>
 
-  <main class="main-content">
-    <header class="top-header">
-      <input
-        type="text"
-        id="searchInput"
-        class="top-search-input"
-        placeholder="Search pet, owner, appointment..."
-      >
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h1>Appointments</h1>
+        <p>Schedule and manage clinic appointments.</p>
+      </div>
 
-      <div style="font-size: 13px; font-weight: bold; color: #2b6cb0;">
-        Happy Paws Clinic
+      <div class="profile">
+        <div class="profile-icon">A</div>
+
+        <div>
+          <p class="profile-name">Administrator</p>
+          <p class="profile-role">Admin Account</p>
+        </div>
       </div>
     </header>
 
-    <div class="page-title-row">
-      <div class="title-area">
-        <h1>Appointments</h1>
-        <p style="color: #a0aec0; font-size: 13px;">
-          Schedule and manage clinic appointments.
-        </p>
+    <section class="card">
+      <div class="content-header">
+        <div>
+          <h2>Appointment Records</h2>
+          <p>View and manage pet appointments.</p>
+        </div>
+
+        <button class="primary" id="addButton">
+          + New Appointment
+        </button>
       </div>
 
-      <button class="btn-add-appointment" id="btnOpenModal">
-        + New Appointment
-      </button>
-    </div>
+      <div class="notice" id="notice"></div>
 
-    <div class="card-box">
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>TIME</th>
-            <th>PET</th>
-            <th>OWNER</th>
-            <th>SERVICE</th>
-            <th>VETERINARIAN</th>
-            <th>STATUS</th>
-            <th>ACTION</th>
-          </tr>
-        </thead>
+      <div class="toolbar">
+        <input
+          type="search"
+          id="searchInput"
+          placeholder="Search pet, owner, service..."
+        >
 
-        <tbody id="appTableBody"></tbody>
-      </table>
-    </div>
+        <select id="statusFilter">
+          <option value="all">All Statuses</option>
+          <option>Confirmed</option>
+          <option>Waiting</option>
+          <option>Cancelled</option>
+        </select>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>TIME / DATE</th>
+              <th>PET</th>
+              <th>OWNER</th>
+              <th>SERVICE</th>
+              <th>VETERINARIAN</th>
+              <th>STATUS</th>
+              <th>ACTIONS</th>
+            </tr>
+          </thead>
+
+          <tbody id="appTableBody"></tbody>
+        </table>
+      </div>
+    </section>
   </main>
 
-  <div class="modal-backdrop" id="addModal">
-    <div class="modal-card">
-      <h2 id="modalTitle">New Appointment</h2>
+  <div class="modal" id="appointmentModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">New Appointment</h2>
+        <button class="close" id="closeButton">&times;</button>
+      </div>
 
-      <form id="addForm">
-        <div class="form-group">
-          <label for="aTime">Appointment Time</label>
-          <input type="time" id="aTime" class="form-control" required>
+      <form id="appointmentForm">
+        <input type="hidden" id="appointmentId">
+
+        <div class="form-grid">
+          <div class="group">
+            <label for="pet">Pet Name *</label>
+            <input id="pet" list="petOptions" required>
+            <datalist id="petOptions"></datalist>
+          </div>
+
+          <div class="group">
+            <label for="owner">Owner Name *</label>
+            <input id="owner" list="ownerOptions" required>
+            <datalist id="ownerOptions"></datalist>
+          </div>
+
+          <div class="group">
+            <label for="date">Date *</label>
+            <input type="date" id="date" required>
+          </div>
+
+          <div class="group">
+            <label for="time">Time *</label>
+            <input type="time" id="time" required>
+          </div>
+
+          <div class="group">
+            <label for="service">Service *</label>
+            <input id="service" list="serviceOptions" required>
+            <datalist id="serviceOptions"></datalist>
+          </div>
+
+          <div class="group">
+            <label for="vet">Veterinarian *</label>
+            <select id="vet" required>
+              <option>Dr. Reyes</option>
+              <option>Dr. Santos</option>
+            </select>
+          </div>
+
+          <div class="group full">
+            <label for="status">Status</label>
+            <select id="status">
+              <option>Confirmed</option>
+              <option>Waiting</option>
+              <option>Cancelled</option>
+            </select>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label for="aPet">Pet Name</label>
-          <input type="text" id="aPet" class="form-control" list="petOptions" required>
-          <datalist id="petOptions"></datalist>
-        </div>
-
-        <div class="form-group">
-          <label for="aOwner">Owner Name</label>
-          <input type="text" id="aOwner" class="form-control" list="ownerOptions" required>
-          <datalist id="ownerOptions"></datalist>
-        </div>
-
-        <div class="form-group">
-          <label for="aDate">Appointment Date</label>
-          <input type="date" id="aDate" class="form-control" required>
-        </div>
-
-        <div class="form-group">
-          <label for="aService">Service</label>
-          <input type="text" id="aService" class="form-control" list="serviceOptions" required>
-          <datalist id="serviceOptions"></datalist>
-        </div>
-
-        <div class="form-group">
-          <label for="aVet">Veterinarian</label>
-          <select id="aVet" class="form-control" required>
-            <option value="Dr. Reyes">Dr. Reyes</option>
-            <option value="Dr. Santos">Dr. Santos</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="aStatus">Status</label>
-          <select id="aStatus" class="form-control" required>
-            <option value="Confirmed">Confirmed</option>
-            <option value="Waiting">Waiting</option>
-            <option value="Cancelled">Cancelled</option>
-          </select>
-        </div>
-
-        <div class="modal-actions">
-          <button type="button" class="btn-cancel" id="btnCloseModal">
+        <div class="form-buttons">
+          <button type="button" class="secondary" id="cancelButton">
             Cancel
           </button>
-          <button type="submit" class="btn-save" id="btnSaveAppointment">
+
+          <button type="submit" class="primary" id="saveButton">
             Save Appointment
           </button>
         </div>
@@ -392,41 +563,55 @@
   </div>
 
   <script>
-    const searchInput = document.getElementById("searchInput");
-    const tableBody = document.getElementById("appTableBody");
-    const modal = document.getElementById("addModal");
-    const addForm = document.getElementById("addForm");
     const KEY = "happyPawsAppointments";
+    const $ = id => document.getElementById(id);
+    const modal = $("appointmentModal");
+    const form = $("appointmentForm");
+    const body = $("appTableBody");
+
+    let records = [];
     let editingId = null;
 
     function read(key) {
       try {
-        return JSON.parse(localStorage.getItem(key) || "[]");
+        const data = JSON.parse(localStorage.getItem(key) || "[]");
+        return Array.isArray(data) ? data : [];
       } catch {
         return [];
       }
     }
 
-    function save(data) {
-      localStorage.setItem(KEY, JSON.stringify(data));
-    }
-
     function safe(value) {
-      return String(value ?? "").replace(/[&<>"']/g, c => ({
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
         "&": "&amp;",
         "<": "&lt;",
         ">": "&gt;",
         '"': "&quot;",
         "'": "&#39;"
-      })[c]);
+      })[char]);
     }
 
-    function pets() {
-      const list = read("happyPawsPets");
+    function save() {
+      localStorage.setItem(KEY, JSON.stringify(records));
+    }
 
-      read("happyPawsUsers").forEach(user => {
+    function timeText(value) {
+      if (!value) return "";
+
+      const [hours, minutes] = value.split(":");
+
+      return `${Number(hours) % 12 || 12}:${minutes} ${
+        Number(hours) >= 12 ? "PM" : "AM"
+      }`;
+    }
+
+    function fillOptions() {
+      const pets = read("happyPawsPets");
+      const users = read("happyPawsUsers");
+
+      users.forEach(user => {
         (user.pets || []).forEach(pet => {
-          list.push({
+          pets.push({
             ...pet,
             ownerName: pet.ownerName ||
               [user.firstName, user.lastName].filter(Boolean).join(" ")
@@ -434,187 +619,225 @@
         });
       });
 
-      return [...new Map(list.filter(p => p.name || p.petName).map(p => [
-        p.id || (p.name || p.petName) + p.ownerName,
-        { ...p, name: p.name || p.petName }
-      ])).values()];
-    }
-
-    function fillOptions() {
-      document.getElementById("petOptions").innerHTML = pets()
-        .map(p => `<option value="${safe(p.name)}"></option>`).join("");
+      $("petOptions").innerHTML = [
+        ...new Set(pets.map(pet => pet.name || pet.petName).filter(Boolean))
+      ].map(name => `<option value="${safe(name)}">`).join("");
 
       const owners = [
-        ...read("happyPawsUsers").map(u => ({
-          name: [u.firstName, u.lastName].filter(Boolean).join(" ")
-        })),
-        ...read("happyPawsManualOwners").map(o => ({
-          name: o.name || o.ownerName
-        }))
-      ];
+        ...users.map(user =>
+          [user.firstName, user.lastName].filter(Boolean).join(" ")
+        ),
+        ...read("happyPawsManualOwners").map(owner =>
+          owner.name || owner.ownerName
+        )
+      ].filter(Boolean);
 
-      document.getElementById("ownerOptions").innerHTML = owners
-        .filter(o => o.name)
-        .map(o => `<option value="${safe(o.name)}"></option>`).join("");
+      $("ownerOptions").innerHTML = [
+        ...new Set(owners)
+      ].map(name => `<option value="${safe(name)}">`).join("");
 
-      document.getElementById("serviceOptions").innerHTML = read("happyPawsServices")
-        .map(s => typeof s === "string" ? s : s.name)
+      $("serviceOptions").innerHTML = read("happyPawsServices")
+        .map(service => typeof service === "string" ? service : service.name)
         .filter(Boolean)
-        .map(s => `<option value="${safe(s)}"></option>`).join("");
-    }
-
-    function time(value) {
-      if (!value) return "";
-      const [h, m] = value.split(":");
-      return `${String(Number(h) % 12 || 12).padStart(2, "0")}:${m} ${Number(h) >= 12 ? "PM" : "AM"}`;
+        .map(name => `<option value="${safe(name)}">`)
+        .join("");
     }
 
     function render() {
-      const all = read(KEY);
-      const filter = searchInput.value.toLowerCase();
+      const term = $("searchInput").value.toLowerCase();
+      const filter = $("statusFilter").value;
 
-      const list = all.filter(a =>
-        Object.values(a).join(" ").toLowerCase().includes(filter)
-      ).sort((a, b) =>
-        `${a.date} ${a.time}`.localeCompare(`${b.date} ${b.time}`)
-      );
+      const list = records
+        .filter(appointment =>
+          Object.values(appointment).join(" ").toLowerCase().includes(term) &&
+          (filter === "all" || appointment.status === filter)
+        )
+        .sort((a, b) =>
+          (a.date + " " + a.time).localeCompare(b.date + " " + b.time)
+        );
 
-      if (!list.length) {
-        tableBody.innerHTML = `<tr><td colspan="7" class="empty-row">No appointments found.</td></tr>`;
-        return;
-      }
+      body.innerHTML = list.length
+        ? list.map(appointment => `
+          <tr>
+            <td>
+              ${safe(timeText(appointment.time))}
+              <div style="color:#8996a3;margin-top:4px">
+                ${safe(appointment.date)}
+              </div>
+            </td>
 
-      tableBody.innerHTML = list.map(a => `
-        <tr>
-          <td>${safe(time(a.time))}<br>${safe(a.date)}</td>
-          <td>${safe(a.pet)}</td>
-          <td>${safe(a.owner)}</td>
-          <td>${safe(a.service)}</td>
-          <td>${safe(a.vet)}</td>
-          <td class="status-${a.status.toLowerCase()}">${safe(a.status)}</td>
-          <td>
-            <button class="action-link" data-action="view" data-id="${safe(a.id)}">View</button>
-            <button class="action-link" data-action="edit" data-id="${safe(a.id)}">Edit</button>
-            <button class="delete-link" data-action="delete" data-id="${safe(a.id)}">Delete</button>
-          </td>
-        </tr>
-      `).join("");
+            <td>${safe(appointment.pet)}</td>
+            <td>${safe(appointment.owner)}</td>
+            <td>${safe(appointment.service)}</td>
+            <td>${safe(appointment.vet)}</td>
+
+            <td>
+              <span class="status ${String(appointment.status).toLowerCase()}">
+                ${safe(appointment.status)}
+              </span>
+            </td>
+
+            <td class="actions">
+              <button class="action" data-action="view" data-id="${safe(appointment.id)}">View</button>
+              <button class="action" data-action="edit" data-id="${safe(appointment.id)}">Edit</button>
+              <button class="action" data-action="delete" data-id="${safe(appointment.id)}">Delete</button>
+            </td>
+          </tr>
+        `).join("")
+        : `<tr><td colspan="7" class="empty">No appointments found.</td></tr>`;
     }
 
-    function openModal() {
-      editingId = null;
-      addForm.reset();
-      document.getElementById("modalTitle").textContent = "New Appointment";
-      document.getElementById("btnSaveAppointment").textContent = "Save Appointment";
-      document.getElementById("aDate").value = new Date().toLocaleDateString("en-CA");
+    function openModal(appointment = null) {
+      form.reset();
+      editingId = appointment ? appointment.id : null;
+
+      $("modalTitle").textContent = appointment
+        ? "Edit Appointment"
+        : "New Appointment";
+
+      $("saveButton").textContent = appointment
+        ? "Update Appointment"
+        : "Save Appointment";
+
+      $("appointmentId").value = appointment?.id || "";
+      $("date").value = appointment?.date || new Date().toLocaleDateString("en-CA");
+      $("time").value = appointment?.time || "";
+      $("pet").value = appointment?.pet || "";
+      $("owner").value = appointment?.owner || "";
+      $("service").value = appointment?.service || "";
+      $("vet").value = appointment?.vet || "Dr. Reyes";
+      $("status").value = appointment?.status || "Confirmed";
+
       fillOptions();
-      modal.style.display = "flex";
+      modal.classList.add("show");
     }
 
     function closeModal() {
-      modal.style.display = "none";
-      addForm.reset();
+      modal.classList.remove("show");
+      form.reset();
       editingId = null;
     }
 
-    document.getElementById("btnOpenModal").onclick = openModal;
-    document.getElementById("btnCloseModal").onclick = closeModal;
-    searchInput.oninput = render;
+    function showNotice(message) {
+      $("notice").textContent = message;
+      $("notice").classList.add("show");
 
-    modal.onclick = e => {
-      if (e.target === modal) closeModal();
+      setTimeout(() => {
+        $("notice").classList.remove("show");
+      }, 2500);
+    }
+
+    $("addButton").onclick = () => openModal();
+
+    $("closeButton").onclick = closeModal;
+    $("cancelButton").onclick = closeModal;
+
+    modal.onclick = event => {
+      if (event.target === modal) closeModal();
     };
 
-    document.getElementById("aPet").onchange = function() {
-      const pet = pets().find(p => p.name.toLowerCase() === this.value.toLowerCase());
-      if (pet && pet.ownerName) {
-        document.getElementById("aOwner").value = pet.ownerName;
+    $("searchInput").oninput = render;
+    $("statusFilter").onchange = render;
+
+    $("pet").onchange = function () {
+      const name = this.value.toLowerCase();
+
+      const pet = read("happyPawsPets").find(item =>
+        (item.name || item.petName || "").toLowerCase() === name
+      );
+
+      if (pet?.ownerName) {
+        $("owner").value = pet.ownerName;
       }
     };
 
-    addForm.onsubmit = e => {
-      e.preventDefault();
+    form.onsubmit = event => {
+      event.preventDefault();
 
       const appointment = {
         id: editingId || Date.now().toString(),
-        time: document.getElementById("aTime").value,
-        pet: document.getElementById("aPet").value.trim(),
-        owner: document.getElementById("aOwner").value.trim(),
-        date: document.getElementById("aDate").value,
-        service: document.getElementById("aService").value.trim(),
-        vet: document.getElementById("aVet").value,
-        status: document.getElementById("aStatus").value
+        pet: $("pet").value.trim(),
+        owner: $("owner").value.trim(),
+        date: $("date").value,
+        time: $("time").value,
+        service: $("service").value.trim(),
+        vet: $("vet").value,
+        status: $("status").value
       };
 
-      const list = read(KEY);
-
       if (editingId) {
-        const index = list.findIndex(a => String(a.id) === String(editingId));
-        if (index < 0) return alert("Appointment not found.");
-        list[index] = appointment;
+        const index = records.findIndex(item =>
+          String(item.id) === String(editingId)
+        );
+
+        if (index < 0) {
+          return alert("Appointment not found.");
+        }
+
+        records[index] = appointment;
       } else {
-        list.push(appointment);
+        records.push(appointment);
       }
 
-      save(list);
+      const updated = Boolean(editingId);
+
+      save();
       closeModal();
       render();
-      alert(editingId ? "Appointment updated!" : "Appointment added!");
+
+      showNotice(updated ? "Appointment updated!" : "Appointment added!");
     };
 
-    tableBody.onclick = e => {
-      const button = e.target.closest("button[data-action]");
+    body.onclick = event => {
+      const button = event.target.closest("[data-action]");
+
       if (!button) return;
 
-      const list = read(KEY);
-      const a = list.find(x => String(x.id) === button.dataset.id);
-      if (!a) return alert("Appointment not found.");
+      const appointment = records.find(item =>
+        String(item.id) === button.dataset.id
+      );
+
+      if (!appointment) return;
 
       if (button.dataset.action === "view") {
-        alert(`Date: ${a.date}\nTime: ${time(a.time)}\nPet: ${a.pet}\nOwner: ${a.owner}\nService: ${a.service}\nVeterinarian: ${a.vet}\nStatus: ${a.status}`);
+        alert(
+          `Date: ${appointment.date}\n` +
+          `Time: ${timeText(appointment.time)}\n` +
+          `Pet: ${appointment.pet}\n` +
+          `Owner: ${appointment.owner}\n` +
+          `Service: ${appointment.service}\n` +
+          `Veterinarian: ${appointment.vet}\n` +
+          `Status: ${appointment.status}`
+        );
       }
 
       if (button.dataset.action === "edit") {
-        editingId = a.id;
-        fillOptions();
-
-        document.getElementById("modalTitle").textContent = "Edit Appointment";
-        document.getElementById("btnSaveAppointment").textContent = "Update Appointment";
-
-        Object.entries({
-          aTime: a.time,
-          aPet: a.pet,
-          aOwner: a.owner,
-          aDate: a.date,
-          aService: a.service,
-          aVet: a.vet,
-          aStatus: a.status
-        }).forEach(([id, value]) => {
-          document.getElementById(id).value = value || "";
-        });
-
-        modal.style.display = "flex";
+        openModal(appointment);
       }
 
-      if (button.dataset.action === "delete" &&
-          confirm(`Delete appointment for ${a.pet}?`)) {
-        save(list.filter(x => String(x.id) !== String(a.id)));
+      if (
+        button.dataset.action === "delete" &&
+        confirm(`Delete appointment for ${appointment.pet}?`)
+      ) {
+        records = records.filter(item =>
+          String(item.id) !== String(appointment.id)
+        );
+
+        save();
         render();
-        alert("Appointment deleted!");
+        showNotice("Appointment deleted!");
       }
     };
 
-    if (!localStorage.getItem(KEY)) {
-      save([
-        { id: "1", time: "09:00", date: "", pet: "Buddy", owner: "Maria Santos", service: "Check-up", vet: "Dr. Reyes", status: "Confirmed" },
-        { id: "2", time: "10:30", date: "", pet: "Luna", owner: "John Cruz", service: "Vaccination", vet: "Dr. Santos", status: "Waiting" },
-        { id: "3", time: "13:00", date: "", pet: "Max", owner: "Ana Reyes", service: "Deworming", vet: "Dr. Reyes", status: "Confirmed" }
-      ]);
-    }
+    $("logout").onclick = event => {
+      if (!confirm("Are you sure you want to log out?")) {
+        event.preventDefault();
+      }
+    };
 
+    records = read(KEY);
     fillOptions();
     render();
   </script>
-
 </body>
 </html>
