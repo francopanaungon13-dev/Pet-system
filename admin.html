@@ -1,204 +1,183 @@
 <html>
 <head>
-    <title>Happy Paws - Admin Login</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: #eaf5ff;
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .login-box {
-            width: 370px;
-            max-width: 100%;
-            background: white;
-            border: 2px solid #087cff;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px #b8d6ee;
-        }
-
-        .header {
-            background: #dff3f5;
-            text-align: center;
-            padding: 25px 15px;
-        }
-
-        .logo {
-            font-size: 42px;
-        }
-
-        .header h1 {
-            color: #064de8;
-            margin: 8px 0;
-            font-size: 28px;
-        }
-
-        .header p {
-            color: #667788;
-            margin: 0;
-            font-size: 13px;
-        }
-
-        .content {
-            padding: 25px;
-        }
-
-        .content h2 {
-            color: #12385a;
-            margin: 0 0 8px;
-        }
-
-        .subtitle {
-            color: #777;
-            font-size: 14px;
-            margin-bottom: 22px;
-        }
-
-        label {
-            display: block;
-            margin: 15px 0 7px;
-            color: #12385a;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #b9d4e8;
-            border-radius: 7px;
-            background: #f5faff;
-            font-size: 15px;
-        }
-
-        button {
-            width: 100%;
-            padding: 13px;
-            background: #087cff;
-            color: white;
-            border: 0;
-            border-radius: 7px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 22px;
-        }
-
-        button:hover {
-            background: #0565d2;
-        }
-
-        .register-button {
-            display: block;
-            width: 100%;
-            padding: 13px;
-            background: #ffffff;
-            color: #087cff;
-            border: 2px solid #087cff;
-            border-radius: 7px;
-            font-size: 14px;
-            font-weight: bold;
-            text-align: center;
-            text-decoration: none;
-            margin-top: 12px;
-        }
-
-        .register-button:hover {
-            background: #ebf8ff;
-        }
-
-        .error {
-            color: #d32f2f;
-            font-size: 13px;
-            margin-top: 12px;
-        }
-
-        .footer {
-            text-align: center;
-            font-size: 12px;
-            color: #778899;
-            margin-top: 20px;
-        }
-    </style>
+  <title>Happy Paws - Account</title>
+<meta http-equiv="refresh" content="0;url=admin.html">
+  <style>
+    body {
+      font-family: Arial;
+      background: #eaf5ff;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .box {
+      width: 370px;
+      background: white;
+      border: 2px solid #087cff;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .header {
+      background: #dff3f5;
+      text-align: center;
+      padding: 15px;
+    }
+    .logo {
+      font-size: 35px;
+    }
+    .title {
+      color: #064de8;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .subtitle {
+      font-size: 8px;
+      color: #888;
+    }
+    .form {
+      padding: 20px;
+    }
+    h3 {
+      font-size: 13px;
+      border-bottom: 1px solid #777;
+      padding-bottom: 8px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 15px;
+    }
+    label {
+      font-size: 8px;
+      color: #777;
+      display: block;
+      margin-bottom: 4px;
+    }
+    input {
+      width: 100%;
+      height: 25px;
+      border: none;
+      background: #d8eafb;
+      border-radius: 5px;
+      padding: 4px;
+      box-sizing: border-box;
+    }
+    .buttons {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+    button {
+      border: none;
+      background: #064de8;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0438a8;
+    }
+  </style>
 </head>
-
 <body>
-    <div class="login-box">
-        <div class="header">
-            <div class="logo">🐾</div>
-            <h1>Happy Paws</h1>
-            <p>PET CLINIC ADMIN PORTAL</p>
-        </div>
 
-        <div class="content">
-            <h2>Admin Login</h2>
-            <p class="subtitle">Sign in to manage your clinic.</p>
-
-            <form id="adminLoginForm">
-                <label for="email">Email Address</label>
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Enter admin email"
-                    required
-                >
-
-                <label for="password">Password</label>
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Enter password"
-                    required
-                >
-
-                <button type="submit">LOGIN</button>
-
-                <p id="errorMessage" class="error"></p>
-            </form>
-
-            <a href="owner.html" class="register-button">
-                ➕ NEW OWNER REGISTRATION
-            </a>
-
-            <div class="footer">
-                Authorized clinic personnel only
-            </div>
-        </div>
+  <div class="box">
+    <div class="header">
+      <div class="logo">🐾</div>
+      <div class="title">Create Your Happy Paws Account!</div>
+      <div class="subtitle">Complete your registration for expert pet care services</div>
     </div>
 
-    <script>
-        const ADMIN_EMAIL = "admin@happypaws.com";
-        const ADMIN_PASSWORD = "HappyPaws123";
+    <form class="form" id="accountForm">
+      <h3>Account Information</h3>
 
-        if (sessionStorage.getItem("happyPawsAdminLoggedIn") === "true") {
-            window.location.replace("dashboard.html");
-        }
+      <div class="grid">
+        <div>
+          <label>First Name</label>
+          <input type="text" id="firstName" required>
+        </div>
+        <div>
+          <label>Last Name</label>
+          <input type="text" id="lastName" required>
+        </div>
+        <div>
+          <label>Email Address</label>
+          <input type="email" id="email" required>
+        </div>
+        <div>
+          <label>Phone Number</label>
+          <input type="text" id="phone" required>
+        </div>
+        <div>
+          <label>Password</label>
+          <input type="password" id="password" required>
+        </div>
+        <div>
+          <label>Confirm Password</label>
+          <input type="password" id="confirmPassword" required>
+        </div>
+      </div>
 
-        document.getElementById("adminLoginForm").addEventListener("submit", function(e) {
-            e.preventDefault();
+      <div class="buttons">
+        <button type="submit">Next Step →</button>
+      </div>
+    </form>
+  </div>
 
-            const email = document.getElementById("email").value.trim().toLowerCase();
-            const password = document.getElementById("password").value;
-            const errorMessage = document.getElementById("errorMessage");
+  <script>
+    document.getElementById("accountForm").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-            if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
-                sessionStorage.setItem("happyPawsAdminLoggedIn", "true");
-                window.location.href = "dashboard.html";
-            } else {
-                errorMessage.textContent = "Incorrect admin email or password.";
-            }
-        });
-    </script>
+      const firstName = document.getElementById("firstName").value.trim();
+      const lastName = document.getElementById("lastName").value.trim();
+      const email = document.getElementById("email").value.trim().toLowerCase();
+      const phone = document.getElementById("phone").value.trim();
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
+      }
+
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters.");
+        return;
+      }
+
+      let users = JSON.parse(localStorage.getItem("happyPawsUsers") || "[]");
+
+      if (users.some(user => user.email === email)) {
+        alert("Email already registered. Please use another email.");
+        return;
+      }
+
+      const account = {
+        id: Date.now().toString(),
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phone: phone,
+        password: password,
+        owner: {},
+        pets: []
+      };
+
+      users.push(account);
+
+      try {
+        localStorage.setItem("happyPawsUsers", JSON.stringify(users));
+        localStorage.setItem("currentUserEmail", email);
+        window.location.href = "owner.html";
+      } catch (error) {
+        alert("Unable to save registration in this browser.");
+      }
+    });
+  </script>
+
 </body>
 </html>
