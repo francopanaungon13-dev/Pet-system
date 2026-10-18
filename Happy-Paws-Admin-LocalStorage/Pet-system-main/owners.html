@@ -1,0 +1,822 @@
+<html>
+<head>
+<script src="shared-storage.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Paws - Owners</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      background: #f2f7fb;
+      color: #333;
+    }
+
+    .sidebar {
+      width: 220px;
+      min-height: 100vh;
+      flex-shrink: 0;
+      padding: 20px 15px;
+      background: white;
+      border-right: 1px solid #dce6ef;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .logo-icon {
+      font-size: 30px;
+    }
+
+    .logo h2 {
+      color: #087cff;
+      font-size: 20px;
+    }
+
+    .logo p {
+      color: #888;
+      font-size: 11px;
+    }
+
+    .menu-title {
+      margin: 20px 10px 10px;
+      color: #999;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 11px;
+      margin-bottom: 5px;
+      border-radius: 7px;
+      color: #555;
+      text-decoration: none;
+      font-size: 13px;
+      transition: 0.2s;
+    }
+
+    .nav-link:hover {
+      background: #edf6ff;
+    }
+
+    .nav-link.active {
+      background: #087cff;
+      color: white;
+    }
+
+    .main {
+      flex: 1;
+      min-width: 0;
+      padding: 25px;
+    }
+
+    .topbar,
+    .content-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      color: #20364b;
+      font-size: 26px;
+    }
+
+    .page-description,
+    .content-header p {
+      margin-top: 6px;
+      color: #788899;
+      font-size: 13px;
+    }
+
+    .top-search {
+      width: 320px;
+      max-width: 100%;
+      padding: 11px 15px;
+      border: 1px solid #dce5ed;
+      border-radius: 20px;
+      background: white;
+      outline: none;
+      font-size: 12px;
+    }
+
+    .top-search:focus {
+      border-color: #087cff;
+      box-shadow: 0 0 0 2px #edf6ff;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border: 1px solid #e0e8ef;
+      border-radius: 9px;
+      background: white;
+    }
+
+    .profile-icon {
+      display: grid;
+      place-items: center;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: #dceeff;
+      color: #087cff;
+      font-weight: bold;
+    }
+
+    .profile-name {
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .profile-role {
+      margin-top: 3px;
+      color: #888;
+      font-size: 11px;
+    }
+
+    .card {
+      padding: 20px;
+      border: 1px solid #e2eaf1;
+      border-radius: 10px;
+      background: white;
+    }
+
+    .content-header {
+      margin-bottom: 18px;
+    }
+
+    .content-header h2 {
+      color: #20364b;
+      font-size: 19px;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .primary {
+      padding: 11px 15px;
+      border: none;
+      border-radius: 7px;
+      background: #087cff;
+      color: white;
+      font-size: 12px;
+    }
+
+    .primary:hover {
+      background: #0067db;
+    }
+
+    .secondary {
+      padding: 9px 13px;
+      border: 1px solid #dce5ed;
+      border-radius: 6px;
+      background: white;
+      font-size: 12px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      min-width: 750px;
+      border-collapse: collapse;
+    }
+
+    thead {
+      background: #f5f9fc;
+    }
+
+    th,
+    td {
+      padding: 14px 10px;
+      border-bottom: 1px solid #edf1f5;
+      text-align: left;
+      font-size: 12px;
+    }
+
+    th {
+      color: #708090;
+      white-space: nowrap;
+    }
+
+    td {
+      color: #4a5568;
+    }
+
+    tbody tr:hover {
+      background: #f8fbff;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 6px 9px;
+      border-radius: 20px;
+      background: #e4f8ec;
+      color: #168348;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    .action {
+      padding: 7px 9px;
+      margin: 2px;
+      border: 1px solid #dce5ed;
+      border-radius: 6px;
+      background: white;
+      font-size: 11px;
+    }
+
+    .view-btn {
+      color: #087cff;
+    }
+
+    .delete-btn {
+      border-color: #ffd7d7;
+      background: #fff0f0;
+      color: #d93636;
+    }
+
+    .delete-btn:hover {
+      background: #fed7d7;
+    }
+
+    .empty {
+      padding: 25px;
+      text-align: center;
+      color: #8996a3;
+    }
+
+    .notice {
+      display: none;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 7px;
+      background: #e4f8ec;
+      color: #168348;
+      font-size: 12px;
+    }
+
+    .notice.show {
+      display: block;
+    }
+
+    .notice.error {
+      background: #ffe9e9;
+      color: #c53030;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      background: #0007;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      width: 100%;
+      max-width: 450px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 24px;
+      border-radius: 12px;
+      background: white;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .modal-header h2 {
+      color: #20364b;
+      font-size: 20px;
+    }
+
+    .modal-description {
+      margin-bottom: 20px;
+      color: #788899;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .close {
+      border: none;
+      background: none;
+      color: #555;
+      font-size: 25px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .group label {
+      color: #4a5568;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .group input {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #dce5ed;
+      border-radius: 7px;
+      outline: none;
+      font-size: 12px;
+    }
+
+    .group input:focus {
+      border-color: #087cff;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .form-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    @media (max-width: 900px) {
+      .sidebar {
+        width: 190px;
+      }
+
+      .main {
+        padding: 18px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        min-height: auto;
+      }
+
+      .nav-link {
+        display: inline-block;
+        padding: 8px;
+      }
+
+      .main {
+        padding: 14px;
+      }
+
+      .top-search {
+        width: 100%;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">🐾</div>
+      <div>
+        <h2>Happy Paws</h2>
+        <p>Pet Management System</p>
+      </div>
+    </div>
+
+    <p class="menu-title">Main Menu</p>
+    <a class="nav-link" href="dashboard.html">📊 Dashboard</a>
+
+    <p class="menu-title">Management</p>
+    <a class="nav-link" href="records.html">🐶 Pet Records</a>
+    <a class="nav-link active" href="owners.html">👥 Owners</a>
+    <a class="nav-link" href="appointments.html">📅 Appointments</a>
+    <a class="nav-link" href="consulations.html">🩺 Consultations</a>
+    <a class="nav-link" href="services.html">💊 Services</a>
+    <a class="nav-link" href="medicines.html">💉 Medicines</a>
+
+     <p class="menu-title">Management</p>
+    
+    <a class="nav-link" href="billing.html">💳 Billing</a>
+    <a class="nav-link" href="reports.html">📈 Reports</a>
+
+    <p class="menu-title">Account</p>
+    <a class="nav-link" href="login.html" id="logout">🚪 Logout</a>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <input
+        type="search"
+        id="searchInput"
+        class="top-search"
+        placeholder="Search owner name, contact, email..."
+      >
+
+      <div class="profile">
+        <div class="profile-icon">A</div>
+        <div>
+          <p class="profile-name">Administrator</p>
+          <p class="profile-role">Admin Account</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="card">
+      <div class="content-header">
+        <div>
+          <h2>Owners</h2>
+          <p>View and manage pet owners and their registered pets.</p>
+        </div>
+        <button class="primary" id="addButton">+ Add New Owner</button>
+      </div>
+
+      <div class="notice" id="notice"></div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>OWNER</th>
+              <th>CONTACT</th>
+              <th>EMAIL</th>
+              <th>ADDRESS</th>
+              <th>PETS</th>
+              <th>STATUS</th>
+              <th>ACTION</th>
+            </tr>
+          </thead>
+          <tbody id="ownersTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="ownerModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Add New Owner</h2>
+        <button type="button" class="close" id="closeButton">&times;</button>
+      </div>
+
+      <p class="modal-description">Enter the owner's information below.</p>
+
+      <form id="ownerForm">
+        <div class="form-grid">
+          <div class="group full">
+            <label for="oName">Owner Name *</label>
+            <input type="text" id="oName" placeholder="Enter owner name" required>
+          </div>
+
+          <div class="group full">
+            <label for="oContact">Contact *</label>
+            <input type="tel" id="oContact" placeholder="Enter contact number" required>
+          </div>
+
+          <div class="group full">
+            <label for="oEmail">Email *</label>
+            <input type="email" id="oEmail" placeholder="Enter email address" required>
+          </div>
+
+          <div class="group full">
+            <label for="oAddress">Address *</label>
+            <input type="text" id="oAddress" placeholder="Enter complete address" required>
+          </div>
+        </div>
+
+        <div class="form-buttons">
+          <button type="button" class="secondary" id="cancelButton">Cancel</button>
+          <button type="submit" class="primary">Save Owner</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const tableBody = $("ownersTableBody");
+    const modal = $("ownerModal");
+    const form = $("ownerForm");
+    const searchInput = $("searchInput");
+
+    function readStorage(key) {
+      try {
+        const data = JSON.parse(localStorage.getItem(key) || "[]");
+        return Array.isArray(data) ? data : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[char]);
+    }
+
+    function getOwners() {
+      const users = readStorage("happyPawsUsers");
+      const manualOwners = readStorage("happyPawsManualOwners");
+
+      const owners = users.map(user => {
+        const ownerInfo = user.owner || {};
+
+        return {
+          id: String(user.id || user.email),
+          name: (
+            (user.firstName || "") + " " + (user.lastName || "")
+          ).trim() || user.email || "Unnamed Owner",
+          contact: user.phone || ownerInfo.phone || "",
+          email: user.email || "",
+          address: ownerInfo.address || "Not provided",
+          petCount: Array.isArray(user.pets) ? user.pets.length : 0,
+          source: "registered"
+        };
+      });
+
+      manualOwners.forEach(owner => {
+        owners.push({
+          id: String(owner.id),
+          name: owner.name || "",
+          contact: owner.contact || "",
+          email: owner.email || "",
+          address: owner.address || "",
+          petCount: Number(owner.petCount) || 0,
+          source: "manual"
+        });
+      });
+
+      return owners;
+    }
+
+    function showNotice(message, isError = false) {
+      const notice = $("notice");
+      notice.textContent = message;
+      notice.classList.toggle("error", isError);
+      notice.classList.add("show");
+
+      setTimeout(() => notice.classList.remove("show"), 3000);
+    }
+
+    function renderOwners() {
+      const search = searchInput.value.toLowerCase().trim();
+
+      const owners = getOwners().filter(owner =>
+        [
+          owner.name,
+          owner.contact,
+          owner.email,
+          owner.address,
+          owner.petCount
+        ].join(" ").toLowerCase().includes(search)
+      );
+
+      tableBody.innerHTML = "";
+
+      if (!owners.length) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="7" class="empty">
+              ${search ? "No owners match your search." : "No owners found. Click Add New Owner to register an owner."}
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      owners.forEach(owner => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+          <td>${escapeHTML(owner.name)}</td>
+          <td>${escapeHTML(owner.contact || "Not provided")}</td>
+          <td>${escapeHTML(owner.email || "Not provided")}</td>
+          <td>${escapeHTML(owner.address || "Not provided")}</td>
+          <td>${Number(owner.petCount) || 0} pet(s)</td>
+          <td><span class="status">● Active</span></td>
+          <td>
+            <button type="button" class="action view-btn">View</button>
+            <button type="button" class="action delete-btn">Delete</button>
+          </td>
+        `;
+
+        row.querySelector(".view-btn").addEventListener("click", () => {
+          const users = readStorage("happyPawsUsers");
+          const user = owner.source === "registered"
+            ? users.find(item => String(item.id || item.email) === owner.id)
+            : null;
+
+          const pets = user && Array.isArray(user.pets)
+            ? user.pets.map(pet =>
+                (pet.name || "Unnamed Pet") + " (" + (pet.type || "Unknown") + ")"
+              ).join(", ")
+            : "No pet details available";
+
+          alert(
+            "OWNER INFORMATION\n\n" +
+            "Name: " + owner.name +
+            "\nContact: " + (owner.contact || "Not provided") +
+            "\nEmail: " + (owner.email || "Not provided") +
+            "\nAddress: " + (owner.address || "Not provided") +
+            "\nRegistered Pets: " + owner.petCount +
+            "\nPets: " + pets
+          );
+        });
+
+        row.querySelector(".delete-btn").addEventListener("click", () => {
+          if (!confirm(
+            "DELETE OWNER\n\nAre you sure you want to delete " +
+            owner.name + "?\n\nThis action cannot be undone."
+          )) {
+            alert("Deletion cancelled. No records were deleted.");
+            return;
+          }
+
+          try {
+            if (owner.source === "registered") {
+              const users = readStorage("happyPawsUsers");
+              const user = users.find(item =>
+                String(item.id || item.email) === owner.id
+              );
+
+              const removedPetIds = user && Array.isArray(user.pets)
+                ? user.pets.filter(pet => pet.id != null).map(pet => String(pet.id))
+                : [];
+
+              const updatedUsers = users.filter(item =>
+                String(item.id || item.email) !== owner.id
+              );
+
+              localStorage.setItem("happyPawsUsers", JSON.stringify(updatedUsers));
+
+              const remainingPets = readStorage("happyPawsPets").filter(pet => {
+                const belongsToOwner =
+                  String(pet.ownerEmail || "").toLowerCase() === owner.email.toLowerCase();
+
+                const matchesPetId =
+                  pet.id != null && removedPetIds.includes(String(pet.id));
+
+                return !belongsToOwner && !matchesPetId;
+              });
+
+              localStorage.setItem("happyPawsPets", JSON.stringify(remainingPets));
+
+              if (localStorage.getItem("currentUserEmail") === owner.email) {
+                localStorage.removeItem("currentUserEmail");
+              }
+            } else {
+              const manualOwners = readStorage("happyPawsManualOwners");
+              const updatedOwners = manualOwners.filter(item =>
+                String(item.id) !== owner.id
+              );
+
+              localStorage.setItem("happyPawsManualOwners", JSON.stringify(updatedOwners));
+            }
+
+            renderOwners();
+            alert("SUCCESS!\n\nOwner \"" + owner.name + "\" has been deleted successfully.");
+            showNotice("Owner deleted successfully.");
+          } catch (error) {
+            alert("DELETE FAILED!\n\nUnable to delete the owner. Please try again.");
+            showNotice("Unable to delete owner.", true);
+          }
+        });
+
+        tableBody.appendChild(row);
+      });
+    }
+
+    function openModal() {
+      form.reset();
+      modal.classList.add("show");
+      $("oName").focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove("show");
+      form.reset();
+    }
+
+    $("addButton").addEventListener("click", openModal);
+    $("closeButton").addEventListener("click", closeModal);
+    $("cancelButton").addEventListener("click", closeModal);
+
+    modal.addEventListener("click", event => {
+      if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeModal();
+    });
+
+    searchInput.addEventListener("input", renderOwners);
+
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+
+      const owner = {
+        id: Date.now().toString(),
+        name: $("oName").value.trim(),
+        contact: $("oContact").value.trim(),
+        email: $("oEmail").value.trim(),
+        address: $("oAddress").value.trim(),
+        petCount: 0
+      };
+
+      if (!owner.name || !owner.contact || !owner.email || !owner.address) {
+        alert("ADD OWNER FAILED!\n\nPlease complete all owner information.");
+        return;
+      }
+
+      const users = readStorage("happyPawsUsers");
+      const manualOwners = readStorage("happyPawsManualOwners");
+
+      const emailExists = users.some(user =>
+        String(user.email || "").toLowerCase() === owner.email.toLowerCase()
+      ) || manualOwners.some(item =>
+        String(item.email || "").toLowerCase() === owner.email.toLowerCase()
+      );
+
+      if (emailExists) {
+        alert("DUPLICATE EMAIL!\n\nAn owner with this email already exists.");
+        return;
+      }
+
+      try {
+        manualOwners.push(owner);
+
+        localStorage.setItem("happyPawsManualOwners", JSON.stringify(manualOwners));
+
+        closeModal();
+        renderOwners();
+
+        alert("SUCCESS!\n\nOwner \"" + owner.name + "\" has been added successfully.");
+        showNotice("Owner added successfully.");
+      } catch (error) {
+        alert("ADD OWNER FAILED!\n\nUnable to save owner. Please try again.");
+        showNotice("Unable to save owner.", true);
+      }
+    });
+
+    $("logout").addEventListener("click", event => {
+      if (!confirm("Are you sure you want to log out?")) {
+        event.preventDefault();
+      }
+    });
+
+    renderOwners();
+  </script>
+</body>
+</html>

@@ -1,0 +1,744 @@
+<html>
+<head>
+<script src="shared-storage.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Paws - Pet Records</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      background: #f2f7fb;
+      color: #333;
+    }
+
+    .sidebar {
+      width: 220px;
+      padding: 20px 15px;
+      background: white;
+      border-right: 1px solid #dce6ef;
+      flex-shrink: 0;
+    }
+
+    .logo {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .logo-icon { font-size: 30px; }
+    .logo h2 { color: #087cff; font-size: 20px; }
+    .logo p { color: #888; font-size: 11px; }
+
+    .menu-title {
+      margin: 20px 10px 10px;
+      color: #999;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 11px;
+      margin-bottom: 5px;
+      border-radius: 7px;
+      color: #555;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .nav-link:hover { background: #edf6ff; }
+    .nav-link.active { background: #087cff; color: white; }
+
+    .main { flex: 1; min-width: 0; padding: 25px; }
+
+    .topbar, .content-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    h1 { color: #20364b; font-size: 26px; }
+    .page-title p, .content-header p {
+      margin-top: 6px;
+      color: #788899;
+      font-size: 13px;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border: 1px solid #e0e8ef;
+      border-radius: 9px;
+      background: white;
+    }
+
+    .profile-icon {
+      display: grid;
+      place-items: center;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: #dceeff;
+      color: #087cff;
+      font-weight: bold;
+    }
+
+    .profile-name { font-size: 13px; font-weight: bold; }
+    .profile-role { color: #888; font-size: 11px; }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 22px;
+    }
+
+    .summary-card, .content-card {
+      padding: 18px;
+      border: 1px solid #e2eaf1;
+      border-radius: 10px;
+      background: white;
+    }
+
+    .summary-icon { font-size: 22px; }
+    .summary-card p { margin: 10px 0; color: #788899; font-size: 12px; }
+    .summary-card h2 { color: #20364b; font-size: 25px; }
+    .content-header { margin-bottom: 18px; }
+    .content-header h2 { color: #20364b; font-size: 19px; }
+
+    button { cursor: pointer; }
+
+    .primary-button {
+      padding: 11px 15px;
+      border: none;
+      border-radius: 7px;
+      background: #087cff;
+      color: white;
+      font-size: 12px;
+    }
+
+    .primary-button:hover { background: #0067db; }
+
+    .secondary-button, .action-button {
+      padding: 8px;
+      border: 1px solid #dce5ed;
+      border-radius: 6px;
+      background: white;
+      font-size: 11px;
+    }
+
+    .delete-action {
+      color: #cf3d3d;
+      border-color: #f5caca;
+      background: #fff5f5;
+    }
+
+    .toolbar { display: flex; gap: 10px; margin-bottom: 18px; }
+
+    .toolbar input, .toolbar select {
+      padding: 11px;
+      border: 1px solid #dce5ed;
+      border-radius: 7px;
+      outline: none;
+      background: white;
+    }
+
+    .toolbar input { flex: 1; min-width: 0; }
+    .toolbar select { width: 170px; }
+    .table-wrapper { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      min-width: 700px;
+      border-collapse: collapse;
+    }
+
+    thead { background: #f5f9fc; }
+
+    th, td {
+      padding: 13px 10px;
+      border-bottom: 1px solid #edf1f5;
+      text-align: left;
+      font-size: 12px;
+    }
+
+    th { color: #708090; }
+    .pet-name { color: #243b50; font-weight: bold; }
+    .small-text { margin-top: 4px; color: #8996a3; font-size: 10px; }
+
+    .status {
+      display: inline-block;
+      padding: 6px 9px;
+      border-radius: 20px;
+      font-size: 10px;
+    }
+
+    .active-status { background: #e4f8ec; color: #168348; }
+    .empty-message { display: none; padding: 25px; text-align: center; color: #8996a3; }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      background: #0007;
+    }
+
+    .modal.show { display: flex; }
+
+    .modal-content {
+      width: 100%;
+      max-width: 550px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 22px;
+      border-radius: 12px;
+      background: white;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .close-button { border: none; background: none; font-size: 25px; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 13px;
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 7px; }
+    .full-width { grid-column: 1 / -1; }
+
+    .form-group label { font-size: 12px; font-weight: bold; }
+
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #dce5ed;
+      border-radius: 7px;
+      outline: none;
+    }
+
+    .form-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .notice {
+      display: none;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 7px;
+      background: #e4f8ec;
+      color: #168348;
+    }
+
+    .notice.show { display: block; }
+
+    @media (max-width: 900px) {
+      .summary { grid-template-columns: repeat(2, 1fr); }
+      .sidebar { width: 190px; }
+    }
+
+    @media (max-width: 650px) {
+      body { flex-direction: column; }
+      .sidebar { width: 100%; }
+      .nav-link { display: inline-block; padding: 8px; }
+      .main { padding: 14px; }
+      .toolbar { flex-direction: column; }
+      .toolbar select { width: 100%; }
+      .form-grid { grid-template-columns: 1fr; }
+      .full-width { grid-column: auto; }
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">🐾</div>
+      <div>
+        <h2>Happy Paws</h2>
+        <p>Pet Management System</p>
+      </div>
+    </div>
+
+    <p class="menu-title">Main Menu</p>
+    <a class="nav-link" href="dashboard.html">📊 Dashboard</a>
+
+    <p class="menu-title">Management</p>
+    <a class="nav-link active" href="records.html">🐶 Pet Records</a>
+    <a class="nav-link" href="owners.html">👥 Owners</a>
+    <a class="nav-link" href="appointments.html">📅 Appointments</a>
+    <a class="nav-link" href="consulations.html">🩺 Consultations</a>
+    <a class="nav-link" href="services.html">💊 Services</a>
+    <a class="nav-link" href="medicines.html">💉 Medicines</a>
+     <p class="menu-title">Management</p>
+    <a class="nav-link" href="billing.html">💳 Billing</a>
+    <a class="nav-link" href="reports.html">📈 Reports</a>
+
+    <p class="menu-title">Account</p>
+    <a class="nav-link" href="login.html" id="logoutLink">🚪 Logout</a>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="page-title">
+        <h1>Pet Records</h1>
+        <p>Manage registered pets and their information.</p>
+      </div>
+      <div class="profile">
+        <div class="profile-icon">A</div>
+        <div>
+          <p class="profile-name">Administrator</p>
+          <p class="profile-role">Admin Account</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="summary">
+      <div class="summary-card">
+        <div class="summary-icon">🐾</div>
+        <p>Total Pets</p>
+        <h2 id="totalCount">0</h2>
+      </div>
+      <div class="summary-card">
+        <div class="summary-icon">🐶</div>
+        <p>Dogs</p>
+        <h2 id="dogCount">0</h2>
+      </div>
+      <div class="summary-card">
+        <div class="summary-icon">🐱</div>
+        <p>Cats</p>
+        <h2 id="catCount">0</h2>
+      </div>
+      <div class="summary-card">
+        <div class="summary-icon">👥</div>
+        <p>Owners</p>
+        <h2 id="ownerCount">0</h2>
+      </div>
+    </section>
+
+    <section class="content-card">
+      <div class="content-header">
+        <div>
+          <h2>Registered Pets</h2>
+          <p>View, search, add, and delete pet records.</p>
+        </div>
+        <button class="primary-button" id="addButton">+ Add New Pet</button>
+      </div>
+
+      <div class="notice" id="notice"></div>
+
+      <div class="toolbar">
+        <input type="search" id="searchInput" placeholder="Search pet name, owner, breed...">
+        <select id="typeFilter">
+          <option value="all">All Pet Types</option>
+          <option value="Dog">Dogs</option>
+          <option value="Cat">Cats</option>
+          <option value="Bird">Birds</option>
+          <option value="Rabbit">Rabbits</option>
+        </select>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Pet</th>
+              <th>Owner</th>
+              <th>Breed</th>
+              <th>Gender</th>
+              <th>Age</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="recordsTableBody"></tbody>
+        </table>
+        <div class="empty-message" id="emptyMessage">No pet records found.</div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="addModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Add New Pet</h2>
+        <button class="close-button" id="closeModal">&times;</button>
+      </div>
+
+      <form id="addForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="pName">Pet Name *</label>
+            <input type="text" id="pName" required>
+          </div>
+
+          <div class="form-group">
+            <label for="pOwner">Owner Name *</label>
+            <input type="text" id="pOwner" required>
+          </div>
+
+          <div class="form-group">
+            <label for="pType">Pet Type *</label>
+            <select id="pType" required>
+              <option value="">Select Type</option>
+              <option>Dog</option>
+              <option>Cat</option>
+              <option>Bird</option>
+              <option>Rabbit</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="pBreed">Breed *</label>
+            <input type="text" id="pBreed" required>
+          </div>
+
+          <div class="form-group">
+            <label for="pGender">Gender *</label>
+            <select id="pGender" required>
+              <option value="">Select Gender</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="pDob">Date of Birth *</label>
+            <input type="date" id="pDob" required>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="pColor">Color / Markings *</label>
+            <input type="text" id="pColor" required>
+          </div>
+        </div>
+
+        <div class="form-buttons">
+          <button type="button" class="secondary-button" id="cancelButton">Cancel</button>
+          <button type="submit" class="primary-button">Save Pet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const tableBody = document.getElementById("recordsTableBody");
+    const modal = document.getElementById("addModal");
+    const addForm = document.getElementById("addForm");
+    const searchInput = document.getElementById("searchInput");
+    const typeFilter = document.getElementById("typeFilter");
+    const notice = document.getElementById("notice");
+
+    function readStorage(key) {
+      try {
+        const data = JSON.parse(localStorage.getItem(key) || "[]");
+        return Array.isArray(data) ? data : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[char]);
+    }
+
+    function calculateAge(dob) {
+      if (!dob) return "";
+
+      const birth = new Date(dob + "T00:00:00");
+      if (isNaN(birth.getTime()) || birth > new Date()) return "";
+
+      const today = new Date();
+      let years = today.getFullYear() - birth.getFullYear();
+      let months = today.getMonth() - birth.getMonth();
+
+      if (today.getDate() < birth.getDate()) months--;
+
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      if (years > 0) return years + (years === 1 ? " yr" : " yrs");
+      if (months > 0) return months + (months === 1 ? " mo" : " mos");
+      return "Under 1 mo";
+    }
+
+    function getPets() {
+      const users = readStorage("happyPawsUsers");
+      const savedPets = readStorage("happyPawsPets");
+      const pets = new Map();
+
+      users.forEach(user => {
+        (Array.isArray(user.pets) ? user.pets : []).forEach(pet => {
+          const id = String(pet.id || "");
+          if (!id) return;
+
+          pets.set(id, {
+            ...pet,
+            id,
+            name: pet.name || pet.petName || "",
+            type: pet.type || pet.petType || "",
+            ownerName: pet.ownerName ||
+              ((user.firstName || "") + " " + (user.lastName || "")).trim(),
+            ownerEmail: pet.ownerEmail || user.email || "",
+            source: "user"
+          });
+        });
+      });
+
+      savedPets.forEach(pet => {
+        const id = String(pet.id || "");
+        if (!id) return;
+
+        const existing = pets.get(id);
+
+        if (existing) {
+          pets.set(id, {
+            ...pet,
+            ...existing,
+            ownerName: existing.ownerName || pet.ownerName || "",
+            source: "user"
+          });
+        } else {
+          pets.set(id, {
+            ...pet,
+            id,
+            name: pet.name || pet.petName || "",
+            type: pet.type || pet.petType || "",
+            source: "saved"
+          });
+        }
+      });
+
+      return Array.from(pets.values());
+    }
+
+    function showNotice(message) {
+      notice.textContent = message;
+      notice.classList.add("show");
+      setTimeout(() => notice.classList.remove("show"), 3000);
+    }
+
+    function renderRecords() {
+      const pets = getPets();
+      const term = searchInput.value.trim().toLowerCase();
+      const selectedType = typeFilter.value;
+
+      const filteredPets = pets.filter(pet => {
+        const searchable = [
+          pet.name, pet.ownerName, pet.breed,
+          pet.gender, pet.type, pet.color, pet.dob
+        ].join(" ").toLowerCase();
+
+        return searchable.includes(term) &&
+          (selectedType === "all" ||
+           String(pet.type || "").toLowerCase() === selectedType.toLowerCase());
+      });
+
+      document.getElementById("totalCount").textContent = pets.length;
+      document.getElementById("dogCount").textContent =
+        pets.filter(pet => String(pet.type || "").toLowerCase() === "dog").length;
+      document.getElementById("catCount").textContent =
+        pets.filter(pet => String(pet.type || "").toLowerCase() === "cat").length;
+
+      const owners = new Set(
+        pets.map(pet => String(pet.ownerName || "").trim().toLowerCase())
+          .filter(Boolean)
+      );
+      document.getElementById("ownerCount").textContent = owners.size;
+
+      tableBody.innerHTML = "";
+
+      if (filteredPets.length === 0) {
+        document.getElementById("emptyMessage").style.display = "block";
+        document.getElementById("emptyMessage").textContent =
+          term || selectedType !== "all"
+            ? "No matching pet records found."
+            : "No pet records found. Click Add New Pet to register a pet.";
+        return;
+      }
+
+      document.getElementById("emptyMessage").style.display = "none";
+
+      filteredPets.forEach(pet => {
+        const row = document.createElement("tr");
+        const type = String(pet.type || "").toLowerCase();
+        const emoji = type === "cat" ? "🐱" :
+                      type === "dog" ? "🐶" : "🐾";
+        const age = pet.dob ? calculateAge(pet.dob) : (pet.age || "—");
+
+        row.innerHTML = `
+          <td>
+            <span class="pet-name">${emoji} ${escapeHTML(pet.name || "Unnamed Pet")}</span>
+            <div class="small-text">${escapeHTML(pet.type || "Pet")}</div>
+          </td>
+          <td>${escapeHTML(pet.ownerName || "—")}</td>
+          <td>${escapeHTML(pet.breed || "—")}</td>
+          <td>${escapeHTML(pet.gender || "—")}</td>
+          <td>${escapeHTML(age || "—")}</td>
+          <td><span class="status active-status">Active</span></td>
+          <td>
+            <button class="action-button" data-action="view" data-id="${escapeHTML(pet.id)}">View</button>
+            <button class="action-button" data-action="delete" data-id="${escapeHTML(pet.id)}">Delete</button>
+          </td>
+        `;
+
+        tableBody.appendChild(row);
+      });
+    }
+
+    function openModal() {
+      addForm.reset();
+      document.getElementById("pDob").max = new Date().toISOString().slice(0, 10);
+      modal.classList.add("show");
+    }
+
+    function closeModal() {
+      modal.classList.remove("show");
+      addForm.reset();
+    }
+
+    document.getElementById("addButton").addEventListener("click", openModal);
+    document.getElementById("closeModal").addEventListener("click", closeModal);
+    document.getElementById("cancelButton").addEventListener("click", closeModal);
+
+    modal.addEventListener("click", event => {
+      if (event.target === modal) closeModal();
+    });
+
+    searchInput.addEventListener("input", renderRecords);
+    typeFilter.addEventListener("change", renderRecords);
+
+    tableBody.addEventListener("click", event => {
+      const button = event.target.closest("[data-action]");
+      if (!button) return;
+
+      const id = button.dataset.id;
+      const pet = getPets().find(item => String(item.id) === id);
+      if (!pet) return;
+
+      if (button.dataset.action === "view") {
+        alert(
+          "PET INFORMATION\n\n" +
+          "Name: " + (pet.name || "—") +
+          "\nType: " + (pet.type || "—") +
+          "\nOwner: " + (pet.ownerName || "—") +
+          "\nBreed: " + (pet.breed || "—") +
+          "\nGender: " + (pet.gender || "—") +
+          "\nAge: " + (pet.dob ? calculateAge(pet.dob) : (pet.age || "—")) +
+          "\nDate of Birth: " + (pet.dob || "—") +
+          "\nColor / Markings: " + (pet.color || "—")
+        );
+      }
+
+      if (button.dataset.action === "delete") {
+        if (!confirm("Are you sure you want to delete " +
+          (pet.name || "this pet") + "?\n\nThis action cannot be undone.")) {
+          alert("Pet deletion cancelled.");
+          return;
+        }
+
+        const users = readStorage("happyPawsUsers");
+        const savedPets = readStorage("happyPawsPets");
+
+        users.forEach(user => {
+          if (Array.isArray(user.pets)) {
+            user.pets = user.pets.filter(item => String(item.id) !== id);
+          }
+        });
+
+        const updatedPets = savedPets.filter(item => String(item.id) !== id);
+
+        try {
+          localStorage.setItem("happyPawsUsers", JSON.stringify(users));
+          localStorage.setItem("happyPawsPets", JSON.stringify(updatedPets));
+          renderRecords();
+          alert("Pet record deleted successfully!");
+        } catch {
+          alert("Unable to delete pet record. Please try again.");
+        }
+      }
+    });
+
+    addForm.addEventListener("submit", event => {
+      event.preventDefault();
+
+      const pet = {
+        id: Date.now().toString(),
+        name: document.getElementById("pName").value.trim(),
+        ownerName: document.getElementById("pOwner").value.trim(),
+        type: document.getElementById("pType").value,
+        breed: document.getElementById("pBreed").value.trim(),
+        gender: document.getElementById("pGender").value,
+        dob: document.getElementById("pDob").value,
+        color: document.getElementById("pColor").value.trim()
+      };
+
+      if (!pet.name || !pet.ownerName || !pet.type || !pet.breed ||
+          !pet.gender || !pet.dob || !pet.color) {
+        alert("Please complete all pet information.");
+        return;
+      }
+
+      if (new Date(pet.dob + "T00:00:00") > new Date()) {
+        alert("Date of Birth cannot be in the future.");
+        return;
+      }
+
+      const savedPets = readStorage("happyPawsPets");
+
+      try {
+        savedPets.push(pet);
+        localStorage.setItem("happyPawsPets", JSON.stringify(savedPets));
+
+        closeModal();
+        renderRecords();
+        showNotice("Pet added successfully!");
+        alert("Pet added successfully!");
+      } catch {
+        alert("Unable to save pet information. Please try again.");
+      }
+    });
+
+    document.getElementById("logoutLink").addEventListener("click", event => {
+      if (!confirm("Are you sure you want to log out?")) {
+        event.preventDefault();
+      }
+    });
+
+    renderRecords();
+  </script>
+</body>
+</html>
